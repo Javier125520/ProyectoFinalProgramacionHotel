@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.proyectofinalprogramacionhotel.RegistriGerente"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0" fx:controller="org.example.proyectofinalprogramacionhotel.controller.RegistrosController">
+    <children>
+        <VBox alignment="CENTER" spacing="15.0" layoutX="100.0" layoutY="50.0" prefWidth="400.0">
+            <Label text="Registro Gerente" style="-fx-font-size: 24px; -fx-text-fill: #FF5722;" />
+            <TextField fx:id="txtNombre" promptText="Nombre Completo" />
+            <TextField fx:id="txtCorreo" promptText="Correo Electrónico" />
+            <PasswordField fx:id="txtContrasena" promptText="Contraseña" />
+            <TextField fx:id="txtCodigoGerente" promptText="Código de Gerente" />
+            <Button fx:id="btnRegistrar" text="Registrar" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+        </VBox>
+    </children>
 </AnchorPane>

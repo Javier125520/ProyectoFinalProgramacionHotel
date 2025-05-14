@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.proyectofinalprogramacionhotel.MenuCliente"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.MenuClienteController">
+   <children>
+      <SplitPane dividerPositions="0.3484848484848485" layoutX="-1.0" layoutY="-2.0" prefHeight="402.0" prefWidth="606.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView layoutX="-1.0" layoutY="-1.0" prefHeight="313.0" prefWidth="208.0" />
+                  <MenuButton layoutX="55.0" layoutY="328.0" mnemonicParsing="false" text="MenuButton">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <GridPane layoutX="-1.0" layoutY="-1.0" prefHeight="402.0" prefWidth="391.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="3.3999969005584774" prefWidth="8.600000000000001" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="165.6" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.6" minWidth="10.0" prefWidth="217.6" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="79.39999618530274" minHeight="10.0" prefHeight="67.39999618530274" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="40.4" minHeight="10.0" prefHeight="23.400003814697257" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="36.39999999999998" minHeight="10.0" prefHeight="21.399999999999977" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="61.39999999999998" minHeight="10.0" prefHeight="61.39999999999998" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                         <Label text="Información de las reservas" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                             <font>
+                                 <Font name="System Bold" size="26.0" />
+                             </font>
+                         </Label>
+                        <Label text="idReserva" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Fecha de entrada" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Fecha de salida" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label prefWidth="128.0" text="Estado de la reserva" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label prefWidth="141.0" text="Número de personas" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Servicio/s contratados" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="Habitación/es contratadas" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" text="Más información" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="55.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button layoutX="240.0" layoutY="291.0" mnemonicParsing="false" text="Más información" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets left="55.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>

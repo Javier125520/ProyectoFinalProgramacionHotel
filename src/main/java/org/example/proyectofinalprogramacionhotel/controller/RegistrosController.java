@@ -1,4 +1,4 @@
-package org.example.proyectofinalprogramacionhotel.controllers;
+package org.example.proyectofinalprogramacionhotel.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
