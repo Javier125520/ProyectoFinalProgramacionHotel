@@ -3,13 +3,11 @@ package org.example.proyectofinalprogramacionhotel.model;
 public class Servicio {
     private int idServicio;
     private double precioHora;
-    private int numPersonas;
     private String tipoServicio;
 
-    public Servicio(int idServicio, double precioHora, int numPersonas, String tipoServicio) {
+    public Servicio(int idServicio, double precioHora, String tipoServicio) {
         this.idServicio = idServicio;
         this.precioHora = precioHora;
-        this.numPersonas = numPersonas;
         this.tipoServicio = tipoServicio;
     }
 
@@ -32,14 +30,6 @@ public class Servicio {
         this.precioHora = precioHora;
     }
 
-    public int getNumPersonas() {
-        return numPersonas;
-    }
-
-    public void setNumPersonas(int numPersonas) {
-        this.numPersonas = numPersonas;
-    }
-
     public String getTipoServicio() {
         return tipoServicio;
     }
@@ -52,8 +42,7 @@ public class Servicio {
     public String toString() {
         return "Servicio{" +
                 "idServicio=" + idServicio +
-                ", precio=" + precioHora +
-                ", numPersonas=" + numPersonas +
+                ", precioHora=" + precioHora +
                 ", tipoServicio='" + tipoServicio + '\'' +
                 '}';
     }

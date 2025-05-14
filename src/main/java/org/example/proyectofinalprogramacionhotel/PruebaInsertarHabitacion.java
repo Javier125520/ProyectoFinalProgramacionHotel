@@ -8,7 +8,7 @@ import org.example.proyectofinalprogramacionhotel.model.tipoHabitacion;
 public class PruebaInsertarHabitacion {
     public static void main(String[] args) {
         // ID de la reserva a la que se asociará la habitación
-        int idReserva = 1; // Asegúrate de que esta reserva exista en la base de datos
+        int idReserva = 4; // Asegúrate de que esta reserva exista en la base de datos
 
         // Crear una nueva habitación
         Habitacion nuevaHabitacion = new Habitacion();
