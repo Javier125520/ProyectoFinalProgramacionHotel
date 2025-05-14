@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.MainController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="501.0" prefWidth="700.0" spacing="30.0">
+            <Label text="Bienvenido al Hotel">
+                <font>
+                    <Font name="Verdana" size="36.0" />
+                </font>
+                <textFill>
+                    <Color fx:constant="DARKBLUE" />
+                </textFill>
+            </Label>
+            <Label text="¿Qué desea hacer?">
+                <font>
+                    <Font name="Verdana" size="24.0" />
+                </font>
+                <textFill>
+                    <Color fx:constant="BLACK" />
+                </textFill>
+            </Label>
+            <Button fx:id="btnRegistrarse" prefWidth="250.0" prefHeight="60.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Registrarse" />
+            <Button fx:id="btnIniciarSesion" prefWidth="250.0" prefHeight="60.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Iniciar Sesión" />
+            <Button fx:id="btnSalir" prefWidth="250.0" prefHeight="60.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Salir" />
+        </VBox>
+    </children>
+</AnchorPane>
