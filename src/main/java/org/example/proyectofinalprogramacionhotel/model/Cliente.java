@@ -1,14 +1,19 @@
 package org.example.proyectofinalprogramacionhotel.model;
 
+import java.util.List;
+
 public class Cliente extends Usuario {
     private int idCliente;
     private String dni;
     private String telefono;
+    private List<Reserva> misReservas;
 
-    public Cliente(String nombre, String gmail, String contrasena, String dni, String telefono) {
+    public Cliente(String nombre, String gmail, String contrasena, int idCliente, String dni, String telefono, List<Reserva> misReservas) {
         super(nombre, gmail, contrasena);
+        this.idCliente = idCliente;
         this.dni = dni;
         this.telefono = telefono;
+        this.misReservas = misReservas;
     }
 
     public Cliente() {
@@ -39,8 +44,29 @@ public class Cliente extends Usuario {
         this.telefono = telefono;
     }
 
+    public List<Reserva> getMisReservas() {
+        return misReservas;
+    }
+
+    public void setMisReservas(List<Reserva> misReservas) {
+        this.misReservas = misReservas;
+    }
+
     @Override
     public String getTipoUsuario() {
         return "Cliente";
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "idCliente=" + idCliente +
+                ", nombre='" + nombre + '\'' +
+                ", gmail='" + gmail + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", misReservas=" + misReservas +
+                '}';
     }
 }
