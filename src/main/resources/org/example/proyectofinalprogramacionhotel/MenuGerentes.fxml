@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.MenuClienteController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.MenuGerenteController">
    <children>
       <SplitPane dividerPositions="0.3484848484848485" layoutX="-1.0" layoutY="-2.0" prefHeight="402.0" prefWidth="606.0">
         <items>
@@ -14,8 +14,9 @@
                   <ListView layoutX="-1.0" layoutY="-1.0" prefHeight="313.0" prefWidth="208.0" />
                   <MenuButton layoutX="55.0" layoutY="328.0" mnemonicParsing="false" text="MenuButton">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                      <MenuItem mnemonicParsing="false" text="Añadir" />
+                      <MenuItem mnemonicParsing="false" text="Actualizar" />
+                        <MenuItem mnemonicParsing="false" text="Eliminar" />
                     </items>
                   </MenuButton>
                </children>
@@ -40,46 +41,41 @@
                         <RowConstraints maxHeight="61.39999999999998" minHeight="10.0" prefHeight="61.39999999999998" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                         <Label text="Información de las reservas" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                         <Label text="Información del cliente" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                              <font>
                                  <Font name="System Bold" size="26.0" />
                              </font>
                          </Label>
-                        <Label text="idReserva" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Id Cliente" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label text="Fecha de entrada" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label text="Fecha de salida" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label text="Gmail" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label prefWidth="128.0" text="Estado de la reserva" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label prefWidth="128.0" text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label prefWidth="141.0" text="Número de personas" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label prefWidth="141.0" text="DNI" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label text="Servicio/s contratados" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Label text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="Habitación/es contratadas" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <Label text="Reservas" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Más información" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets left="55.0" />
-                           </GridPane.margin>
-                        </Button>
                         <Button layoutX="240.0" layoutY="291.0" mnemonicParsing="false" text="Más información" GridPane.columnIndex="2" GridPane.rowIndex="7">
                            <GridPane.margin>
                               <Insets left="55.0" />
@@ -90,6 +86,7 @@
                         <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                         <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label layoutX="184.0" layoutY="255.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children>
