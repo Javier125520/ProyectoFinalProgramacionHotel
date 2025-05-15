@@ -1,97 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.MenuGerenteController">
-   <children>
-      <SplitPane dividerPositions="0.3484848484848485" layoutX="-1.0" layoutY="-2.0" prefHeight="402.0" prefWidth="606.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <ListView layoutX="-1.0" layoutY="-1.0" prefHeight="313.0" prefWidth="208.0" />
-                  <MenuButton layoutX="55.0" layoutY="328.0" mnemonicParsing="false" text="MenuButton">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Añadir" />
-                      <MenuItem mnemonicParsing="false" text="Actualizar" />
-                        <MenuItem mnemonicParsing="false" text="Eliminar" />
-                    </items>
-                  </MenuButton>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <GridPane layoutX="-1.0" layoutY="-1.0" prefHeight="402.0" prefWidth="391.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="3.3999969005584774" prefWidth="8.600000000000001" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="165.6" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.6" minWidth="10.0" prefWidth="217.6" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="79.39999618530274" minHeight="10.0" prefHeight="67.39999618530274" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="40.4" minHeight="10.0" prefHeight="23.400003814697257" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="36.39999999999998" minHeight="10.0" prefHeight="21.399999999999977" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="61.39999999999998" minHeight="10.0" prefHeight="61.39999999999998" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                         <Label text="Información del cliente" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                             <font>
-                                 <Font name="System Bold" size="26.0" />
-                             </font>
-                         </Label>
-                        <Label text="Id Cliente" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                        <Label text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                        <Label text="Gmail" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                        <Label prefWidth="128.0" text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                        <Label prefWidth="141.0" text="DNI" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                        <Label text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="Reservas" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="240.0" layoutY="291.0" mnemonicParsing="false" text="Más información" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                           <GridPane.margin>
-                              <Insets left="55.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <Label layoutX="184.0" layoutY="255.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.MenuGerentesController">
+    <children>
+        <SplitPane dividerPositions="0.35" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane>
+                    <children>
+                        <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <ListView prefHeight="290.0" prefWidth="206.0" />
+                            <MenuButton prefHeight="23.0" prefWidth="110.0" style="-fx-font-size: 16px;" text="Opciones">
+                                <items>
+                                    <MenuItem text="Añadir" />
+                                    <MenuItem text="Actualizar" />
+                                    <MenuItem text="Eliminar" />
+                                </items>
+                            </MenuButton>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane>
+                    <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="24.0" minWidth="1.9999992847442627" prefWidth="11.4" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="189.20000071525573" minWidth="125.6" prefWidth="151.0" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="236.79999928474425" minWidth="177.79999928474425" prefWidth="223.2" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="ALWAYS" />
+                                <RowConstraints vgrow="ALWAYS" />
+                                <RowConstraints vgrow="ALWAYS" />
+                                <RowConstraints vgrow="ALWAYS" />
+                                <RowConstraints vgrow="ALWAYS" />
+                                <RowConstraints vgrow="ALWAYS" />
+                                <RowConstraints vgrow="ALWAYS" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Información del gerente" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                                    <font>
+                                        <Font name="System Bold" size="26.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Id Gerente:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Gmail:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Teléfono:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Código:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label text="Habitaciones:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <Button text="Más información" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                            </children>
+                        </GridPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>
