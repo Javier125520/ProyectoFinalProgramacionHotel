@@ -13,8 +13,8 @@ public class InicioController {
 
 
     @FXML
-    public void irAPantallaRegistro(ActionEvent ActionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("PreguntaRegistro.fxml"));
+    public void irAPantallaGestionCliente(ActionEvent ActionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("MenuCliente.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -22,7 +22,7 @@ public class InicioController {
     }
 
     @FXML
-    public void irAPantallaInicioSesion(ActionEvent ActionEvent) throws IOException {
+    public void irAPantallaGestionGerente(ActionEvent ActionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("InicioSesion.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();

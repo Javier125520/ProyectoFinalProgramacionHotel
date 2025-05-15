@@ -7,15 +7,12 @@ import java.time.LocalDate;
 
 public class PruebaInsertarReservaServicio {
     public static void main(String[] args) {
-        // ID de la reserva y del servicio
-        int idReserva = 1; // Asegúrate de que esta reserva exista en la base de datos
-        String idServicio = "SPA"; // Asegúrate de que este servicio exista en la base de datos
-
         // Crear una nueva reserva de servicio
         ReservaServicio nuevaReservaServicio = new ReservaServicio();
-        nuevaReservaServicio.setIdReserva(idReserva);
-        nuevaReservaServicio.setIdServicio(idServicio);
+        nuevaReservaServicio.setIdReserva(4); // ID de la reserva existente
+        nuevaReservaServicio.setIdServicio(1); // ID del servicio existente
         nuevaReservaServicio.setFechaReserva(LocalDate.now());
+        nuevaReservaServicio.setNumeroPersonas(2); // Número de personas
         nuevaReservaServicio.setPrecio(100); // Precio del servicio
         nuevaReservaServicio.setFechaInicio(LocalDate.of(2023, 12, 1));
         nuevaReservaServicio.setFechaFin(LocalDate.of(2023, 12, 2));
@@ -23,7 +20,7 @@ public class PruebaInsertarReservaServicio {
         // Insertar la reserva del servicio en la base de datos
         try {
             ReservaServicioDAO.insertReservaServicio(nuevaReservaServicio);
-            System.out.println("Reserva de servicio añadida con éxito.");
+            System.out.println("Reserva de servicio añadida con éxito: " + nuevaReservaServicio);
         } catch (Exception e) {
             System.out.println("Error al añadir la reserva de servicio: " + e.getMessage());
         }

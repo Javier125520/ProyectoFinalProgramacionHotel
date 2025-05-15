@@ -11,17 +11,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ReservaServicioDAO {
-    private final static String SQL_INSERT = "INSERT INTO reserva_servicio (fechaReserva, numeroPersonas, precio, fechaInicio, fechaFin) VALUES (?, ?, ?, ?, ?)";
+    private final static String SQL_INSERT = "INSERT INTO reserva_servicio (idReserva, idServicio, fechaReserva, numeroPersonas, precio, fechaInicio, fechaFin) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM reserva_servicio WHERE idReserva = ?";
     private final static String SQL_DELETE = "DELETE FROM reserva_servicio WHERE idReserva = ?";
 
     public static void insertReservaServicio(ReservaServicio reserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
-            pst.setDate(1, Date.valueOf(reserva.getFechaReserva()));
-            pst.setInt(2, reserva.getNumeroPersonas());
-            pst.setInt(3, reserva.getPrecio());
-            pst.setDate(4, Date.valueOf(reserva.getFechaInicio()));
-            pst.setDate(5, Date.valueOf(reserva.getFechaFin()));
+            pst.setInt(1, reserva.getIdReserva());
+            pst.setInt(2, reserva.getIdServicio());
+            pst.setDate(3, Date.valueOf(reserva.getFechaReserva()));
+            pst.setInt(4, reserva.getNumeroPersonas());
+            pst.setInt(5, reserva.getPrecio());
+            pst.setDate(6, Date.valueOf(reserva.getFechaInicio()));
+            pst.setDate(7, Date.valueOf(reserva.getFechaFin()));
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

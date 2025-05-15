@@ -8,15 +8,15 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.InicioController">
     <children>
         <VBox alignment="CENTER" prefHeight="501.0" prefWidth="700.0" spacing="30.0">
-            <Label text="Bienvenido al Hotel">
+            <Label text="Bienvenido a la págian de gestion de su hotel">
                 <font>
-                    <Font name="Verdana" size="36.0" />
+                    <Font name="Verdana" size="25.0" />
                 </font>
                 <textFill>
                     <Color fx:constant="DARKBLUE" />
                 </textFill>
             </Label>
-            <Label text="¿Qué desea hacer?">
+            <Label text="¿Qué desea hacer gestionar?">
                 <font>
                     <Font name="Verdana" size="24.0" />
                 </font>
@@ -24,8 +24,8 @@
                     <Color fx:constant="BLACK" />
                 </textFill>
             </Label>
-            <Button onAction="#irAPantallaRegistro" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Registrarse" />
-            <Button onAction="#irAPantallaInicioSesion" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Iniciar Sesión" />
+            <Button onAction="#irAPantallaGestionCliente" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Cliente" />
+            <Button onAction="#irAPantallaGestionGerente" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Gerente" />
             <Button onAction="#salirDelPrograma" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-family: 'Verdana'; -fx-font-size: 18px;" text="Salir" />
         </VBox>
     </children>
