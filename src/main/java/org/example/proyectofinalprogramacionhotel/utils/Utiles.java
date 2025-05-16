@@ -33,4 +33,22 @@ public class Utiles {
         String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$";
         return Pattern.matches(regex, nombre);
     }
+
+    public static boolean validarNumeroPersonas(String numero) {
+        // Expresión regular para un número de personas válido (número entero positivo)
+        String regex = "^[1-9][0-9]*$";
+        return Pattern.matches(regex, numero);
+    }
+
+    public static boolean validarFechaEntrada(String fechaEntrada) {
+        // Expresión regular para una fecha de entrada válida (dd/mm/yyyy)
+        String regex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
+        return Pattern.matches(regex, fechaEntrada);
+    }
+
+    public static boolean validarFechaSalida(String fechaSalida) {
+        // Expresión regular para una fecha de salida válida (dd/mm/yyyy)
+        String regex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
+        return Pattern.matches(regex, fechaSalida);
+    }
 }

@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservaDAO {
-    private final static String SQL_INSERT = "INSERT INTO reserva (fechaEntrada, fechaSalida, estado, numeroPersonas, IdCliente) VALUES (?, ?, ?, ?, ?)";
+    private final static String SQL_INSERT = "INSERT INTO reserva (fechaEntrada, fechaSalida, estadoReserva, numeroPersonas, IdCliente) VALUES (?, ?, ?, ?, ?)";
     private final static String SQL_DELETE= "DELETE FROM reserva WHERE idReserva = ?";
-    private final static String SQL_UPDATE = "UPDATE reserva SET fechaEntrada = ?, fechaSalida = ?, estado = ?, numeroPersonas = ?";
+    private final static String SQL_UPDATE = "UPDATE reserva SET fechaEntrada = ?, fechaSalida = ?, estadoReserva = ?, numeroPersonas = ?";
     private final static String SQL_ALL = "SELECT * FROM reserva";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM reserva WHERE idReserva = ?";
     private final static String SQL_FIND_BY_ID_CLIENTE = "SELECT * FROM reserva WHERE idCliente = ?";
@@ -63,11 +63,8 @@ public class ReservaDAO {
                 reserva.setIdReserva(rs.getInt("idReserva"));
                 reserva.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
                 reserva.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
-                reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estado")));
+                reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estadoReserva")));
                 reserva.setNumPersonas(rs.getInt("numeroPersonas"));
-                reserva.setIdCliente(idCliente);
-                reserva.setServiciosIncluidos(ReservaServicioDAO.findById(reserva.getIdReserva()));
-                reserva.setHabitacionesContratadas(HabitacionDAO.findByIdReserva(reserva.getIdReserva()));
                 reservas.add(reserva);
             }
         } catch (SQLException e) {
@@ -85,7 +82,7 @@ public class ReservaDAO {
                 reserva.setIdReserva(rs.getInt("idReserva"));
                 reserva.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
                 reserva.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
-                reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estado")));
+                reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estadoReserva")));
                 reserva.setNumPersonas(rs.getInt("numeroPersonas"));
                 reserva.setServiciosIncluidos(new ArrayList<>());
                 reserva.setHabitacionesContratadas(new ArrayList<>());
@@ -107,7 +104,7 @@ public class ReservaDAO {
                 reserva.setIdReserva(idReserva);
                 reserva.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
                 reserva.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
-                reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estado")));
+                reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estadoReserva")));
                 reserva.setNumPersonas(rs.getInt("numeroPersonas"));
                 reserva.setServiciosIncluidos(ReservaServicioDAO.findById(idReserva));
                 reserva.setHabitacionesContratadas(HabitacionDAO.findByIdReserva(idReserva));

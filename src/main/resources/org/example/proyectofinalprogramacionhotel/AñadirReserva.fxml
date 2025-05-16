@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.AñadirReservaController" style="-fx-background-color: #f4f4f4;">
+    <VBox spacing="20" alignment="CENTER" style="-fx-padding: 20;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <!-- Encabezado -->
+        <Label text="Añadir Reserva" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+        <!-- Formulario -->
+        <GridPane hgap="20" vgap="20" style="-fx-background-color: #ffffff; -fx-padding: 30; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10; -fx-max-width: 800;">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="200" />
+                <ColumnConstraints halignment="LEFT" minWidth="400" />
+            </columnConstraints>
+            <children>
+                <Label text="Fecha Entrada:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <DatePicker fx:id="fechaEntradaPicker" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Fecha Salida:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <DatePicker fx:id="fechaSalidaPicker" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Estado:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <ComboBox fx:id="estadoReservaCombo" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="Seleccione un estado" />
+
+                <Label text="Número de Personas:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextField fx:id="numPersonasField" GridPane.rowIndex="3" GridPane.columnIndex="1" promptText="Ingrese el número de personas" />
+            </children>
+        </GridPane>
+
+        <!-- Botones -->
+        <HBox spacing="20" alignment="CENTER">
+            <Button text="Guardar" onAction="#guardarNuevaReserva" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
+            <Button text="Cancelar" onAction="#cancelarReserva" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
+        </HBox>
+    </VBox>
+</AnchorPane>

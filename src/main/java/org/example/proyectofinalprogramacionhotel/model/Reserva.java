@@ -8,13 +8,13 @@ public class Reserva {
     private int idReserva;
     private LocalDate fechaEntrada;
     private LocalDate fechaSalida;
-    private Enum estadoReserva;
+    private estadoReserva estadoReserva;
     private int numPersonas;
     private int idCliente;
     private List<Servicio> serviciosIncluidos;
     private List<Habitacion> habitacionesContratadas;
 
-    public Reserva(int idReserva, LocalDate fechaEntrada, LocalDate fechaSalida, Enum estadoReserva, int numPersonas, int idCliente, List<Servicio> misServicios, List<Habitacion> habitacionesContratadas) {
+    public Reserva(int idReserva, LocalDate fechaEntrada, LocalDate fechaSalida, estadoReserva estadoReserva, int numPersonas, int idCliente, List<Servicio> misServicios, List<Habitacion> habitacionesContratadas) {
         this.idReserva = idReserva;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
@@ -61,11 +61,11 @@ public class Reserva {
         this.fechaSalida = fechaSalida;
     }
 
-    public Enum getEstadoReserva() {
+    public org.example.proyectofinalprogramacionhotel.model.estadoReserva getEstadoReserva() {
         return estadoReserva;
     }
 
-    public void setEstadoReserva(Enum estadoReserva) {
+    public void setEstadoReserva(org.example.proyectofinalprogramacionhotel.model.estadoReserva estadoReserva) {
         this.estadoReserva = estadoReserva;
     }
 

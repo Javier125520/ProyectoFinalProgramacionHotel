@@ -1,10 +1,10 @@
 package org.example.proyectofinalprogramacionhotel.model;
 
 public enum tipoHabitacion {
-    INDIVIDUAL("Habitacion individual"),
-    DOBLE("Habitacion doble"),
-    FAMILIAR("Habitacion familiar (3 o 4 personas)"),
-    SUITE("Suite");
+    Individual("Habitacion individual"),
+    Doble("Habitacion doble"),
+    Falimiar("Habitacion familiar (3 o 4 personas)"),
+    Suit("Suite");
 
     private final String descripcion;
 

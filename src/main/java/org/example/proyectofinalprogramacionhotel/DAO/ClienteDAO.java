@@ -13,7 +13,7 @@ import java.util.List;
 public class ClienteDAO {
     private final static String SQL_INSERT = "INSERT INTO cliente (nombre, gmail, contrasena, dni, telefono) VALUES (?, ?, ?, ?, ?)";
     private final static String SQL_DELETE= "DELETE FROM cliente WHERE idCliente = ?";
-    private final static String SQL_UPDATE = "UPDATE cliente SET nombre = ?, gamil = ?, contrasena = ?, dni = ?, telefono = ? WHERE idUsuario = ?";
+    private final static String SQL_UPDATE = "UPDATE cliente SET nombre = ?, gmail = ?, contrasena = ?, dni = ?, telefono = ? WHERE idCliente = ?";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM cliente WHERE idCliente = ?";
     private final static String SQL_ALL = "SELECT * FROM cliente";
 
@@ -93,11 +93,16 @@ public class ClienteDAO {
     }
 
     public static void updateCliente(Cliente cliente) {
-        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
-            pst.setString(1, cliente.getDni());
-            pst.setString(2, cliente.getTelefono());
-            pst.setInt(3, cliente.getIdCliente());
-            pst.executeUpdate();
+        try (PreparedStatement stmt = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {;
+            // Configurar los parámetros
+            stmt.setString(1, cliente.getNombre());
+            stmt.setString(2, cliente.getGmail());
+            stmt.setString(3, cliente.getContrasena());
+            stmt.setString(4, cliente.getDni());
+            stmt.setString(5, cliente.getTelefono());
+            stmt.setInt(6, cliente.getIdCliente());
+            // Ejecutar la actualización
+            stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

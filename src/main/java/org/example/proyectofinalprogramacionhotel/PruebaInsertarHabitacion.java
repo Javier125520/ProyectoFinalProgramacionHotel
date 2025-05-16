@@ -8,14 +8,14 @@ import org.example.proyectofinalprogramacionhotel.model.tipoHabitacion;
 public class PruebaInsertarHabitacion {
     public static void main(String[] args) {
         // ID de la reserva a la que se asociará la habitación
-        int idReserva = 4; // Asegúrate de que esta reserva exista en la base de datos
+        int idReserva = 5; // Asegúrate de que esta reserva exista en la base de datos
 
         // Crear una nueva habitación
         Habitacion nuevaHabitacion = new Habitacion();
         nuevaHabitacion.setNumeroHabitacion(101);
-        nuevaHabitacion.setTipoHabitacion(tipoHabitacion.DOBLE); // Asegúrate de que tipoHabitacion sea un Enum válido
+        nuevaHabitacion.setTipoHabitacion(tipoHabitacion.Doble); // Asegúrate de que tipoHabitacion sea un Enum válido
         nuevaHabitacion.setPrecioNoche(150.0);
-        nuevaHabitacion.setEstadoHabitacion(estadoHabitacion.LIBRE); // Asegúrate de que estadoHabitacion sea un Enum válido
+        nuevaHabitacion.setEstadoHabitacion(estadoHabitacion.Libre); // Asegúrate de que estadoHabitacion sea un Enum válido
         nuevaHabitacion.setIdGerente(1); // ID del gerente que está creando la habitación
         nuevaHabitacion.setIdReserva(idReserva); // Asociar la habitación a la reserva
 

@@ -56,12 +56,17 @@
                     <Label text="Reservas Asociadas" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
                     <TableView fx:id="reservasClienteTbl" prefHeight="300.0">
                         <columns>
-                            <TableColumn text="ID Reserva" />
-                            <TableColumn text="Fecha Entrada" />
-                            <TableColumn text="Fecha Salida" />
-                            <TableColumn text="Estado" />
+                            <TableColumn fx:id="colIdReserva" text="ID Reserva" />
+                            <TableColumn fx:id="colFechaEntrada" text="Fecha Entrada" />
+                            <TableColumn fx:id="colFechaSalida" text="Fecha Salida" />
+                            <TableColumn fx:id="colEstado" text="Estado" />
                         </columns>
                     </TableView>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button text="Añadir Reserva" onAction="#añadirReserva" />
+                        <Button text="Actualizar Reserva" onAction="#actualizarReserva" />
+                        <Button text="Eliminar Reserva" onAction="#eliminarReserva" />
+                    </HBox>
                 </VBox>
             </Tab>
         </TabPane>

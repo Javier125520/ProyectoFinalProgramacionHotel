@@ -14,7 +14,7 @@ public class PruebaInsertarReserva {
         nuevaReserva.setFechaSalida(LocalDate.of(2023, 12, 5));
         nuevaReserva.setEstadoReserva(estadoReserva.Completada);
         nuevaReserva.setNumPersonas(2);
-        nuevaReserva.setIdCliente(1); // Asegúrate de que este cliente exista en la base de datos
+        nuevaReserva.setIdCliente(7); // Asegúrate de que este cliente exista en la base de datos
 
         // Insertar la reserva en la base de datos
         Reserva reservaInsertada = ReservaDAO.insertReserva(nuevaReserva);

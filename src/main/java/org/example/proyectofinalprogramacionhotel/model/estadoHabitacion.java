@@ -1,9 +1,9 @@
 package org.example.proyectofinalprogramacionhotel.model;
 
 public enum estadoHabitacion {
-    LIBRE("Libre"),
-    OCUPADA("Ocupada"),
-    MANTENIMIENTO("En mantenimiento");
+    Libre("Libre"),
+    Ocupada("Ocupada"),
+    Mantenimiento("En mantenimiento");
 
     private final String descripcion;
 
