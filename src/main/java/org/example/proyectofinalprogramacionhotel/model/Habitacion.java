@@ -3,13 +3,13 @@ package org.example.proyectofinalprogramacionhotel.model;
 public class Habitacion {
     private int idHabitacion;
     private int numeroHabitacion;
-    private Enum tipoHabitacion;
+    private tipoHabitacion tipoHabitacion;
     private double precioNoche;
-    private Enum estadoHabitacion;
+    private estadoHabitacion estadoHabitacion;
     private int idGerente;
     private int idReserva;
 
-    public Habitacion(int idHabitacion, int numeroHabitacion, Enum tipoHabitacion, double precioNoche, Enum estadoHabitacion, int idGerente, int idReserva) {
+    public Habitacion(int idHabitacion, int numeroHabitacion, org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion, double precioNoche, org.example.proyectofinalprogramacionhotel.model.estadoHabitacion estadoHabitacion, int idGerente, int idReserva) {
         this.idHabitacion = idHabitacion;
         this.numeroHabitacion = numeroHabitacion;
         this.tipoHabitacion = tipoHabitacion;
@@ -39,11 +39,11 @@ public class Habitacion {
         this.numeroHabitacion = numeroHabitacion;
     }
 
-    public Enum getTipoHabitacion() {
+    public org.example.proyectofinalprogramacionhotel.model.tipoHabitacion getTipoHabitacion() {
         return tipoHabitacion;
     }
 
-    public void setTipoHabitacion(Enum tipoHabitacion) {
+    public void setTipoHabitacion(org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
 
@@ -55,11 +55,11 @@ public class Habitacion {
         this.precioNoche = precioNoche;
     }
 
-    public Enum getEstadoHabitacion() {
+    public org.example.proyectofinalprogramacionhotel.model.estadoHabitacion getEstadoHabitacion() {
         return estadoHabitacion;
     }
 
-    public void setEstadoHabitacion(Enum estadoHabitacion) {
+    public void setEstadoHabitacion(org.example.proyectofinalprogramacionhotel.model.estadoHabitacion estadoHabitacion) {
         this.estadoHabitacion = estadoHabitacion;
     }
 
@@ -77,5 +77,17 @@ public class Habitacion {
 
     public void setIdReserva(int idReserva) {
         this.idReserva = idReserva;
+    }
+
+    @Override
+    public String toString() {
+        return "Habitacion{" +
+                "idHabitacion=" + idHabitacion +
+                ", numeroHabitacion=" + numeroHabitacion +
+                ", tipoHabitacion=" + tipoHabitacion +
+                ", precioNoche=" + precioNoche +
+                ", estadoHabitacion=" + estadoHabitacion +
+                ", idGerente=" + idGerente +
+                '}';
     }
 }

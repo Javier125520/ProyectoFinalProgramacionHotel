@@ -12,7 +12,7 @@ import org.example.proyectofinalprogramacionhotel.model.Cliente;
 public class ActualizarClienteController {
 
     @FXML
-    public Button cancelarActualizacion;
+    public Button cancelarActualizacionCliente;
 
     @FXML
     private TextField nombreClienteField;
@@ -86,7 +86,7 @@ public class ActualizarClienteController {
 
     public void cancelarActualizacion(ActionEvent actionEvent) {
         // Cerrar la ventana actual
-        Stage stage = (Stage) cancelarActualizacion.getScene().getWindow();
+        Stage stage = (Stage) cancelarActualizacionCliente.getScene().getWindow();
         stage.close();
     }
 }

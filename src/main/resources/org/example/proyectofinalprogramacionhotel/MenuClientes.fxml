@@ -2,19 +2,18 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.MenuClientesController" prefHeight="600.0" prefWidth="800.0">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.MenuClientesController">
     <!-- Título principal -->
     <top>
-        <Label text="Gestión de Clientes" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10;" BorderPane.alignment="CENTER" />
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 10;" text="Gestión de Clientes" BorderPane.alignment="CENTER" />
     </top>
 
     <!-- Panel izquierdo: Lista de clientes -->
     <left>
-        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
-            <Label text="Lista de Clientes" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-            <ListView fx:id="clientesLst" prefHeight="500.0" prefWidth="250.0" onMouseClicked="#mostrarClienteSeleccionado" />
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10;">
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Lista de Clientes" />
+            <ListView fx:id="clientesLst" onMouseClicked="#mostrarClienteSeleccionado" prefHeight="500.0" prefWidth="250.0" />
         </VBox>
     </left>
 
@@ -23,49 +22,116 @@
         <TabPane style="-fx-padding: 10;">
             <!-- Pestaña de información general -->
             <Tab text="Información del Cliente">
-                <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
+                <GridPane hgap="10" style="-fx-padding: 20;" vgap="10">
                     <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" />
                         <ColumnConstraints halignment="LEFT" />
                     </columnConstraints>
                     <children>
-                        <Label text="Id Cliente:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                        <Label fx:id="idCliente" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="Id Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label fx:id="idCliente" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                        <Label text="Nombre:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                        <Label fx:id="nombreCliente" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label fx:id="nombreCliente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                        <Label text="Gmail:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                        <Label fx:id="gmailCliente" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="Gmail:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label fx:id="gmailCliente" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                        <Label text="Teléfono:" style="-fx-font-weight: bold;" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-                        <Label fx:id="telefonoCliente" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label fx:id="telefonoCliente" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                        <Label text="Contraseña:" style="-fx-font-weight: bold;" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-                        <Label fx:id="contrasenaCliente" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <Label fx:id="contrasenaCliente" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                        <Label text="DNI:" style="-fx-font-weight: bold;" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-                        <Label fx:id="dniCliente" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="DNI:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                        <Label fx:id="dniCliente" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
                 </GridPane>
             </Tab>
-
             <!-- Pestaña de reservas -->
             <Tab text="Reservas del Cliente">
                 <VBox spacing="10" style="-fx-padding: 20;">
-                    <Label text="Reservas Asociadas" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-                    <TableView fx:id="reservasClienteTbl" prefHeight="300.0">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Reservas " />
+                    <TableView fx:id="reservasClienteTbl" prefHeight="200.0">
                         <columns>
                             <TableColumn fx:id="colIdReserva" text="ID Reserva" />
                             <TableColumn fx:id="colFechaEntrada" text="Fecha Entrada" />
                             <TableColumn fx:id="colFechaSalida" text="Fecha Salida" />
                             <TableColumn fx:id="colEstado" text="Estado" />
+                            <TableColumn fx:id="colNumPersonas" text="Número de Personas" />
                         </columns>
                     </TableView>
-                    <HBox spacing="10" alignment="CENTER">
-                        <Button text="Añadir Reserva" onAction="#añadirReserva" />
-                        <Button text="Actualizar Reserva" onAction="#actualizarReserva" />
-                        <Button text="Eliminar Reserva" onAction="#eliminarReserva" />
+                    <HBox alignment="CENTER" spacing="10">
+                        <Button onAction="#añadirReserva" text="Añadir Reserva" />
+                        <Button onAction="#actualizarReserva" text="Actualizar Reserva" />
+                        <Button onAction="#eliminarReserva" text="Eliminar Reserva" />
+                    </HBox>
+                    <TabPane>
+                        <!-- Pestaña para gestionar habitaciones -->
+                        <Tab text="Habitaciones">
+                            <VBox spacing="10">
+                                <TableView fx:id="habitacionesTbl" prefHeight="150.0">
+                                    <columns>
+                                        <TableColumn fx:id="colIdHabitacion" text="ID Habitación" />
+                                        <TableColumn fx:id="colNumeroHabitacion" text="Número" />
+                                        <TableColumn fx:id="colTipoHabitacion" text="Tipo" />
+                                        <TableColumn fx:id="colPrecioNoche" text="Precio por Noche" />
+                                        <TableColumn fx:id="colEstadoHabitacion" text="Estado" />
+                                        <TableColumn fx:id="colIdGerente" text="ID Gerente" />
+                                    </columns>
+                                </TableView>
+                                <HBox alignment="CENTER" spacing="10">
+                                    <Button onAction="#añadirHabitacion" text="Añadir Habitación" />
+                                    <Button onAction="#eliminarHabitacion" text="Eliminar Habitación" />
+                                    <Button onAction="#actualizarHabitacion" text="Actualizar Habitación" />
+                                </HBox>
+                            </VBox>
+                        </Tab>
+                        <!-- Pestaña para gestionar servicios -->
+                        <Tab text="Servicios reservados">
+                            <VBox spacing="10">
+                                <TableView fx:id="reservasServiciosTbl" prefHeight="150.0">
+                                    <columns>
+                                        <TableColumn fx:id="colIdServicioReservado" text="ID Servicio" />
+                                        <TableColumn fx:id="colFechaReserva" text="Fecha Reserva" />
+                                        <TableColumn fx:id="colNumeroPersonas" text="Número de Personas" />
+                                        <TableColumn fx:id="colPrecio" text="Precio" />
+                                        <TableColumn fx:id="colFechaInicio" text="Fecha Inicio" />
+                                        <TableColumn fx:id="colFechaFin" text="Fecha Fin" />
+                                    </columns>
+                                </TableView>
+                                <HBox alignment="CENTER" spacing="10">
+                                    <Button onAction="#añadirReservaServicio" text="Añadir Reserva de Servicio" />
+                                    <Button onAction="#eliminarReservaServicio" text="Eliminar Reserva de Servicio" />
+                                    <Button onAction="#actualizarReservaServicio" text="Actualizar Reserva de Servicio" />
+                                </HBox>
+                            </VBox>
+                        </Tab>
+                    </TabPane>
+                </VBox>
+            </Tab>
+            <!-- Pestaña para gestionar servicios -->
+            <Tab text="Servicios">
+                <VBox spacing="10">
+                    <TableView fx:id="serviciosTbl" prefHeight="150.0">
+                        <columns>
+                            <TableColumn fx:id="colIdServicio" text="ID Servicio" />
+                            <TableColumn fx:id="colTipoServicio" text="Tipo" />
+                            <TableColumn fx:id="colPrecioHoraServicio" text="Precio x hora" />
+                        </columns>
+                    </TableView>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Button onAction="#añadirServicio" text="Añadir Servicio" />
+                        <Button onAction="#eliminarServicio" text="Eliminar Servicio" />
+                        <Button onAction="#actualizarServicio" text="Actualizar Servicio" />
                     </HBox>
                 </VBox>
             </Tab>
@@ -74,10 +140,10 @@
 
     <!-- Panel inferior: Botones de acción -->
     <bottom>
-        <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
-            <Button text="Añadir Cliente" onAction="#añadirCliente" style="-fx-font-size: 14px;" />
-            <Button text="Actualizar Cliente" onAction="#actualizarCliente" style="-fx-font-size: 14px;" />
-            <Button text="Eliminar Cliente" onAction="#eliminarCliente" style="-fx-font-size: 14px;" />
+        <HBox alignment="CENTER" spacing="10" style="-fx-padding: 10;">
+            <Button onAction="#añadirCliente" style="-fx-font-size: 14px;" text="Añadir Cliente" />
+            <Button onAction="#actualizarCliente" style="-fx-font-size: 14px;" text="Actualizar Cliente" />
+            <Button onAction="#eliminarCliente" style="-fx-font-size: 14px;" text="Eliminar Cliente" />
         </HBox>
     </bottom>
 </BorderPane>
