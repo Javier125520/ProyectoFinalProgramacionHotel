@@ -16,6 +16,7 @@ public class ServicioDAO {
     private final static String SQL_UPDATE = "UPDATE servicio SET precioHora = ?, tipoServicio = ? WHERE idServicio = ?";
     private final static String SQL_DELETE = "DELETE FROM servicio WHERE idServicio = ?";
 
+
     public static Servicio insertServicio(Servicio servicio) {
         if (servicio != null || findById(servicio.getIdServicio()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
@@ -37,6 +38,8 @@ public class ServicioDAO {
             if (rs.next()) {
                 servicio = new Servicio();
                 servicio.setIdServicio(rs.getInt("idServicio"));
+                servicio.setPrecioHora(rs.getDouble("precioHora"));
+                servicio.setTipoServicio(rs.getString("tipoServicio"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

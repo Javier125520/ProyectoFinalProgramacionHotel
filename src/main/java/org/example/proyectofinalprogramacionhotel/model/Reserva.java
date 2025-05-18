@@ -11,18 +11,18 @@ public class Reserva {
     private estadoReserva estadoReserva;
     private int numPersonas;
     private int idCliente;
-    private List<Servicio> serviciosIncluidos;
+    private List<ReservaServicio> serviciosIncluidos;
     private List<Habitacion> habitacionesContratadas;
 
-    public Reserva(int idReserva, LocalDate fechaEntrada, LocalDate fechaSalida, estadoReserva estadoReserva, int numPersonas, int idCliente, List<Servicio> misServicios, List<Habitacion> habitacionesContratadas) {
+    public Reserva(int idReserva, LocalDate fechaEntrada, LocalDate fechaSalida, org.example.proyectofinalprogramacionhotel.model.estadoReserva estadoReserva, int numPersonas, int idCliente, List<ReservaServicio> serviciosIncluidos, List<Habitacion> habitacionesContratadas) {
         this.idReserva = idReserva;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.estadoReserva = estadoReserva;
         this.numPersonas = numPersonas;
         this.idCliente = idCliente;
-        this.serviciosIncluidos = new ArrayList<>();
-        this.habitacionesContratadas = new ArrayList<>();
+        this.serviciosIncluidos = serviciosIncluidos;
+        this.habitacionesContratadas = habitacionesContratadas;
     }
 
     public Reserva() {
@@ -77,11 +77,11 @@ public class Reserva {
         this.numPersonas = numPersonas;
     }
 
-    public List<Servicio> getServiciosIncluidos() {
+    public List<ReservaServicio> getServiciosIncluidos() {
         return serviciosIncluidos;
     }
 
-    public void setServiciosIncluidos(List<Servicio> serviciosIncluidos) {
+    public void setServiciosIncluidos(List<ReservaServicio> serviciosIncluidos) {
         this.serviciosIncluidos = serviciosIncluidos;
     }
 

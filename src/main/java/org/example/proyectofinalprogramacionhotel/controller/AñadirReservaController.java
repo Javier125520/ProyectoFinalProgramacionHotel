@@ -1,6 +1,7 @@
 package org.example.proyectofinalprogramacionhotel.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -16,10 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AñadirReservaController {
-    public DatePicker fechaEntradaPicker;
-    public DatePicker fechaSalidaPicker;
-    public ComboBox estadoReservaCombo;
-    public TextField numPersonasField;
+
+    @FXML
+    private DatePicker fechaEntradaPicker;
+
+    @FXML
+    private DatePicker fechaSalidaPicker;
+
+    @FXML
+    private ComboBox estadoReservaCombo;
+
+    @FXML
+    private TextField numPersonasField;
+
+    @FXML
     private Cliente clienteSeleccionado;
 
     public void initialize() {
@@ -115,6 +126,7 @@ public class AñadirReservaController {
 
     public void cancelarReserva(ActionEvent actionEvent) {
         // Cerrar la ventana actual
-        fechaEntradaPicker.getScene().getWindow().hide();
+        javafx.stage.Stage stage = (javafx.stage.Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

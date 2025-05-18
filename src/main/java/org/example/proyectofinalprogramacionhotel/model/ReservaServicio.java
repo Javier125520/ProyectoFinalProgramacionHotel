@@ -4,16 +4,16 @@ import java.time.LocalDate;
 
 public class ReservaServicio {
     private int idReserva;
-    private int idServicio;
+    private Servicio servicio;
     private LocalDate fechaReserva;
     private int numeroPersonas;
     private int precio;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
-    public ReservaServicio(int idReserva, int idServicio, LocalDate fechaReserva, int numeroPersonas, int precio, LocalDate fechaInicio, LocalDate fechaFin) {
+    public ReservaServicio(int idReserva, Servicio servicio, LocalDate fechaReserva, int numeroPersonas, int precio, LocalDate fechaInicio, LocalDate fechaFin) {
         this.idReserva = idReserva;
-        this.idServicio = idServicio;
+        this.servicio = servicio;
         this.fechaReserva = fechaReserva;
         this.numeroPersonas = numeroPersonas;
         this.precio = precio;
@@ -33,12 +33,12 @@ public class ReservaServicio {
         this.idReserva = idReserva;
     }
 
-    public int getIdServicio() {
-        return idServicio;
+    public Servicio getServicio() {
+        return servicio;
     }
 
-    public void setIdServicio(int idServicio) {
-        this.idServicio = idServicio;
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 
     public LocalDate getFechaReserva() {
@@ -85,7 +85,7 @@ public class ReservaServicio {
     public String toString() {
         return "ReservaServicio{" +
                 "idReserva=" + idReserva +
-                ", idServicio='" + idServicio + '\'' +
+                ", servicio=" + servicio +
                 ", fechaReserva=" + fechaReserva +
                 ", numeroPersonas=" + numeroPersonas +
                 ", precio=" + precio +

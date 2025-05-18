@@ -19,6 +19,7 @@ public class HabitacionDAO {
     private final static String SQL_UPDATE = "UPDATE habitacion SET estadoHabitacion = ?, precioNoche = ? WHERE idHabitacion = ?";
     private final static String SQL_DELETE = "DELETE FROM habitacion WHERE idHabitacion = ?";
     private final static String SQL_FIND_BY_ID_GERENTE = "SELECT * FROM habitacion WHERE idGerente = ?";
+    private final static String SQL_FIND_BY_ID_RESERVA = "SELECT * FROM habitacion WHERE idReserva = ?";
 
     public static Habitacion insertHabitacion(Habitacion habitacion) {
         if (habitacion != null && findById(habitacion.getIdHabitacion()) == null) {
@@ -77,6 +78,24 @@ public class HabitacionDAO {
         return habitacion;
     }
 
+    public static List<Habitacion> findByIdReserva(int idReserva) {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID_RESERVA)) {
+            pst.setInt(1, idReserva);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Habitacion habitacion = new Habitacion();
+                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
+                habitacion.setTipoHabitacion(tipoHabitacion.valueOf(rs.getString("tipoHabitacion")));
+                habitacion.setPrecioNoche(rs.getDouble("precioNoche"));
+                habitaciones.add(habitacion);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return habitaciones;
+    }
+
     public static void updateHabitacion(Habitacion habitacion) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setString(1, habitacion.getEstadoHabitacion().name());
@@ -101,26 +120,6 @@ public class HabitacionDAO {
         List<Habitacion> habitaciones = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID_GERENTE)) {
             pst.setInt(1, idGerente);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                Habitacion habitacion = new Habitacion();
-                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
-                habitacion.setNumeroHabitacion(rs.getInt("numeroHabitacion"));
-                habitacion.setTipoHabitacion(tipoHabitacion.valueOf(rs.getString("tipoHabitacion")));
-                habitacion.setPrecioNoche(rs.getDouble("precioNoche"));
-                habitacion.setEstadoHabitacion(estadoHabitacion.valueOf(rs.getString("estadoHabitacion")));
-                habitaciones.add(habitacion);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return habitaciones;
-    }
-
-    public static List<Habitacion> findByIdReserva(int idReserva) {
-        List<Habitacion> habitaciones = new ArrayList<>();
-        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID_GERENTE)) {
-            pst.setInt(1, idReserva);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Habitacion habitacion = new Habitacion();

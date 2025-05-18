@@ -17,8 +17,6 @@ public class ReservaDAO {
     private final static String SQL_ALL = "SELECT * FROM reserva";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM reserva WHERE idReserva = ?";
     private final static String SQL_FIND_BY_ID_CLIENTE = "SELECT * FROM reserva WHERE idCliente = ?";
-    private final static String SQL_FIND_SERVICIOS_BY_ID_RESERVA = "SELECT * FROM reserva_servicio WHERE idReserva = ?";
-    private final static String SQL_FIND_HABITACIONES_BY_ID_RESERVA = "SELECT * FROM reserva_habitacion WHERE idReserva = ?";
 
     public static Reserva insertReserva(Reserva reserva) {
         if (reserva != null && findById(reserva.getIdReserva()) == null) {
@@ -106,8 +104,8 @@ public class ReservaDAO {
                 reserva.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
                 reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estadoReserva")));
                 reserva.setNumPersonas(rs.getInt("numeroPersonas"));
-                reserva.setServiciosIncluidos(ReservaServicioDAO.findById(idReserva));
-                reserva.setHabitacionesContratadas(HabitacionDAO.findByIdReserva(idReserva));
+                reserva.setServiciosIncluidos(ReservaServicioDAO.findByIdReserva(idReserva));
+                reserva.setHabitacionesContratadas(HabitacionDAO.findByIdReserva(reserva.getIdReserva()));
                 reservas.add(reserva);
             }
         } catch (SQLException e) {
@@ -138,39 +136,4 @@ public class ReservaDAO {
         }
     }
 
-    public static List<Servicio> findServiciosByIdReserva(int idReserva) {
-        List<Servicio> servicios = new ArrayList<>();
-        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_SERVICIOS_BY_ID_RESERVA)) {
-            pst.setInt(1, idReserva);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                Servicio servicio = new Servicio();
-                servicio.setIdServicio(rs.getInt("idServicio"));
-                servicio.setTipoServicio(rs.getString("tipoServicio"));
-                servicio.setPrecioHora(rs.getDouble("precio"));
-                servicios.add(servicio);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return servicios;
-    }
-
-    public static List<Habitacion> findHabitacionesByIdReserva(int idReserva) {
-        List<Habitacion> habitaciones = new ArrayList<>();
-        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_HABITACIONES_BY_ID_RESERVA)) {
-            pst.setInt(1, idReserva);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                Habitacion habitacion = new Habitacion();
-                habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
-                habitacion.setTipoHabitacion(tipoHabitacion.valueOf(rs.getString("tipoHabitacion")));
-                habitacion.setPrecioNoche(rs.getDouble("precioNoche"));
-                habitaciones.add(habitacion);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return habitaciones;
-    }
 }

@@ -10,7 +10,7 @@ public class PruebaInsertarReservaServicio {
         // Crear una nueva reserva de servicio
         ReservaServicio nuevaReservaServicio = new ReservaServicio();
         nuevaReservaServicio.setIdReserva(5); // ID de la reserva existente
-        nuevaReservaServicio.setIdServicio(1); // ID del servicio existente
+        nuevaReservaServicio.setServicio(null); // Aquí deberías asignar un objeto Servicio existente
         nuevaReservaServicio.setFechaReserva(LocalDate.now());
         nuevaReservaServicio.setNumeroPersonas(2); // Número de personas
         nuevaReservaServicio.setPrecio(100); // Precio del servicio

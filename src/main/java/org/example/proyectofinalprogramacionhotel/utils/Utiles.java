@@ -40,15 +40,15 @@ public class Utiles {
         return Pattern.matches(regex, numero);
     }
 
-    public static boolean validarFechaEntrada(String fechaEntrada) {
-        // Expresión regular para una fecha de entrada válida (dd/mm/yyyy)
-        String regex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
-        return Pattern.matches(regex, fechaEntrada);
+    public static boolean validarNumeroHabitacion(String numeroHabitacion) {
+        // Expresión regular para un número de habitación válido (número entero positivo)
+        String regex = "^[1-9][0-9]*$";
+        return Pattern.matches(regex, numeroHabitacion);
     }
 
-    public static boolean validarFechaSalida(String fechaSalida) {
-        // Expresión regular para una fecha de salida válida (dd/mm/yyyy)
-        String regex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$";
-        return Pattern.matches(regex, fechaSalida);
+    public static boolean validarPrecioNoche(String precioNoche) {
+        // Expresión regular para un precio por noche válido (número decimal positivo)
+        String regex = "^[0-9]+(\\.[0-9]{1,2})?$";
+        return Pattern.matches(regex, precioNoche);
     }
 }

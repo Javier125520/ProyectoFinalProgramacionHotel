@@ -1,5 +1,6 @@
 package org.example.proyectofinalprogramacionhotel.controller;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import org.example.proyectofinalprogramacionhotel.DAO.ClienteDAO;
-import org.example.proyectofinalprogramacionhotel.DAO.ReservaDAO;
+import org.example.proyectofinalprogramacionhotel.DAO.*;
 import org.example.proyectofinalprogramacionhotel.MainApplication;
 import org.example.proyectofinalprogramacionhotel.model.*;
 
@@ -90,23 +90,7 @@ public class MenuClientesController {
     private TableColumn<Servicio, String> colTipoServicio;
 
     @FXML
-    private TableColumn<Servicio, Double> colPrecioHoraServicio;
-
-    @FXML
-    private TableView<ReservaServicio> reservasServiciosTbl;
-
-    @FXML
-    private TableColumn<ReservaServicio, Integer> colIdReservaServicio;
-    @FXML
-    private TableColumn<ReservaServicio, LocalDate> colFechaReserva;
-    @FXML
-    private TableColumn<ReservaServicio, Integer> colNumeroPersonas;
-    @FXML
-    private TableColumn<ReservaServicio, Integer> colPrecio;
-    @FXML
-    private TableColumn<ReservaServicio, LocalDate> colFechaInicio;
-    @FXML
-    private TableColumn<ReservaServicio, LocalDate> colFechaFin;
+    private TableColumn<Servicio, Double> colPrecioHora;
 
     @FXML
     public void initialize() {
@@ -125,18 +109,15 @@ public class MenuClientesController {
         colEstadoHabitacion.setCellValueFactory(new PropertyValueFactory<>("estadoHabitacion"));
         colIdGerente.setCellValueFactory(new PropertyValueFactory<>("idGerente"));
 
-        // Configurar columnas de reservas y servicios
-        colIdReservaServicio.setCellValueFactory(new PropertyValueFactory<>("idServicio"));
-        colFechaReserva.setCellValueFactory(new PropertyValueFactory<>("fechaReserva"));
-        colNumeroPersonas.setCellValueFactory(new PropertyValueFactory<>("numeroPersonas"));
-        colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-        colFechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaInicio"));
-        colFechaFin.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
-
-        // Configurar columnas de servicios
+        // Configurar columnas de la tabla de servicios
         colIdServicio.setCellValueFactory(new PropertyValueFactory<>("idServicio"));
         colTipoServicio.setCellValueFactory(new PropertyValueFactory<>("tipoServicio"));
-        colPrecioHoraServicio.setCellValueFactory(new PropertyValueFactory<>("precioHora"));
+        colPrecioHora.setCellValueFactory(new PropertyValueFactory<>("precioHora"));
+
+        reservasClienteTbl.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            mostrarHabitacionesReserva();
+            mostrarServiciosDisponibles();
+        });
 
         clientesLst.setCellFactory(_ -> new ListCell<>() {
             @Override
@@ -309,99 +290,98 @@ public class MenuClientesController {
         }
     }
 
-    private void mostrarServiciosReserva() {
-        // Implementar lógica para mostrar servicios de la reserva
-        Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
-        if (reservaSeleccionada != null) {
-            List<Servicio> servicios = ReservaDAO.findServiciosByIdReserva(reservaSeleccionada.getIdReserva());
-            serviciosTbl.getItems().setAll(servicios);
-        } else {
-            serviciosTbl.getItems().clear();
-        }
+    private void mostrarServiciosDisponibles() {
+        List<Servicio> servicios = ServicioDAO.findAll();
+        serviciosTbl.getItems().setAll(servicios);
     }
 
     private void mostrarHabitacionesReserva() {
-        // Implementar lógica para mostrar habitaciones de la reserva
         Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
         if (reservaSeleccionada != null) {
-            List<Habitacion> habitaciones = ReservaDAO.findHabitacionesByIdReserva(reservaSeleccionada.getIdReserva());
-            habitacionesTbl.getItems().setAll(habitaciones);
+            // Mostrar habitaciones con estado "Libre"
+            List<Habitacion> habitacionesLibres = HabitacionDAO.findHabitacionesDisponibles();
+            habitacionesTbl.getItems().setAll(habitacionesLibres);
         } else {
             habitacionesTbl.getItems().clear();
         }
     }
 
-    public void añadirHabitacion(ActionEvent actionEvent) {
-    }
-
-    public void añadirServicio(ActionEvent actionEvent) {
-    }
 
     @FXML
-    public void actualizarHabitacion() {
+    public void asignarHabitacion(ActionEvent actionEvent) {
+        Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
         Habitacion habitacionSeleccionada = habitacionesTbl.getSelectionModel().getSelectedItem();
-        if (habitacionSeleccionada != null) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("ActualizarHabitacion.fxml"));
-                Scene scene = new Scene(fxmlLoader.load());
-                ActualizarHabitacionController controller = fxmlLoader.getController();
-                controller.setHabitacion(habitacionSeleccionada);
 
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Actualizar Habitación");
-                stage.setOnHidden(e -> mostrarHabitacionesReserva());
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona una habitación para actualizar.");
-            alert.showAndWait();
+        if (reservaSeleccionada == null) {
+            mostrarAlerta("Error", "Por favor, selecciona una reserva.");
+            return;
         }
+
+        if (habitacionSeleccionada == null) {
+            mostrarAlerta("Error", "Por favor, selecciona una habitación.");
+            return;
+        }
+
+        try {
+            // Asignar la habitación a la reserva
+            habitacionSeleccionada.setIdReserva(reservaSeleccionada.getIdReserva());
+            habitacionSeleccionada.setEstadoHabitacion(estadoHabitacion.Ocupada);
+            HabitacionDAO.updateHabitacion(habitacionSeleccionada);
+
+            mostrarAlerta("Éxito", "Habitación asignada correctamente.");
+            mostrarHabitacionesReserva(); // Actualizar la tabla de habitaciones
+        } catch (Exception e) {
+            mostrarAlerta("Error", "No se pudo asignar la habitación: " + e.getMessage());
+        }
+    }
+
+    private void mostrarAlerta(String error, String s) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(error);
+        alert.setHeaderText(null);
+        alert.setContentText(s);
+        alert.showAndWait();
     }
 
     @FXML
-    public void actualizarServicio() {
-        Servicio servicioSeleccionado = serviciosTbl.getSelectionModel().getSelectedItem();
-        if (servicioSeleccionado != null) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("ActualizarServicio.fxml"));
-                Scene scene = new Scene(fxmlLoader.load());
-                ActualizarServicioController controller = fxmlLoader.getController();
-                controller.setServicio(servicioSeleccionado);
+    private void reservarServicio() {
+        try {
+            // Verificar que se haya seleccionado una reserva y un servicio
+            Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
+            Servicio servicioSeleccionado = serviciosTbl.getSelectionModel().getSelectedItem();
 
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Actualizar Servicio");
-                stage.setOnHidden(e -> mostrarServiciosReserva());
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (reservaSeleccionada == null) {
+                mostrarAlerta("Error", "Debe seleccionar una reserva.");
+                return;
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona un servicio para actualizar.");
-            alert.showAndWait();
+
+            if (servicioSeleccionado == null) {
+                mostrarAlerta("Error", "Debe seleccionar un servicio.");
+                return;
+            }
+
+            // Cargar el archivo FXML del formulario para reservar un servicio
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/proyectofinalprogramacionhotel/AñadirReservaServicio.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Obtener el controlador del formulario
+            AñadirReservaServicioController controller = loader.getController();
+            controller.setDatos(reservaSeleccionada, servicioSeleccionado);
+
+            // Mostrar la ventana
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Reservar Servicio");
+            stage.showAndWait();
+
+            // Actualizar la tabla de servicios después de cerrar la ventana
+            mostrarServiciosDisponibles();
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar el formulario: " + e.getMessage());
         }
     }
 
-    public void eliminarHabitacion(ActionEvent actionEvent) {
-    }
 
-    public void eliminarServicio(ActionEvent actionEvent) {
-    }
-
-    public void añadirReservaServicio(ActionEvent actionEvent) {
-        // Implementar lógica para añadir servicio a la reserva
-    }
-
-    public void eliminarReservaServicio(ActionEvent actionEvent) {
-        // Implementar lógica para eliminar servicio de la reserva
-    }
-
-    public void actualizarReservaServicio(ActionEvent actionEvent) {
-        // Implementar lógica para actualizar servicio de la reserva
-    }
 
     public void volverAlMenuPrincipal(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Inicio.fxml"));
