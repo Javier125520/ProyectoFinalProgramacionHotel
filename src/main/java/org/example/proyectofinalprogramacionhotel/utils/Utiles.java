@@ -51,4 +51,10 @@ public class Utiles {
         String regex = "^[0-9]+(\\.[0-9]{1,2})?$";
         return Pattern.matches(regex, precioNoche);
     }
+
+    public static boolean validarCodigoGerente(String codigoGerente) {
+        // Expresión regular para un código de gerente válido (número entero positivo)
+        String regex = "^[A-Za-z0-9]+$";
+        return Pattern.matches(regex, codigoGerente);
+    }
 }

@@ -29,7 +29,7 @@ public class InicioController {
     }
 
     @FXML
-    public void irAPantallaGestionGerente(ActionEvent ActionEvent) throws IOException {
+    public void irAPantallaGestionGerente(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("MenuGerentes.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();

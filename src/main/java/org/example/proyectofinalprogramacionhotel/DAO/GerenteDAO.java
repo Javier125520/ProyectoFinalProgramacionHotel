@@ -17,7 +17,7 @@ public class GerenteDAO {
     private final static String SQL_DELETE = "DELETE FROM gerente WHERE idGerente = ?";
 
     public static Gerente insertGerente(Gerente gerente) {
-        if (gerente != null && findById(gerente.getInGerente()) == null) {
+        if (gerente != null && findById(gerente.getIdGerente()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
                 pst.setString(1, gerente.getNombre());
                 pst.setString(2, gerente.getGmail());
@@ -39,7 +39,7 @@ public class GerenteDAO {
              ResultSet rs = pst.executeQuery()) {
             while (rs.next()) {
                 Gerente gerente = new Gerente();
-                gerente.setInGerente(rs.getInt("idGerente"));
+                gerente.setIdGerente(rs.getInt("idGerente"));
                 gerente.setNombre(rs.getString("nombre"));
                 gerente.setGmail(rs.getString("gmail"));
                 gerente.setContrasena(rs.getString("contrasena"));
@@ -60,7 +60,7 @@ public class GerenteDAO {
             while (rs.next()) {
                 Gerente gerente = new Gerente();
                 int idGerente = rs.getInt("idGerente");
-                gerente.setInGerente(idGerente);
+                gerente.setIdGerente(idGerente);
                 gerente.setNombre(rs.getString("nombre"));
                 gerente.setGmail(rs.getString("gmail"));
                 gerente.setContrasena(rs.getString("contrasena"));
@@ -80,7 +80,7 @@ public class GerenteDAO {
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 gerente = new Gerente();
-                gerente.setInGerente(rs.getInt("idGerente"));
+                gerente.setIdGerente(rs.getInt("idGerente"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -7,9 +7,9 @@ public class Habitacion {
     private double precioNoche;
     private estadoHabitacion estadoHabitacion;
     private int idGerente;
-    private int idReserva;
+    private Integer idReserva;
 
-    public Habitacion(int idHabitacion, int numeroHabitacion, org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion, double precioNoche, org.example.proyectofinalprogramacionhotel.model.estadoHabitacion estadoHabitacion, int idGerente, int idReserva) {
+    public Habitacion(int idHabitacion, int numeroHabitacion, org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion, double precioNoche, org.example.proyectofinalprogramacionhotel.model.estadoHabitacion estadoHabitacion, int idGerente, Integer idReserva) {
         this.idHabitacion = idHabitacion;
         this.numeroHabitacion = numeroHabitacion;
         this.tipoHabitacion = tipoHabitacion;
@@ -71,11 +71,11 @@ public class Habitacion {
         this.idGerente = idGerente;
     }
 
-    public int getIdReserva() {
+    public Integer getIdReserva() {
         return idReserva;
     }
 
-    public void setIdReserva(int idReserva) {
+    public void setIdReserva(Integer idReserva) {
         this.idReserva = idReserva;
     }
 

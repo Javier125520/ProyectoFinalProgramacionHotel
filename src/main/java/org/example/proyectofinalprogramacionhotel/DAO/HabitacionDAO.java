@@ -30,7 +30,7 @@ public class HabitacionDAO {
                 pst.setDouble(3, habitacion.getPrecioNoche());
                 pst.setString(4, habitacion.getEstadoHabitacion().name());
                 pst.setInt(5, habitacion.getIdGerente());
-                pst.setInt(6, habitacion.getIdReserva());
+                pst.setObject(6, habitacion.getIdReserva());
                 pst.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);

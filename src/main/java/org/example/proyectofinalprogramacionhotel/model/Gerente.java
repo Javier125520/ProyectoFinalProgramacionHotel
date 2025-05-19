@@ -1,16 +1,15 @@
 package org.example.proyectofinalprogramacionhotel.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Gerente extends Usuario {
-    private int inGerente;
+    private int idGerente;
     private String codigo;
     private List<Habitacion> misHabitaciones;
 
-    public Gerente(String nombre, String gmail, String contrasena, int inGerente, String codigo, List<Habitacion> misHabitaciones) {
+    public Gerente(String nombre, String gmail, String contrasena, int idGerente, String codigo, List<Habitacion> misHabitaciones) {
         super(nombre, gmail, contrasena);
-        this.inGerente = inGerente;
+        this.idGerente = idGerente;
         this.codigo = codigo;
         this.misHabitaciones = misHabitaciones;
     }
@@ -22,6 +21,14 @@ public class Gerente extends Usuario {
     @Override
     public String getTipoUsuario() {
         return "Gerente";
+    }
+
+    public int getIdGerente() {
+        return idGerente;
+    }
+
+    public void setIdGerente(int idGerente) {
+        this.idGerente = idGerente;
     }
 
     public String getCodigo() {
@@ -40,18 +47,10 @@ public class Gerente extends Usuario {
         this.misHabitaciones = misHabitaciones;
     }
 
-    public int getInGerente() {
-        return inGerente;
-    }
-
-    public void setInGerente(int inGerente) {
-        this.inGerente = inGerente;
-    }
-
     @Override
     public String toString() {
         return "Gerente{" +
-                "idGerente=" + inGerente +
+                "idGerente=" + idGerente +
                 ", nombre='" + nombre + '\'' +
                 ", gmail='" + gmail + '\'' +
                 ", contrasena='" + contrasena + '\'' +

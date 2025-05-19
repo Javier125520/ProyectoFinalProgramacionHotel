@@ -8,6 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import org.example.proyectofinalprogramacionhotel.DAO.ReservaDAO;
 import org.example.proyectofinalprogramacionhotel.model.Cliente;
+import org.example.proyectofinalprogramacionhotel.model.Gerente;
 import org.example.proyectofinalprogramacionhotel.model.Reserva;
 import org.example.proyectofinalprogramacionhotel.model.estadoReserva;
 import org.example.proyectofinalprogramacionhotel.utils.Utiles;
@@ -34,12 +35,7 @@ public class AñadirReservaController {
     private Cliente clienteSeleccionado;
 
     public void initialize() {
-        // Cargar los valores de la enumeración estadoReserva en el ComboBox
-        estadoReservaCombo.getItems().setAll(
-                estadoReserva.EnProceso.name(),
-                estadoReserva.Completada.name(),
-                estadoReserva.Cancelada.name()
-        );
+        estadoReservaCombo.getItems().setAll(estadoReserva.values());
     }
 
     public void setClienteSeleccionado(Cliente clienteSeleccionado) {

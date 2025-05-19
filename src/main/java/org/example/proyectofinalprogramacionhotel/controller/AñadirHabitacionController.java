@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.proyectofinalprogramacionhotel.DAO.HabitacionDAO;
+import org.example.proyectofinalprogramacionhotel.model.Gerente;
 import org.example.proyectofinalprogramacionhotel.model.Habitacion;
 import org.example.proyectofinalprogramacionhotel.model.estadoHabitacion;
 import org.example.proyectofinalprogramacionhotel.model.tipoHabitacion;
@@ -27,10 +28,17 @@ public class AñadirHabitacionController {
     private ComboBox<estadoHabitacion> estadoHabitacionCombo;
 
     @FXML
+    private Gerente gerenteSeleccionado;
+
+    @FXML
     public void initialize() {
         // Cargar valores en los ComboBox
         tipoHabitacionCombo.getItems().setAll(tipoHabitacion.values());
         estadoHabitacionCombo.getItems().setAll(estadoHabitacion.values());
+    }
+
+    public void setGerente(Gerente gerenteSeleccionado) {
+        this.gerenteSeleccionado = gerenteSeleccionado;
     }
 
     @FXML
@@ -64,6 +72,8 @@ public class AñadirHabitacionController {
         nuevaHabitacion.setPrecioNoche(Double.parseDouble(precioNocheStr));
         nuevaHabitacion.setTipoHabitacion(tipo);
         nuevaHabitacion.setEstadoHabitacion(estado);
+        nuevaHabitacion.setIdGerente(gerenteSeleccionado.getIdGerente());
+        nuevaHabitacion.setIdReserva(null); // Asignar 0 si no hay reserva asociada
 
         // Guardar en la base de datos
         try {

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.proyectofinalprogramacionhotel.controller.AñadirServicioController"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Añadir Servicio" />
+        <GridPane alignment="CENTER" hgap="15" style="-fx-padding: 10;" vgap="15">
+            <Label style="-fx-font-size: 14px; -fx-alignment: CENTER;" text="Tipo de Servicio:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="tipoServicioTxt" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label style="-fx-font-size: 14px; -fx-alignment: CENTER;" text="Precio por Hora:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="precioHoraTxt" style="-fx-alignment: CENTER;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        </GridPane>
+        <HBox alignment="CENTER" spacing="15">
+            <Button onAction="#guardarServicio" style="-fx-font-size: 14px; -fx-background-color: #4CAF50; -fx-text-fill: white;" text="Guardar" />
+            <Button onAction="#cancelar" style="-fx-font-size: 14px; -fx-background-color: #f44336; -fx-text-fill: white;" text="Cancelar" />
+        </HBox>
+    </VBox>
+</AnchorPane>

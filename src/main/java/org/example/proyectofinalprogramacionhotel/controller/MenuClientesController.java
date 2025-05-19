@@ -21,7 +21,7 @@ import java.util.List;
 public class MenuClientesController {
 
     @FXML
-    public TableView reservasClienteTbl;
+    private TableView<Reserva> reservasClienteTbl;
 
     @FXML
     private ListView<Cliente> clientesLst;
