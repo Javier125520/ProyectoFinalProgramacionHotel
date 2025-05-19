@@ -16,10 +16,11 @@ public class HabitacionDAO {
     private final static String SQL_INSERT = "INSERT INTO habitacion (numeroHabitacion, tipoHabitacion, precioNoche, estadoHabitacion, idGerente, idReserva) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String SQL_FIND_ALL = "SELECT * FROM habitacion";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM habitacion WHERE idHabitacion = ?";
-    private final static String SQL_UPDATE = "UPDATE habitacion SET estadoHabitacion = ?, precioNoche = ? WHERE idHabitacion = ?";
+    private final static String SQL_UPDATE = "UPDATE habitacion SET estadoHabitacion = ?, precioNoche = ?, idReserva = ? WHERE idHabitacion = ?";
     private final static String SQL_DELETE = "DELETE FROM habitacion WHERE idHabitacion = ?";
     private final static String SQL_FIND_BY_ID_GERENTE = "SELECT * FROM habitacion WHERE idGerente = ?";
     private final static String SQL_FIND_BY_ID_RESERVA = "SELECT * FROM habitacion WHERE idReserva = ?";
+    private final static String SQL_FIND_HABITACIONES_DISPONIBLES = "SELECT * FROM habitacion WHERE estadoHabitacion = ?";
 
     public static Habitacion insertHabitacion(Habitacion habitacion) {
         if (habitacion != null && findById(habitacion.getIdHabitacion()) == null) {
@@ -86,6 +87,7 @@ public class HabitacionDAO {
             while (rs.next()) {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
+                habitacion.setNumeroHabitacion(rs.getInt("numeroHabitacion"));
                 habitacion.setTipoHabitacion(tipoHabitacion.valueOf(rs.getString("tipoHabitacion")));
                 habitacion.setPrecioNoche(rs.getDouble("precioNoche"));
                 habitaciones.add(habitacion);
@@ -100,10 +102,11 @@ public class HabitacionDAO {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setString(1, habitacion.getEstadoHabitacion().name());
             pst.setDouble(2, habitacion.getPrecioNoche());
-            pst.setInt(3, habitacion.getIdHabitacion());
+            pst.setInt(3, habitacion.getIdReserva()); // Asegúrate de que este valor existe en la tabla reserva
+            pst.setInt(4, habitacion.getIdHabitacion());
             pst.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error al actualizar la habitación: " + e.getMessage(), e);
         }
     }
 
@@ -137,10 +140,10 @@ public class HabitacionDAO {
     }
 
     public static List<Habitacion> findHabitacionesDisponibles() {
-        List<Habitacion> habitaciones = new ArrayList<>();
-        String sql = "SELECT * FROM habitacion WHERE estadoHabitacion = 'DISPONIBLE'";
-        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(sql);
-             ResultSet rs = pst.executeQuery()) {
+        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_HABITACIONES_DISPONIBLES)) {
+            pst.setString(1, estadoHabitacion.Libre.name());
+            ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Habitacion habitacion = new Habitacion();
                 habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
@@ -148,12 +151,12 @@ public class HabitacionDAO {
                 habitacion.setTipoHabitacion(tipoHabitacion.valueOf(rs.getString("tipoHabitacion")));
                 habitacion.setPrecioNoche(rs.getDouble("precioNoche"));
                 habitacion.setEstadoHabitacion(estadoHabitacion.valueOf(rs.getString("estadoHabitacion")));
-                habitaciones.add(habitacion);
+                habitacionesDisponibles.add(habitacion);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return habitaciones;
+        return habitacionesDisponibles;
     }
 
 }

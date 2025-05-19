@@ -44,8 +44,8 @@ public class AñadirReservaServicioController {
             int numeroPersonas = Integer.parseInt(numPersonasTxt.getText());
             int precio = Integer.parseInt(precioTxt.getText());
 
-            if (fechaInicio == null || fechaFin == null || !fechaFin.isAfter(fechaInicio)) {
-                mostrarAlerta("Error", "Las fechas son inválidas.");
+            if (fechaInicioPicker.getValue() == null || fechaFinPicker.getValue() == null || fechaInicio.isAfter(fechaFin)) {
+                mostrarAlerta("Error", "Debe completar las fechas de inicio y fin.");
                 return;
             }
 
@@ -53,10 +53,11 @@ public class AñadirReservaServicioController {
             ReservaServicio reservaServicio = new ReservaServicio();
             reservaServicio.setIdReserva(reservaSeleccionada.getIdReserva());
             reservaServicio.setServicio(servicioSeleccionado);
+            reservaServicio.setFechaReserva(LocalDate.now());
             reservaServicio.setFechaInicio(fechaInicio);
             reservaServicio.setFechaFin(fechaFin);
-            reservaServicio.setNumeroPersonas(numeroPersonas);
-            reservaServicio.setPrecio(precio);
+            reservaServicio.setNumeroPersonas(Integer.parseInt(numPersonasTxt.getText()));
+            reservaServicio.setPrecio(Integer.parseInt(precioTxt.getText()));
 
             ReservaServicioDAO.insertReservaServicio(reservaServicio);
 
@@ -64,6 +65,8 @@ public class AñadirReservaServicioController {
             cerrarVentana(event);
         } catch (NumberFormatException e) {
             mostrarAlerta("Error", "Los datos ingresados son inválidos.");
+        } catch (Exception e) {
+            mostrarAlerta("Error", "Ocurrió un error: " + e.getMessage());
         }
     }
 

@@ -93,6 +93,39 @@ public class MenuClientesController {
     private TableColumn<Servicio, Double> colPrecioHora;
 
     @FXML
+    private TableView<Habitacion> habitacionesReservaTbl;
+
+    @FXML
+    private TableColumn<Habitacion, Integer> colNumeroHabitacionReserva;
+
+    @FXML
+    private TableColumn<Habitacion, String> colTipoHabitacionReserva;
+
+    @FXML
+    private TableColumn<Habitacion, Double> colPrecioNocheReserva;
+
+    @FXML
+    private TableView<ReservaServicio> serviciosReservaTbl;
+
+    @FXML
+    private TableColumn<ReservaServicio, String> colTipoServicioReserva;
+
+    @FXML
+    private TableColumn<ReservaServicio, Integer> colNumPersonasReserva;
+
+    @FXML
+    private TableColumn<ReservaServicio, LocalDate> colFechaReserva;
+
+    @FXML
+    private TableColumn<ReservaServicio, LocalDate> colFechaInicioServicio;
+
+    @FXML
+    private TableColumn<ReservaServicio, LocalDate> colFechaFinServicio;
+
+    @FXML
+    private TableColumn<ReservaServicio, Integer> colPrecioServicio;
+
+    @FXML
     public void initialize() {
         // Configurar columnas de reservas
         colIdReserva.setCellValueFactory(new PropertyValueFactory<>("idReserva"));
@@ -114,9 +147,29 @@ public class MenuClientesController {
         colTipoServicio.setCellValueFactory(new PropertyValueFactory<>("tipoServicio"));
         colPrecioHora.setCellValueFactory(new PropertyValueFactory<>("precioHora"));
 
+        // Configurar columnas de habitaciones reservadas
+        colNumeroHabitacionReserva.setCellValueFactory(new PropertyValueFactory<>("numeroHabitacion"));
+        colTipoHabitacionReserva.setCellValueFactory(new PropertyValueFactory<>("tipoHabitacion"));
+        colPrecioNocheReserva.setCellValueFactory(new PropertyValueFactory<>("precioNoche"));
+
+        // Configurar columnas de servicios
+        colTipoServicioReserva.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getServicio().getTipoServicio()));
+        colNumPersonasReserva.setCellValueFactory(new PropertyValueFactory<>("numeroPersonas"));
+        colFechaReserva.setCellValueFactory(new PropertyValueFactory<>("fechaReserva"));
+        colFechaInicioServicio.setCellValueFactory(new PropertyValueFactory<>("fechaInicio"));
+        colFechaFinServicio.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
+        colPrecioServicio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+
         reservasClienteTbl.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             mostrarHabitacionesReserva();
             mostrarServiciosDisponibles();
+        });
+
+        reservasClienteTbl.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                mostrarHabitacionesReserva((Reserva) newValue);
+                mostrarServiciosReserva((Reserva) newValue);
+            }
         });
 
         clientesLst.setCellFactory(_ -> new ListCell<>() {
@@ -133,6 +186,16 @@ public class MenuClientesController {
 
         List<Cliente> clientes = ClienteDAO.findAll();
         clientesLst.getItems().setAll(clientes);
+    }
+
+    private void mostrarHabitacionesReserva(Reserva reserva) {
+        List<Habitacion> habitaciones = HabitacionDAO.findByIdReserva(reserva.getIdReserva());
+        habitacionesReservaTbl.getItems().setAll(habitaciones);
+    }
+
+    private void mostrarServiciosReserva(Reserva reserva) {
+        List<ReservaServicio> servicios = ReservaServicioDAO.findByIdReserva(reserva.getIdReserva());
+        serviciosReservaTbl.getItems().setAll(servicios);
     }
 
     public void mostrarClienteSeleccionado(MouseEvent mouseEvent) {
@@ -323,15 +386,44 @@ public class MenuClientesController {
         }
 
         try {
+            // Verificar que el idReserva existe en la tabla reserva
+            if (ReservaDAO.findById(reservaSeleccionada.getIdReserva()) == null) {
+                mostrarAlerta("Error", "La reserva seleccionada no existe.");
+                return;
+            }
+
             // Asignar la habitación a la reserva
             habitacionSeleccionada.setIdReserva(reservaSeleccionada.getIdReserva());
             habitacionSeleccionada.setEstadoHabitacion(estadoHabitacion.Ocupada);
             HabitacionDAO.updateHabitacion(habitacionSeleccionada);
 
+            // Actualizar tablas
             mostrarAlerta("Éxito", "Habitación asignada correctamente.");
-            mostrarHabitacionesReserva(); // Actualizar la tabla de habitaciones
+            mostrarHabitacionesReserva();
+            mostrarHabitacionesReserva(reservaSeleccionada);
         } catch (Exception e) {
             mostrarAlerta("Error", "No se pudo asignar la habitación: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void cancelarReservaHabitacion(ActionEvent actionEvent) {
+        Habitacion habitacionSeleccionada = habitacionesReservaTbl.getSelectionModel().getSelectedItem();
+
+        if (habitacionSeleccionada == null) {
+            mostrarAlerta("Error", "Por favor, selecciona una habitación para desvincular.");
+            return;
+        }
+
+        try {
+            habitacionSeleccionada.setIdReserva(0); // Desvincular la reserva
+            habitacionSeleccionada.setEstadoHabitacion(estadoHabitacion.Libre); // Cambiar estado a Libre
+            HabitacionDAO.updateHabitacion(habitacionSeleccionada);
+
+            mostrarAlerta("Éxito", "Habitación desvinculada correctamente.");
+            mostrarHabitacionesReserva();
+        } catch (Exception e) {
+            mostrarAlerta("Error", "No se pudo desvincular la habitación: " + e.getMessage());
         }
     }
 
@@ -374,10 +466,29 @@ public class MenuClientesController {
             stage.setTitle("Reservar Servicio");
             stage.showAndWait();
 
-            // Actualizar la tabla de servicios después de cerrar la ventana
-            mostrarServiciosDisponibles();
+            // Actualizar la tabla de reservas de servicios después de cerrar la ventana
+            mostrarServiciosReserva(reservaSeleccionada);
         } catch (IOException e) {
             mostrarAlerta("Error", "No se pudo cargar el formulario: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void cancelarReservaServicio(ActionEvent actionEvent) {
+        ReservaServicio reservaServicioSeleccionada = serviciosReservaTbl.getSelectionModel().getSelectedItem();
+
+        if (reservaServicioSeleccionada == null) {
+            mostrarAlerta("Error", "Por favor, selecciona una reserva de servicio para eliminar.");
+            return;
+        }
+
+        try {
+            ReservaServicioDAO.deleteReservaServicio(reservaServicioSeleccionada.getIdReserva());
+
+            mostrarAlerta("Éxito", "Reserva de servicio eliminada correctamente.");
+            mostrarServiciosReserva((Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            mostrarAlerta("Error", "No se pudo eliminar la reserva de servicio: " + e.getMessage());
         }
     }
 

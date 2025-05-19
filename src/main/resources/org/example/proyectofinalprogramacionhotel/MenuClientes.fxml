@@ -111,6 +111,42 @@
                     </TabPane>
                 </VBox>
             </Tab>
+
+            <!-- Pestaña de habitaciones -->
+            <Tab text="Habitaciones de la Reserva">
+                <VBox spacing="10" style="-fx-padding: 20;">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Habitaciones Contratadas" />
+                    <TableView fx:id="habitacionesReservaTbl" prefHeight="200.0">
+                        <columns>
+                            <TableColumn fx:id="colNumeroHabitacionReserva" text="Número de Habitación" />
+                            <TableColumn fx:id="colTipoHabitacionReserva" text="Tipo de Habitación" />
+                            <TableColumn fx:id="colPrecioNocheReserva" text="Precio por Noche" />
+                        </columns>
+                    </TableView>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Button onAction="#cancelarReservaHabitacion" text="Cancelar Reserva Habitación" />
+                    </HBox>
+                </VBox>
+            </Tab>
+            <!-- Pestaña de reservas de servicios -->
+            <Tab text="Reservas de Servicios">
+                <VBox spacing="10" style="-fx-padding: 20;">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Servicios Reservados" />
+                    <TableView fx:id="serviciosReservaTbl" prefHeight="200.0">
+                        <columns>
+                            <TableColumn fx:id="colTipoServicioReserva" text="Tipo de Servicio" />
+                            <TableColumn fx:id="colNumPersonasReserva" text="Número de Personas" />
+                            <TableColumn fx:id="colFechaReserva" text="Fecha de la Reserva" />
+                            <TableColumn fx:id="colFechaInicioServicio" text="Fecha Inicio" />
+                            <TableColumn fx:id="colFechaFinServicio" text="Fecha Fin" />
+                            <TableColumn fx:id="colPrecioServicio" text="Precio" />
+                        </columns>
+                    </TableView>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Button onAction="#cancelarReservaServicio" text="Cancelar Reserva Servicio" />
+                    </HBox>
+                </VBox>
+            </Tab>
         </TabPane>
     </center>
 

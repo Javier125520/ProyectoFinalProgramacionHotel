@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservaServicioDAO {
-    private final static String SQL_INSERT = "INSERT INTO reserva_servicio (idReserva, servicio, fechaReserva, numeroPersonas, precio, fechaInicio, fechaFin) VALUES (?, ?, ?, ?, ?, ?)";
+    private final static String SQL_INSERT = "INSERT INTO reserva_servicio (idReserva, idServicio, fechaReserva, numeroPersonas, precio, fechaInicio, fechaFin) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private final static String SQL_FIND_SERVICIOS_BY_ID_RESERVA = "SELECT * FROM reserva_servicio WHERE idReserva = ?";
     private final static String SQL_DELETE = "DELETE FROM reserva_servicio WHERE idReserva = ?";
 

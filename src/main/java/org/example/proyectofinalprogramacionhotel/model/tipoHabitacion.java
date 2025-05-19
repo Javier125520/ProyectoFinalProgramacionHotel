@@ -3,7 +3,7 @@ package org.example.proyectofinalprogramacionhotel.model;
 public enum tipoHabitacion {
     Individual("Habitacion individual"),
     Doble("Habitacion doble"),
-    Falimiar("Habitacion familiar (3 o 4 personas)"),
+    Familiar("Habitacion familiar (3 o 4 personas)"),
     Suit("Suite");
 
     private final String descripcion;
