@@ -19,6 +19,13 @@ public class GerenteDAO {
     private final static String SQL_FIND_BY_DNI_EQUALS = "SELECT COUNT(*) FROM gerente WHERE dni = ?";
     private final static String SQL_FIND_BY_CODIGO_EQUALS = "SELECT COUNT(*) FROM gerente WHERE codigo = ?";
 
+
+    /**
+     * Metodo que inserta un gerente en la base de datos.
+     *
+     * @param gerente El gerente que vas a insertar.
+     * @return El gerente insertado.
+     */
     public static Gerente insertGerente(Gerente gerente) {
         if (gerente != null && findById(gerente.getIdGerente()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
@@ -36,6 +43,11 @@ public class GerenteDAO {
         return gerente;
     }
 
+    /**
+     * Version Lazy de obtener todos los gerentes, esto quiere decir que me traigo de la base de datos los gerentes
+     * pero sin cargar las habitaciones de las que se encarga cada gerente.
+     * @return Una lista con todos los gerentes sin las habitaciones que gestiona.
+     */
     public static List<Gerente> findAll() {
         List<Gerente> gerentes = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_ALL);
@@ -56,6 +68,11 @@ public class GerenteDAO {
         return gerentes;
     }
 
+    /**
+     * Version Eager de obtener todos los gerentes, esto quiere decir que me traigo de la base de datos los gerentes
+     * con las habitaciones de las que se encarga cada gerente.
+     * @return Una lista con todos los gerentes con las habitaciones que gestiona.
+     */
     public static List<Gerente> findAllEager() {
         List<Gerente> gerentes = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_ALL);
@@ -76,6 +93,12 @@ public class GerenteDAO {
         return gerentes;
     }
 
+
+    /**
+     * Metodo que busca un gerente por su id.
+     * @param idGerente El id del gerente que quieres buscar.
+     * @return El gerente encontrado.
+     */
     public static Gerente findById(int idGerente) {
         Gerente gerente = null;
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID)) {
@@ -91,6 +114,10 @@ public class GerenteDAO {
         return gerente;
     }
 
+    /**
+     * Metodo que actualiza un gerente en la base de datos.
+     * @param gerente El gerente que vas a actualizar.
+     */
     public static void updateGerente(Gerente gerente) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setString(1, gerente.getNombre());
@@ -103,6 +130,10 @@ public class GerenteDAO {
         }
     }
 
+    /**
+     * Metodo que elimina un gerente por su id.
+     * @param idGerente El id del gerente que quieres eliminar.
+     */
     public static void deleteGerente(int idGerente) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
             pst.setInt(1, idGerente);
@@ -112,6 +143,11 @@ public class GerenteDAO {
         }
     }
 
+    /**
+     * Metodo que busca un gerente por su gmail.
+     * @param gmail El gmail del gerente que quieres buscar.
+     * @return El gerente encontrado.
+     */
     public static boolean existeGmailGerente(String gmail) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_GMAIL_EQUALS)) {
             pst.setString(1, gmail);
@@ -125,6 +161,11 @@ public class GerenteDAO {
         return false;
     }
 
+    /**
+     * Metodo que busca un gerente por su dni.
+     * @param dni El dni del gerente que quieres buscar.
+     * @return El gerente encontrado.
+     */
     public static boolean existeDNIGerente(String dni) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_DNI_EQUALS)) {
             pst.setString(1, dni);
@@ -138,6 +179,11 @@ public class GerenteDAO {
         return false;
     }
 
+    /**
+     * Metodo que busca un gerente por su codigo.
+     * @param codigo El codigo del gerente que quieres buscar.
+     * @return El gerente encontrado.
+     */
     public static boolean existeCodigoGerente(String codigo) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_CODIGO_EQUALS)) {
             pst.setString(1, codigo);

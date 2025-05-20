@@ -16,7 +16,11 @@ public class ServicioDAO {
     private final static String SQL_UPDATE = "UPDATE servicio SET precioHora = ?, tipoServicio = ? WHERE idServicio = ?";
     private final static String SQL_DELETE = "DELETE FROM servicio WHERE idServicio = ?";
 
-
+    /**
+     * Metodo que inserta un servicio en la base de datos.
+     * @param servicio El servicio que vas a insertar.
+     * @return El servicio insertado.
+     */
     public static Servicio insertServicio(Servicio servicio) {
         if (servicio != null || findById(servicio.getIdServicio()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
@@ -30,6 +34,11 @@ public class ServicioDAO {
         return servicio;
     }
 
+    /**
+     * Metodo que busca un servicio por su id.
+     * @param idServicio El id del servicio que quieres buscar.
+     * @return El servicio encontrado.
+     */
     public static Servicio findById(int idServicio) {
         Servicio servicio = null;
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID)) {
@@ -47,6 +56,10 @@ public class ServicioDAO {
         return servicio;
     }
 
+    /**
+     * Metodo que busca todos los servicios de la base de datos.
+     * @return Una lista con todos los servicios.
+     */
     public static List<Servicio> findAll() {
         List<Servicio> servicios = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_ALL);
@@ -64,6 +77,11 @@ public class ServicioDAO {
         return servicios;
     }
 
+
+    /**
+     * Metodo que actualiza un servicio en la base de datos.
+     * @param servicio El servicio que quieres actualizar.
+     */
     public static void updateServicio(Servicio servicio) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setDouble(1, servicio.getPrecioHora());
@@ -75,6 +93,10 @@ public class ServicioDAO {
         }
     }
 
+    /**
+     * Metodo que elimina un servicio de la base de datos.
+     * @param idServicio El id del servicio que quieres eliminar.
+     */
     public static void deleteServicio(int idServicio) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
             pst.setInt(1, idServicio);

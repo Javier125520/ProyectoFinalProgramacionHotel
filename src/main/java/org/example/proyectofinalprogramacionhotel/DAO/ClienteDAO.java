@@ -2,7 +2,6 @@ package org.example.proyectofinalprogramacionhotel.DAO;
 
 import org.example.proyectofinalprogramacionhotel.baseDatos.ConnectionBD;
 import org.example.proyectofinalprogramacionhotel.model.Cliente;
-import org.example.proyectofinalprogramacionhotel.model.Reserva;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +18,12 @@ public class ClienteDAO {
     private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM cliente WHERE gmail = ?";
     private final static String SQL_FIND_BY_DNI_EQUALS = "SELECT COUNT(*) FROM cliente WHERE dni = ?";
 
+
+    /**
+     * Metodo que inserta un cliente en la base de datos.
+     * @param cliente El cliente que vas a insertar.
+     * @return El cliente insertado.
+     */
     public static Cliente insertCliente(Cliente cliente) {
         if (cliente != null && findById(cliente.getIdCliente()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
@@ -37,10 +42,15 @@ public class ClienteDAO {
         return cliente;
     }
 
-    private static Cliente findById(int idUsuario) {
+    /**
+     * Metodo que busca un cliente por su id.
+     * @param idCliente El id del cliente que quieres buscar.
+     * @return El cliente encontrado.
+     */
+    private static Cliente findById(int idCliente) {
         Cliente cliente = null;
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID)) {
-            pst.setInt(1, idUsuario);
+            pst.setInt(1, idCliente);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 cliente = new Cliente();
@@ -52,6 +62,11 @@ public class ClienteDAO {
         return cliente;
     }
 
+    /**
+     * Version Lazy de obtener todos los clientes, esto quiere decir que me traigo de la base de datos los clientes
+     * pero sin cargar las reservas que a hecho cada cliente.
+     * @return Una lista con todos los clientes sin las reservas realizadas por cada uno.
+     */
     public static List<Cliente> findAll() {
         List<Cliente> clientes = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_ALL);
@@ -73,6 +88,12 @@ public class ClienteDAO {
         return clientes;
     }
 
+
+    /**
+     * Version Eager de obtener todos los clientes, esto quiere decir que me traigo de la base de datos los clientes
+     * con las reservas que a hecho cada cliente.
+     * @return Una lista con todos los clientes con las reservas realizadas por cada uno.
+     */
     public static List<Cliente> findAllEager() {
         List<Cliente> clientes = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_ALL);
@@ -94,6 +115,10 @@ public class ClienteDAO {
         return clientes;
     }
 
+    /**
+     * Metodo que actualiza un cliente en la base de datos.
+     * @param cliente El cliente que quieres actualizar.
+     */
     public static void updateCliente(Cliente cliente) {
         try (PreparedStatement stmt = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {;
             // Configurar los parámetros
@@ -110,6 +135,10 @@ public class ClienteDAO {
         }
     }
 
+    /**
+     * Metodo que elimina un cliente de la base de datos.
+     * @param idUsuario El id del cliente que quieres eliminar.
+     */
     public static void deleteCliente(int idUsuario) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
             pst.setInt(1, idUsuario);
@@ -119,6 +148,11 @@ public class ClienteDAO {
         }
     }
 
+    /**
+     * Metodo que busca un cliente por su gmail.
+     * @param gmail El gmail del cliente que quieres buscar.
+     * @return El cliente encontrado.
+     */
     public static boolean existeGmailCliente(String gmail) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_GMAIL_EQUALS)) {
             pst.setString(1, gmail);
@@ -132,6 +166,11 @@ public class ClienteDAO {
         return false;
     }
 
+    /**
+     * Metodo que busca un cliente por su dni.
+     * @param dni El dni del cliente que quieres buscar.
+     * @return El cliente encontrado.
+     */
     public static boolean existeDNICliente(String dni) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_DNI_EQUALS)) {
             pst.setString(1, dni);

@@ -3,10 +3,12 @@ package org.example.proyectofinalprogramacionhotel.model;
 import java.util.List;
 
 public class Gerente extends Usuario {
+    // Atributos
     private int idGerente;
     private String codigo;
     private List<Habitacion> misHabitaciones;
 
+    // Constructor
     public Gerente(String nombre, String gmail, String contrasena, int idGerente, String codigo, List<Habitacion> misHabitaciones) {
         super(nombre, gmail, contrasena);
         this.idGerente = idGerente;
@@ -14,6 +16,7 @@ public class Gerente extends Usuario {
         this.misHabitaciones = misHabitaciones;
     }
 
+    // Constructor sin parámetros
     public Gerente() {
 
     }
@@ -23,6 +26,7 @@ public class Gerente extends Usuario {
         return "Gerente";
     }
 
+    // Getters y Setters
     public int getIdGerente() {
         return idGerente;
     }

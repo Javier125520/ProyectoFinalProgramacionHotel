@@ -32,7 +32,7 @@
         <!-- Botones -->
         <HBox spacing="20" alignment="CENTER">
             <Button text="Guardar" onAction="#guardarServicioActualizado" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
-            <Button text="Cancelar" onAction="#cancelarActualizacionServicio" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
+            <Button text="Cancelar" onAction="#cancelarActualizacion" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
         </HBox>
     </VBox>
 </AnchorPane>

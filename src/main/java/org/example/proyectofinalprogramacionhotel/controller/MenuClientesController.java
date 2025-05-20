@@ -502,4 +502,32 @@ public class MenuClientesController {
         stage.setTitle("Inicio");
         stage.show();
     }
+
+    public void actualizarReservaServicio(ActionEvent event) {
+        ReservaServicio reservaServicioSeleccionada = serviciosReservaTbl.getSelectionModel().getSelectedItem();
+        if (reservaServicioSeleccionada != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("ActualizarReservaServicio.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                ActualizarReservaServicioController controller = fxmlLoader.getController();
+                controller.setReservaServicio(reservaServicioSeleccionada);
+
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Actualizar Reserva de Servicio");
+                stage.setOnHidden(e -> {
+                    Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
+                    if (reservaSeleccionada != null) {
+                        mostrarServiciosReserva(reservaSeleccionada);
+                    }
+                });
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona una reserva de servicio para actualizar.");
+            alert.showAndWait();
+        }
+    }
 }

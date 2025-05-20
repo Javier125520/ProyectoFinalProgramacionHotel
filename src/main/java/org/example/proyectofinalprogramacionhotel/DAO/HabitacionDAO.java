@@ -3,7 +3,6 @@ package org.example.proyectofinalprogramacionhotel.DAO;
 import org.example.proyectofinalprogramacionhotel.baseDatos.ConnectionBD;
 import org.example.proyectofinalprogramacionhotel.model.Habitacion;
 import org.example.proyectofinalprogramacionhotel.model.estadoHabitacion;
-import org.example.proyectofinalprogramacionhotel.model.estadoReserva;
 import org.example.proyectofinalprogramacionhotel.model.tipoHabitacion;
 
 import java.sql.PreparedStatement;
@@ -22,6 +21,11 @@ public class HabitacionDAO {
     private final static String SQL_FIND_BY_ID_RESERVA = "SELECT * FROM habitacion WHERE idReserva = ?";
     private final static String SQL_FIND_HABITACIONES_DISPONIBLES = "SELECT * FROM habitacion WHERE estadoHabitacion = ?";
 
+    /**
+     * Metodo que inserta una habitacion en la base de datos.
+     * @param habitacion La habitacion que vas a insertar.
+     * @return La habitacion insertada.
+     */
     public static Habitacion insertHabitacion(Habitacion habitacion) {
         if (habitacion != null && findById(habitacion.getIdHabitacion()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
@@ -41,6 +45,10 @@ public class HabitacionDAO {
         return habitacion;
     }
 
+    /**
+     * Metodo que busca todas las habitaciones de la base de datos.
+     * @return Una lista con todas las habitaciones.
+     */
     public static List<Habitacion> findAll() {
         List<Habitacion> habitaciones = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_ALL);
@@ -60,6 +68,11 @@ public class HabitacionDAO {
         return habitaciones;
     }
 
+    /**
+     * Metodo que busca una habitacion por su id.
+     * @param idHabitacion El id de la habitacion que quieres buscar.
+     * @return La habitacion encontrada.
+     */
     public static Habitacion findById(int idHabitacion) {
         Habitacion habitacion = null;
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID)) {
@@ -79,6 +92,11 @@ public class HabitacionDAO {
         return habitacion;
     }
 
+    /**
+     * Metodo que busca una habitacion por su idReserva.
+     * @param idReserva El id de la reserva que quieres buscar.
+     * @return La habitacion encontrada.
+     */
     public static List<Habitacion> findByIdReserva(int idReserva) {
         List<Habitacion> habitaciones = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID_RESERVA)) {
@@ -98,6 +116,10 @@ public class HabitacionDAO {
         return habitaciones;
     }
 
+    /**
+     * Metodo que actualiza una habitacion en la base de datos.
+     * @param habitacion La habitacion que vas a actualizar.
+     */
     public static void updateHabitacion(Habitacion habitacion) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setString(1, habitacion.getEstadoHabitacion().name());
@@ -110,6 +132,10 @@ public class HabitacionDAO {
         }
     }
 
+    /**
+     * Metodo que elimina una habitacion por su id.
+     * @param idHabitacion El id de la habitacion que quieres eliminar.
+     */
     public static void deleteHabitacion(int idHabitacion) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
             pst.setInt(1, idHabitacion);
@@ -119,6 +145,11 @@ public class HabitacionDAO {
         }
     }
 
+    /**
+     * Metodo que busca todas las habitaciones de un gerente por su id.
+     * @param idGerente El id del gerente que quieres buscar.
+     * @return Una lista con todas las habitaciones del gerente.
+     */
     public static List<Habitacion> findByIdGerente(int idGerente) {
         List<Habitacion> habitaciones = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID_GERENTE)) {
@@ -139,6 +170,10 @@ public class HabitacionDAO {
         return habitaciones;
     }
 
+    /**
+     * Metodo que busca todas las habitaciones disponibles.
+     * @return Una lista con todas las habitaciones disponibles.
+     */
     public static List<Habitacion> findHabitacionesDisponibles() {
         List<Habitacion> habitacionesDisponibles = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_HABITACIONES_DISPONIBLES)) {

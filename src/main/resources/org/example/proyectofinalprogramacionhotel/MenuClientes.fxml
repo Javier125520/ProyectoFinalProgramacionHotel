@@ -89,7 +89,7 @@
                                     </columns>
                                 </TableView>
                                 <HBox alignment="CENTER" spacing="10">
-                                    <Button onAction="#asignarHabitacion" text="Asignar Habitación" />
+                                    <Button onAction="#asignarHabitacion" text="Contratar Habitación" />
                                 </HBox>
                             </VBox>
                         </Tab>
@@ -144,6 +144,7 @@
                     </TableView>
                     <HBox alignment="CENTER" spacing="10">
                         <Button onAction="#cancelarReservaServicio" text="Cancelar Reserva Servicio" />
+                        <Button onAction="#actualizarReservaServicio" text="Actualizar Reserva Servicio" />
                     </HBox>
                 </VBox>
             </Tab>

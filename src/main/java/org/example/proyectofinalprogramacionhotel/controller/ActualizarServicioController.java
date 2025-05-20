@@ -20,6 +20,10 @@ public class ActualizarServicioController {
 
     private Servicio servicioSeleccionado;
 
+    /**
+     * Metodo que se ejecuta al inicializar el controlador.
+     * Carga los datos del servicio seleccionado en los campos de texto.
+     */
     public void setServicio(Servicio servicioSeleccionado) {
         this.servicioSeleccionado = servicioSeleccionado;
         if (servicioSeleccionado != null) {
@@ -29,6 +33,10 @@ public class ActualizarServicioController {
         }
     }
 
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de guardar.
+     * Valida los campos y actualiza el servicio en la base de datos.
+     */
     @FXML
     public void guardarServicioActualizado(ActionEvent event) {
         if (idServicioField.getText().isEmpty() || tipoServicioField.getText().isEmpty() || precioHoraField.getText().isEmpty()) {
@@ -49,11 +57,22 @@ public class ActualizarServicioController {
         }
     }
 
+
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de cancelar.
+     * Cierra la ventana de actualización.
+     */
     @FXML
-    public void cancelarActualizacionServicio(ActionEvent event) {
+    public void cancelarActualizacion(ActionEvent event) {
         cerrarVentana();
     }
 
+    /**
+     * Metodo que muestra una alerta con el mensaje especificado.
+     *
+     * @param titulo   Titulo de la alerta
+     * @param mensaje  Mensaje de la alerta
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle(titulo);
@@ -62,6 +81,10 @@ public class ActualizarServicioController {
         alerta.showAndWait();
     }
 
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de cancelar.
+     * Cierra la ventana de actualización.
+     */
     private void cerrarVentana() {
         Stage stage = (Stage) idServicioField.getScene().getWindow();
         stage.close();

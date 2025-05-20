@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reserva {
+    // Atributos
     private int idReserva;
     private LocalDate fechaEntrada;
     private LocalDate fechaSalida;
@@ -14,6 +15,7 @@ public class Reserva {
     private List<ReservaServicio> serviciosIncluidos;
     private List<Habitacion> habitacionesContratadas;
 
+    // Constructor
     public Reserva(int idReserva, LocalDate fechaEntrada, LocalDate fechaSalida, org.example.proyectofinalprogramacionhotel.model.estadoReserva estadoReserva, int numPersonas, int idCliente, List<ReservaServicio> serviciosIncluidos, List<Habitacion> habitacionesContratadas) {
         this.idReserva = idReserva;
         this.fechaEntrada = fechaEntrada;
@@ -25,10 +27,12 @@ public class Reserva {
         this.habitacionesContratadas = habitacionesContratadas;
     }
 
+    // Constructor sin parámetros
     public Reserva() {
 
     }
 
+    // Getters y Setters
     public int getIdReserva() {
         return idReserva;
     }

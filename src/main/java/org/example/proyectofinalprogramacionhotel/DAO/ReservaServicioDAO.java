@@ -16,6 +16,11 @@ public class ReservaServicioDAO {
     private final static String SQL_FIND_SERVICIOS_BY_ID_RESERVA = "SELECT * FROM reserva_servicio WHERE idReserva = ?";
     private final static String SQL_DELETE = "DELETE FROM reserva_servicio WHERE idReserva = ?";
 
+    /**
+     * Metodo que inserta una reserva de servicio en la base de datos.
+     *
+     * @param reserva La reserva de servicio que vas a insertar.
+     */
     public static void insertReservaServicio(ReservaServicio reserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
             pst.setInt(1, reserva.getIdReserva());
@@ -31,6 +36,12 @@ public class ReservaServicioDAO {
         }
     }
 
+    /**
+     * Metodo que busca una reserva de servicio por su idReserva.
+     *
+     * @param idReserva El id de la reserva de servicio que quieres buscar.
+     * @return La reserva de servicio encontrada.
+     */
     public static List<ReservaServicio> findByIdReserva(int idReserva) {
         List<ReservaServicio> reservasServicios = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_SERVICIOS_BY_ID_RESERVA)) {
@@ -58,6 +69,11 @@ public class ReservaServicioDAO {
         return reservasServicios;
     }
 
+    /**
+     * Metodo que elimina una reserva de servicio por su idReserva.
+     *
+     * @param idReserva El id de la reserva de servicio que quieres eliminar.
+     */
     public static void deleteReservaServicio(int idReserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
             pst.setInt(1, idReserva);

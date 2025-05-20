@@ -3,11 +3,13 @@ package org.example.proyectofinalprogramacionhotel.model;
 import java.util.List;
 
 public class Cliente extends Usuario {
+    // Atributos
     private int idCliente;
     private String dni;
     private String telefono;
     private List<Reserva> misReservas;
 
+    // Constructor
     public Cliente(String nombre, String gmail, String contrasena, int idCliente, String dni, String telefono, List<Reserva> misReservas) {
         super(nombre, gmail, contrasena);
         this.idCliente = idCliente;
@@ -16,10 +18,12 @@ public class Cliente extends Usuario {
         this.misReservas = misReservas;
     }
 
+    // Constructor sin parámetros
     public Cliente() {
         super();
     }
 
+    // Getters y Setters
     public int getIdCliente() {
         return idCliente;
     }

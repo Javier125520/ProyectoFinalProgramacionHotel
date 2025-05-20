@@ -3,6 +3,7 @@ package org.example.proyectofinalprogramacionhotel.model;
 import java.time.LocalDate;
 
 public class ReservaServicio {
+    // Atributos
     private int idReserva;
     private Servicio servicio;
     private LocalDate fechaReserva;
@@ -11,6 +12,7 @@ public class ReservaServicio {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
+    // Constructor
     public ReservaServicio(int idReserva, Servicio servicio, LocalDate fechaReserva, int numeroPersonas, int precio, LocalDate fechaInicio, LocalDate fechaFin) {
         this.idReserva = idReserva;
         this.servicio = servicio;
@@ -21,10 +23,12 @@ public class ReservaServicio {
         this.fechaFin = fechaFin;
     }
 
+    // Constructor sin parámetros
     public ReservaServicio() {
 
     }
 
+    // Getters y Setters
     public int getIdReserva() {
         return idReserva;
     }

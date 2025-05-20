@@ -22,22 +22,26 @@ public class ActualizarReservaController {
     private DatePicker fechaSalidaPicker;
 
     @FXML
-    private ComboBox<String> estadoReservaCombo;
+    private ComboBox<estadoReserva> estadoReservaCombo;
 
     @FXML
     private TextField numPersonasField;
 
     private Reserva reservaSeleccionada;
 
+    /**
+     * Metodo que se ejecuta al inicializar el controlador.
+     * Carga los datos de la reserva seleccionada en los campos de texto.
+     */
     public void initialize() {
         // Cargar los valores de la enumeración estadoReserva en el ComboBox
-        estadoReservaCombo.getItems().setAll(
-                estadoReserva.EnProceso.name(),
-                estadoReserva.Completada.name(),
-                estadoReserva.Cancelada.name()
-        );
+        estadoReservaCombo.getItems().setAll(estadoReserva.values());
     }
 
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de guardar.
+     * Valida los campos y actualiza la reserva en la base de datos.
+     */
     @FXML
     public void guardarReservaActualizada(ActionEvent actionEvent) {
         if (reservaSeleccionada == null) {
@@ -49,7 +53,7 @@ public class ActualizarReservaController {
             // Validar y actualizar los datos de la reserva
             LocalDate fechaEntrada = fechaEntradaPicker.getValue();
             LocalDate fechaSalida = fechaSalidaPicker.getValue();
-            String estadoReservaStr = estadoReservaCombo.getValue();
+            String estadoReservaStr = String.valueOf(estadoReservaCombo.getValue());
             String numPersonasStr = numPersonasField.getText();
 
             if (fechaEntrada != null && fechaSalida != null && !fechaSalida.isAfter(fechaEntrada)) {
@@ -71,20 +75,33 @@ public class ActualizarReservaController {
         }
     }
 
-    public void cancelarActualizacionReserva(ActionEvent actionEvent) {
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de cancelar.
+     * Cierra la ventana de actualización.
+     */
+    public void cancelarActualizacion(ActionEvent actionEvent) {
         cerrarVentana();
     }
 
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de cancelar.
+     * Cierra la ventana de actualización.
+     */
     public void setReserva(Reserva reservaSeleccionada) {
         this.reservaSeleccionada = reservaSeleccionada;
         if (reservaSeleccionada != null) {
             fechaEntradaPicker.setValue(reservaSeleccionada.getFechaEntrada());
             fechaSalidaPicker.setValue(reservaSeleccionada.getFechaSalida());
-            estadoReservaCombo.setValue(reservaSeleccionada.getEstadoReserva().name());
+            estadoReservaCombo.setValue(reservaSeleccionada.getEstadoReserva());
             numPersonasField.setText(String.valueOf(reservaSeleccionada.getNumPersonas()));
         }
     }
 
+    /**
+     * Metodo que muestra una alerta con el mensaje y el titulo especificado.
+     * @param titulo Titulo de la alerta.
+     * @param mensaje Mensaje de la alerta.
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle(titulo);
@@ -93,6 +110,9 @@ public class ActualizarReservaController {
         alerta.showAndWait();
     }
 
+    /**
+     * Metodo que cierra la ventana actual.
+     */
     private void cerrarVentana() {
         Stage stage = (Stage) fechaEntradaPicker.getScene().getWindow();
         stage.close();

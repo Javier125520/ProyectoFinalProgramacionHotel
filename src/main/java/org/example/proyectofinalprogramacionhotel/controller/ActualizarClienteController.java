@@ -31,6 +31,10 @@ public class ActualizarClienteController {
 
     private Cliente clienteSeleccionado;
 
+    /**
+     * Metodo que se ejecuta al inicializar el controlador.
+     * Carga los datos del cliente seleccionado en los campos de texto.
+     */
     public void setCliente(Cliente cliente) {
         this.clienteSeleccionado = cliente;
         if (cliente != null) {
@@ -42,6 +46,10 @@ public class ActualizarClienteController {
         }
     }
 
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de guardar.
+     * Valida los campos y actualiza el cliente en la base de datos.
+     */
     @FXML
     public void guardarClienteActualizado() {
         if (nombreClienteField.getText() == null || nombreClienteField.getText().isEmpty() ||
@@ -71,6 +79,11 @@ public class ActualizarClienteController {
         }
     }
 
+    /**
+     * Metodo que muestra una alerta con el mensaje y el titulo especificado.
+     * @param titulo Titulo de la alerta.
+     * @param mensaje Mensaje de la alerta.
+     */
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle(titulo);
@@ -79,11 +92,19 @@ public class ActualizarClienteController {
         alerta.showAndWait();
     }
 
+    /**
+     * Metodo que cierra la ventana actual.
+     */
     private void cerrarVentana() {
         Stage stage = (Stage) nombreClienteField.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Metodo que se ejecuta al hacer clic en el boton de cancelar.
+     * Cierra la ventana actual.
+     * @param actionEvent Evento de accion.
+     */
     public void cancelarActualizacion(ActionEvent actionEvent) {
         // Cerrar la ventana actual
         Stage stage = (Stage) cancelarActualizacionCliente.getScene().getWindow();

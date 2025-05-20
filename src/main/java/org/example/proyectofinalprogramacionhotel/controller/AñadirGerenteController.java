@@ -63,6 +63,7 @@ public class AñadirGerenteController {
 
         // Validar que el Gmail no esté ya registrado
         if (GerenteDAO.existeGmailGerente(gmail)) {
+
             errores.add("El Gmail ya está registrado.");
         }
 

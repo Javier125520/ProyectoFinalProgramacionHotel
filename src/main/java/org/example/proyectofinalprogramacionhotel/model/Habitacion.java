@@ -1,6 +1,7 @@
 package org.example.proyectofinalprogramacionhotel.model;
 
 public class Habitacion {
+    // Atributos
     private int idHabitacion;
     private int numeroHabitacion;
     private tipoHabitacion tipoHabitacion;
@@ -9,6 +10,7 @@ public class Habitacion {
     private int idGerente;
     private Integer idReserva;
 
+    // Constructor
     public Habitacion(int idHabitacion, int numeroHabitacion, org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion, double precioNoche, org.example.proyectofinalprogramacionhotel.model.estadoHabitacion estadoHabitacion, int idGerente, Integer idReserva) {
         this.idHabitacion = idHabitacion;
         this.numeroHabitacion = numeroHabitacion;
@@ -19,10 +21,12 @@ public class Habitacion {
         this.idReserva = idReserva;
     }
 
+    // Constructor sin parámetros
     public Habitacion() {
 
     }
 
+    // Getters y Setters
     public int getIdHabitacion() {
         return idHabitacion;
     }

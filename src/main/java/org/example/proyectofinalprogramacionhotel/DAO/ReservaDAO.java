@@ -18,6 +18,11 @@ public class ReservaDAO {
     private final static String SQL_FIND_BY_ID = "SELECT * FROM reserva WHERE idReserva = ?";
     private final static String SQL_FIND_BY_ID_CLIENTE = "SELECT * FROM reserva WHERE idCliente = ?";
 
+    /**
+     * Metodo que inserta una reserva en la base de datos.
+     * @param reserva La reserva que vas a insertar.
+     * @return La reserva insertada.
+     */
     public static Reserva insertReserva(Reserva reserva) {
         if (reserva != null && findById(reserva.getIdReserva()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
@@ -36,6 +41,11 @@ public class ReservaDAO {
         return reserva;
     }
 
+    /**
+     * Metodo que busca una reserva por su id.
+     * @param idReserva El id de la reserva que quieres buscar.
+     * @return La reserva encontrada.
+     */
     public static Reserva findById(int idReserva) {
         Reserva reserva = null;
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID)) {
@@ -51,6 +61,11 @@ public class ReservaDAO {
         return reserva;
     }
 
+    /**
+     * Metodo que busca una reserva por su idCliente.
+     * @param idCliente El id del cliente que quieres buscar.
+     * @return La reserva encontrada.
+     */
     public static List<Reserva> findByIdCliente(int idCliente) {
         List<Reserva> reservas = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_ID_CLIENTE)) {
@@ -71,6 +86,11 @@ public class ReservaDAO {
         return reservas;
     }
 
+    /**
+     * Version Lazy de obtener todos las reservas, esto quiere decir que me traigo de la base de datos las reservas
+     * pero sin cargar las reservas de los servicios y habitaciones.
+     * @return Una lista con todas las reservas.
+     */
     public static List<Reserva> findAll() {
         List<Reserva> reservas = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_ALL);
@@ -92,6 +112,11 @@ public class ReservaDAO {
         return reservas;
     }
 
+    /**
+     * Version Eager de obtener todos las reservas, esto quiere descir que me traigo de la base de datos las reservas
+     * con sus habitaciones y sus servicios reservados.
+     * @return Una lista con todas las reservas.
+     */
     public static List<Reserva> findAllEager() {
         List<Reserva> reservas = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_ALL);
@@ -114,6 +139,10 @@ public class ReservaDAO {
         return reservas;
     }
 
+    /**
+     * Metodo que busca todas las reservas de la base de datos.
+     * @return Una lista con todas las reservas.
+     */
     public static void updateReserva(Reserva reserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setDate(1, Date.valueOf(reserva.getFechaEntrada()));
@@ -127,6 +156,10 @@ public class ReservaDAO {
         }
     }
 
+    /**
+     * Metodo que elimina una reserva por su id.
+     * @param idReserva El id de la reserva que quieres eliminar.
+     */
     public static void deleteReserva(int idReserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
             pst.setInt(1, idReserva);

@@ -1,19 +1,23 @@
 package org.example.proyectofinalprogramacionhotel.model;
 
 public class Servicio {
+    // Atributos
     private int idServicio;
     private double precioHora;
     private String tipoServicio;
 
+    // Constructor
     public Servicio(int idServicio, double precioHora, String tipoServicio) {
         this.idServicio = idServicio;
         this.precioHora = precioHora;
         this.tipoServicio = tipoServicio;
     }
 
+    // Constructor sin parámetros
     public Servicio() {
     }
 
+    // Getters y Setters
     public int getIdServicio() {
         return idServicio;
     }
