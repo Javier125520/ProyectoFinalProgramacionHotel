@@ -76,7 +76,7 @@
             <!-- Pestaña de reservas de servicios -->
             <Tab text="Servicios">
                 <VBox spacing="10" style="-fx-padding: 20;">
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Servicios Reservados" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Servicios" />
                     <TableView fx:id="serviciosTbl" prefHeight="200.0">
                         <columns>
                             <TableColumn fx:id="colIdServicio" text="ID Servicio" />
@@ -100,6 +100,7 @@
             <Button onAction="#añadirGerente" style="-fx-font-size: 14px;" text="Añadir Gerente" />
             <Button onAction="#actualizarGerente" style="-fx-font-size: 14px;" text="Actualizar Gerente" />
             <Button onAction="#eliminarGerente" style="-fx-font-size: 14px;" text="Eliminar Gerente" />
+            <Button onAction="#volverAlMenuPrincipal" style="-fx-font-size: 14px;" text="Volver al Menú Principal" />
         </HBox>
     </bottom>
 </BorderPane>

@@ -11,7 +11,7 @@ public class Habitacion {
     private Integer idReserva;
 
     // Constructor
-    public Habitacion(int idHabitacion, int numeroHabitacion, org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion, double precioNoche, org.example.proyectofinalprogramacionhotel.model.estadoHabitacion estadoHabitacion, int idGerente, Integer idReserva) {
+    public Habitacion(int idHabitacion, int numeroHabitacion, org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion, double precioNoche, estadoHabitacion estadoHabitacion, int idGerente, Integer idReserva) {
         this.idHabitacion = idHabitacion;
         this.numeroHabitacion = numeroHabitacion;
         this.tipoHabitacion = tipoHabitacion;
@@ -59,11 +59,11 @@ public class Habitacion {
         this.precioNoche = precioNoche;
     }
 
-    public org.example.proyectofinalprogramacionhotel.model.estadoHabitacion getEstadoHabitacion() {
+    public estadoHabitacion getEstadoHabitacion() {
         return estadoHabitacion;
     }
 
-    public void setEstadoHabitacion(org.example.proyectofinalprogramacionhotel.model.estadoHabitacion estadoHabitacion) {
+    public void setEstadoHabitacion(estadoHabitacion estadoHabitacion) {
         this.estadoHabitacion = estadoHabitacion;
     }
 

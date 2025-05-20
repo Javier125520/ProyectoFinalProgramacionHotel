@@ -6,25 +6,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.AñadirReservaServicioController">
-    <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
-        <Label text="Reservar Servicio" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
-        <GridPane hgap="10" vgap="10">
-            <Label text="Fecha Inicio:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <DatePicker fx:id="fechaInicioPicker" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.AñadirReservaServicioController" style="-fx-background-color: #f9f9f9;">
+    <VBox alignment="CENTER" spacing="20" style="-fx-padding: 30;">
+        <!-- Encabezado -->
+        <Label text="Reservar Servicio" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
 
-            <Label text="Fecha Fin:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-            <DatePicker fx:id="fechaFinPicker" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+        <!-- Formulario -->
+        <GridPane hgap="15" vgap="15" style="-fx-background-color: #ffffff; -fx-padding: 25; -fx-border-color: #dcdcdc; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5);">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="150" />
+                <ColumnConstraints halignment="LEFT" minWidth="300" />
+            </columnConstraints>
+            <children>
+                <Label text="Fecha Inicio:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <DatePicker fx:id="fechaInicioPicker" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-            <Label text="Número de Personas:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <Label text="Fecha Fin:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <DatePicker fx:id="fechaFinPicker" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-            <TextField fx:id="numPersonasTxt" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-            <Label text="Precio:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-            <TextField fx:id="precioTxt" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                <Label text="Número de Personas:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <TextField fx:id="numPersonasTxt" promptText="Ingrese el número de personas" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <Label text="Precio:" style="-fx-font-size: 14px; -fx-text-fill: #34495e;" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextField fx:id="precioTxt" promptText="Ingrese el precio" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 5;" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+            </children>
         </GridPane>
-        <HBox spacing="10">
-            <Button text="Reservar" onAction="#guardarReservaServicio" />
-            <Button text="Cancelar" onAction="#cancelar" />
+
+        <!-- Botones -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="Reservar" onAction="#guardarReservaServicio" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <Button text="Cancelar" onAction="#cancelar" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5;" />
         </HBox>
     </VBox>
 </AnchorPane>

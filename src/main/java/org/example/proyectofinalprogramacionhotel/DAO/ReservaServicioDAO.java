@@ -72,7 +72,7 @@ public class ReservaServicioDAO {
     /**
      * Metodo que elimina una reserva de servicio por su idReserva.
      *
-     * @param idReserva El id de la reserva de servicio que quieres eliminar.
+     * @param idReserva El ID de la reserva de servicio que quieres eliminar.
      */
     public static void deleteReservaServicio(int idReserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
@@ -83,3 +83,4 @@ public class ReservaServicioDAO {
         }
     }
 }
+

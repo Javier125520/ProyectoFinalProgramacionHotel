@@ -124,7 +124,11 @@ public class HabitacionDAO {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setString(1, habitacion.getEstadoHabitacion().name());
             pst.setDouble(2, habitacion.getPrecioNoche());
-            pst.setInt(3, habitacion.getIdReserva()); // Asegúrate de que este valor existe en la tabla reserva
+            if (habitacion.getIdReserva() == null) {
+                pst.setNull(3, java.sql.Types.INTEGER); // Manejar valores nulos
+            } else {
+                pst.setInt(3, habitacion.getIdReserva());
+            }
             pst.setInt(4, habitacion.getIdHabitacion());
             pst.executeUpdate();
         } catch (SQLException e) {

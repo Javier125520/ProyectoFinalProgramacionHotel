@@ -157,6 +157,7 @@
             <Button onAction="#añadirCliente" style="-fx-font-size: 14px;" text="Añadir Cliente" />
             <Button onAction="#actualizarCliente" style="-fx-font-size: 14px;" text="Actualizar Cliente" />
             <Button onAction="#eliminarCliente" style="-fx-font-size: 14px;" text="Eliminar Cliente" />
+            <Button onAction="#volverAlMenuPrincipal" style="-fx-font-size: 14px;" text="Volver al Menú Principal" />
         </HBox>
     </bottom>
 </BorderPane>

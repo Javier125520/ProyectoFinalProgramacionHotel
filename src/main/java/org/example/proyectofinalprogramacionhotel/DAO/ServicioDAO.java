@@ -15,7 +15,7 @@ public class ServicioDAO {
     private final static String SQL_FIND_BY_ID = "SELECT * FROM servicio WHERE idServicio = ?";
     private final static String SQL_UPDATE = "UPDATE servicio SET precioHora = ?, tipoServicio = ? WHERE idServicio = ?";
     private final static String SQL_DELETE = "DELETE FROM servicio WHERE idServicio = ?";
-
+    private final static String SQL_FIND_BY_TIPO_SERVICIO = "SELECT COUNT(*) FROM servicio WHERE tipoServicio = ?";
     /**
      * Metodo que inserta un servicio en la base de datos.
      * @param servicio El servicio que vas a insertar.
@@ -104,5 +104,23 @@ public class ServicioDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Método que verifica si ya existe un servicio con el mismo tipo de servicio.
+     * @param tipoServicio El tipo de servicio que quieres verificar.
+     * @return true si existe un servicio con el mismo tipo, false en caso contrario.
+     */
+    public static boolean existeTipoServicio(String tipoServicio) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_TIPO_SERVICIO)) {
+            pst.setString(1, tipoServicio);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al verificar el tipo de servicio: " + e.getMessage(), e);
+        }
+        return false;
     }
 }

@@ -9,8 +9,6 @@ import org.example.proyectofinalprogramacionhotel.DAO.ServicioDAO;
 import org.example.proyectofinalprogramacionhotel.model.Servicio;
 
 public class ActualizarServicioController {
-    @FXML
-    private TextField idServicioField;
 
     @FXML
     private TextField tipoServicioField;
@@ -27,7 +25,6 @@ public class ActualizarServicioController {
     public void setServicio(Servicio servicioSeleccionado) {
         this.servicioSeleccionado = servicioSeleccionado;
         if (servicioSeleccionado != null) {
-            idServicioField.setText(String.valueOf(servicioSeleccionado.getIdServicio()));
             tipoServicioField.setText(servicioSeleccionado.getTipoServicio());
             precioHoraField.setText(String.valueOf(servicioSeleccionado.getPrecioHora()));
         }
@@ -39,13 +36,12 @@ public class ActualizarServicioController {
      */
     @FXML
     public void guardarServicioActualizado(ActionEvent event) {
-        if (idServicioField.getText().isEmpty() || tipoServicioField.getText().isEmpty() || precioHoraField.getText().isEmpty()) {
+        if (tipoServicioField.getText().isEmpty() || precioHoraField.getText().isEmpty()) {
             mostrarAlerta("Error", "Todos los campos deben estar llenos.");
             return;
         }
 
         try {
-            servicioSeleccionado.setIdServicio(Integer.parseInt(idServicioField.getText()));
             servicioSeleccionado.setTipoServicio(tipoServicioField.getText());
             servicioSeleccionado.setPrecioHora(Double.parseDouble(precioHoraField.getText()));
 
@@ -86,7 +82,7 @@ public class ActualizarServicioController {
      * Cierra la ventana de actualización.
      */
     private void cerrarVentana() {
-        Stage stage = (Stage) idServicioField.getScene().getWindow();
+        Stage stage = (Stage) tipoServicioField.getScene().getWindow();
         stage.close();
     }
 }

@@ -416,7 +416,7 @@ public class MenuClientesController {
         }
 
         try {
-            habitacionSeleccionada.setIdReserva(0); // Desvincular la reserva
+            habitacionSeleccionada.setIdReserva(null); // Desvincular la reserva
             habitacionSeleccionada.setEstadoHabitacion(estadoHabitacion.Libre); // Cambiar estado a Libre
             HabitacionDAO.updateHabitacion(habitacionSeleccionada);
 
@@ -439,7 +439,7 @@ public class MenuClientesController {
     private void reservarServicio() {
         try {
             // Verificar que se haya seleccionado una reserva y un servicio
-            Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
+            Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
             Servicio servicioSeleccionado = serviciosTbl.getSelectionModel().getSelectedItem();
 
             if (reservaSeleccionada == null) {
@@ -486,7 +486,7 @@ public class MenuClientesController {
             ReservaServicioDAO.deleteReservaServicio(reservaServicioSeleccionada.getIdReserva());
 
             mostrarAlerta("Éxito", "Reserva de servicio eliminada correctamente.");
-            mostrarServiciosReserva((Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem());
+            mostrarServiciosReserva(reservasClienteTbl.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             mostrarAlerta("Error", "No se pudo eliminar la reserva de servicio: " + e.getMessage());
         }
@@ -494,13 +494,17 @@ public class MenuClientesController {
 
 
 
-    public void volverAlMenuPrincipal(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Inicio.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Inicio");
-        stage.show();
+    public void volverAlMenuPrincipal(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Inicio.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Menú Principal");
+            stage.show();
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar el menú principal.");
+        }
     }
 
     public void actualizarReservaServicio(ActionEvent event) {

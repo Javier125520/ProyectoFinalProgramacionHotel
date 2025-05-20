@@ -92,6 +92,7 @@ public class MenuGerentesController {
 
         List<Gerente> gerentes = GerenteDAO.findAll();
         gerentesLst.getItems().setAll(gerentes);
+        mostrarServicios();
     }
 
     @FXML
@@ -228,7 +229,29 @@ public class MenuGerentesController {
     }
 
     public void actualizarHabitacion(ActionEvent actionEvent) {
-
+        Habitacion habitacionSeleccionada = habitacionesGerenteTbl.getSelectionModel().getSelectedItem();
+        if (habitacionSeleccionada != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("ActualizarHabitacion.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                ActualizarHabitacionController controller = fxmlLoader.getController();
+                controller.setHabitacion(habitacionSeleccionada);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Actualizar Habitacion");
+                stage.setOnHidden(event -> {
+                    Gerente gerenteSeleccionado = gerentesLst.getSelectionModel().getSelectedItem();
+                    if (gerenteSeleccionado != null) {
+                        mostrarHabitacionesGerente(gerenteSeleccionado.getIdGerente());
+                    }
+                });
+                stage.show();
+            } catch (IOException e) {
+                mostrarAlerta("Error", "No se pudo cargar la ventana de actualización de la habitación.");
+            }
+        } else {
+            mostrarAlerta("Error", "Por favor, selecciona una habitación para actualizar.");
+        }
     }
 
     public void añadirServicio(ActionEvent actionEvent) throws IOException {
@@ -252,6 +275,36 @@ public class MenuGerentesController {
     }
 
     public void actualizarServicio(ActionEvent actionEvent) {
+        Servicio servicioSeleccionado = serviciosTbl.getSelectionModel().getSelectedItem();
+        if (servicioSeleccionado != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("ActualizarServicio.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                ActualizarServicioController controller = fxmlLoader.getController();
+                controller.setServicio(servicioSeleccionado);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Actualizar Servicio");
+                stage.setOnHidden(event -> mostrarServicios());
+                stage.show();
+            } catch (IOException e) {
+                mostrarAlerta("Error", "No se pudo cargar la ventana de actualización del servicio.");
+            }
+        } else {
+            mostrarAlerta("Error", "Por favor, selecciona un servicio para actualizar.");
+        }
+    }
 
+    public void volverAlMenuPrincipal(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Inicio.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Menú Principal");
+            stage.show();
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo cargar el menú principal.");
+        }
     }
 }
