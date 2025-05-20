@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.ActualizarHabitacionController" style="-fx-background-color: #f4f4f4;">
+    <VBox spacing="20" alignment="CENTER" style="-fx-padding: 20;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <!-- Encabezado -->
+        <Label text="Actualizar Habitación" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+        <!-- Formulario -->
+        <GridPane hgap="20" vgap="20" style="-fx-background-color: #ffffff; -fx-padding: 30; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10; -fx-max-width: 800;">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="200" />
+                <ColumnConstraints halignment="LEFT" minWidth="400" />
+            </columnConstraints>
+            <children>
+                <Label text="Número de Habitación:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="numeroHabitacionField" promptText="Ingrese el número" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Tipo de Habitación:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <ComboBox fx:id="tipoHabitacionCombo" promptText="Ingrese el tipo" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Precio por Noche:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <TextField fx:id="precioNocheField" promptText="Ingrese el precio" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <Label text="Estado:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <ComboBox fx:id="estadoHabitacionCombo" promptText="Seleccione un estado" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+            </children>
+        </GridPane>
+
+        <!-- Botones -->
+        <HBox spacing="20" alignment="CENTER">
+            <Button text="Guardar" onAction="#guardarHabitacionActualizada" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
+            <Button text="Cancelar" onAction="#cancelarActualizacionHabitacion" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
+        </HBox>
+    </VBox>
+</AnchorPane>

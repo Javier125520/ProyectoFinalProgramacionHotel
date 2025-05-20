@@ -16,6 +16,8 @@ public class ClienteDAO {
     private final static String SQL_UPDATE = "UPDATE cliente SET nombre = ?, gmail = ?, contrasena = ?, dni = ?, telefono = ? WHERE idCliente = ?";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM cliente WHERE idCliente = ?";
     private final static String SQL_ALL = "SELECT * FROM cliente";
+    private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM cliente WHERE gmail = ?";
+    private final static String SQL_FIND_BY_DNI_EQUALS = "SELECT COUNT(*) FROM cliente WHERE dni = ?";
 
     public static Cliente insertCliente(Cliente cliente) {
         if (cliente != null && findById(cliente.getIdCliente()) == null) {
@@ -115,6 +117,32 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static boolean existeGmailCliente(String gmail) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_GMAIL_EQUALS)) {
+            pst.setString(1, gmail);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al verificar el gmail: " + e.getMessage(), e);
+        }
+        return false;
+    }
+
+    public static boolean existeDNICliente(String dni) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_DNI_EQUALS)) {
+            pst.setString(1, dni);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al verificar el DNI: " + e.getMessage(), e);
+        }
+        return false;
     }
 
 }

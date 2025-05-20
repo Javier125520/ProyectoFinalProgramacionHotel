@@ -15,6 +15,9 @@ public class GerenteDAO {
     private final static String SQL_FIND_BY_ID = "SELECT * FROM gerente WHERE idGerente = ?";
     private final static String SQL_UPDATE = "UPDATE gerente SET nombre = ?, gmail = ?, contrasena = ?, codigo = ? WHERE idGerente = ?";
     private final static String SQL_DELETE = "DELETE FROM gerente WHERE idGerente = ?";
+    private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM gerente WHERE gmail = ?";
+    private final static String SQL_FIND_BY_DNI_EQUALS = "SELECT COUNT(*) FROM gerente WHERE dni = ?";
+    private final static String SQL_FIND_BY_CODIGO_EQUALS = "SELECT COUNT(*) FROM gerente WHERE codigo = ?";
 
     public static Gerente insertGerente(Gerente gerente) {
         if (gerente != null && findById(gerente.getIdGerente()) == null) {
@@ -107,5 +110,44 @@ public class GerenteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static boolean existeGmailGerente(String gmail) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_GMAIL_EQUALS)) {
+            pst.setString(1, gmail);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al verificar el gmail: " + e.getMessage(), e);
+        }
+        return false;
+    }
+
+    public static boolean existeDNIGerente(String dni) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_DNI_EQUALS)) {
+            pst.setString(1, dni);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al verificar el DNI: " + e.getMessage(), e);
+        }
+        return false;
+    }
+
+    public static boolean existeCodigoGerente(String codigo) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_CODIGO_EQUALS)) {
+            pst.setString(1, codigo);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al verificar el código: " + e.getMessage(), e);
+        }
+        return false;
     }
 }

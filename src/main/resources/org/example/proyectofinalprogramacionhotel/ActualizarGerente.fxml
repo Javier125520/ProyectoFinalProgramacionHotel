@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="500.0" prefWidth="600.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.ActualizarGerenteController">
+    <top>
+        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Actualizar Gerente" BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <GridPane hgap="15" style="-fx-padding: 20;" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" />
+                <ColumnConstraints halignment="LEFT" />
+            </columnConstraints>
+            <children>
+                <Label text="Nombre:" style="-fx-font-size: 14px; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="nombreGerenteField" promptText="Ingrese el nombre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Gmail:" style="-fx-font-size: 14px; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="gmailGerenteField" promptText="Ingrese el correo electrónico" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Contraseña:" style="-fx-font-size: 14px; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <PasswordField fx:id="contrasenaGerenteField" promptText="Ingrese la contraseña" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Código:" style="-fx-font-size: 14px; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <TextField fx:id="codigoGerenteField" promptText="Ingrese el código" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </children>
+        </GridPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" spacing="15" style="-fx-padding: 10;">
+            <Button onAction="#guardarGerenteActualizado" style="-fx-font-size: 14px; -fx-background-color: #27ae60; -fx-text-fill: white;" text="Guardar" />
+            <Button onAction="#cancelarActualizacionGerente" style="-fx-font-size: 14px; -fx-background-color: #c0392b; -fx-text-fill: white;" text="Cancelar" />
+        </HBox>
+    </bottom>
+</BorderPane>

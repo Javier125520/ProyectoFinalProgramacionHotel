@@ -73,7 +73,7 @@ public class AñadirHabitacionController {
         nuevaHabitacion.setTipoHabitacion(tipo);
         nuevaHabitacion.setEstadoHabitacion(estado);
         nuevaHabitacion.setIdGerente(gerenteSeleccionado.getIdGerente());
-        nuevaHabitacion.setIdReserva(null); // Asignar 0 si no hay reserva asociada
+        nuevaHabitacion.setIdReserva(null);
 
         // Guardar en la base de datos
         try {

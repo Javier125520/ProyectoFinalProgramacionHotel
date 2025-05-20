@@ -61,6 +61,21 @@ public class AñadirGerenteController {
             errores.add("El código solo puede contener letras y números.");
         }
 
+        // Validar que el Gmail no esté ya registrado
+        if (GerenteDAO.existeGmailGerente(gmail)) {
+            errores.add("El Gmail ya está registrado.");
+        }
+
+        // Validar que el DNI no esté ya registrado
+        if (GerenteDAO.existeDNIGerente(codigo)) {
+            errores.add("El DNI ya está registrado.");
+        }
+
+        // Validar que el código no esté ya registrado
+        if (GerenteDAO.existeCodigoGerente(codigo)) {
+            errores.add("El código ya está registrado.");
+        }
+
         // Mostrar errores si existen
         if (!errores.isEmpty()) {
             mostrarErrores(errores);

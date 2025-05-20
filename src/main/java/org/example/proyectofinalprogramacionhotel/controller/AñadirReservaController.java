@@ -26,7 +26,7 @@ public class AñadirReservaController {
     private DatePicker fechaSalidaPicker;
 
     @FXML
-    private ComboBox estadoReservaCombo;
+    private ComboBox<estadoReserva> estadoReservaCombo;
 
     @FXML
     private TextField numPersonasField;
@@ -48,13 +48,13 @@ public class AñadirReservaController {
         // Obtener datos de los campos
         LocalDate fechaEntrada = fechaEntradaPicker.getValue();
         LocalDate fechaSalida = fechaSalidaPicker.getValue();
-        String estadoReserva = (String) estadoReservaCombo.getValue();
+        estadoReserva estadoSeleccionado = estadoReservaCombo.getValue();
         String numPersonasStr = numPersonasField.getText();
 
         // Validar campos vacíos
         if (fechaEntrada == null) errores.add("El campo 'Fecha Entrada' es obligatorio.");
         if (fechaSalida == null) errores.add("El campo 'Fecha Salida' es obligatorio.");
-        if (estadoReserva == null || estadoReserva.isEmpty()) errores.add("El campo 'Estado Reserva' es obligatorio.");
+        if (estadoSeleccionado == null) errores.add("El campo 'Estado Reserva' es obligatorio.");
         if (numPersonasStr == null || numPersonasStr.isEmpty()) errores.add("El campo 'Número de Personas' es obligatorio.");
 
         // Validar formato del número de personas
@@ -77,7 +77,7 @@ public class AñadirReservaController {
         Reserva nuevaReserva = new Reserva();
         nuevaReserva.setFechaEntrada(fechaEntrada);
         nuevaReserva.setFechaSalida(fechaSalida);
-        nuevaReserva.setEstadoReserva(org.example.proyectofinalprogramacionhotel.model.estadoReserva.valueOf(estadoReserva));
+        nuevaReserva.setEstadoReserva(estadoSeleccionado);
         nuevaReserva.setNumPersonas(Integer.parseInt(numPersonasStr));
 
         // Obtener cliente seleccionado

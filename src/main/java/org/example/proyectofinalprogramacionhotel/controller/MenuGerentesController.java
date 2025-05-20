@@ -144,7 +144,26 @@ public class MenuGerentesController {
         stage.show();
     }
 
-    public void actualizarGerente(ActionEvent actionEvent) {
+    public void actualizarGerente(ActionEvent actionEvent) throws IOException {
+        Gerente gerenteSeleccionado = gerentesLst.getSelectionModel().getSelectedItem();
+        if (gerenteSeleccionado != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("ActualizarGerente.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            ActualizarGerenteController controller = fxmlLoader.getController();
+            controller.setGerente(gerenteSeleccionado);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Actualizar Gerente");
+            stage.setOnHidden(e -> {
+                List<Gerente> gerentes = GerenteDAO.findAll();
+                gerentesLst.getItems().setAll(gerentes);
+                mostrarInformacionGerente(gerenteSeleccionado);
+            });
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona un gerente para actualizar.");
+            alert.showAndWait();
+        }
     }
 
     public void eliminarGerente(ActionEvent actionEvent) {
@@ -153,7 +172,7 @@ public class MenuGerentesController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Estás seguro de que deseas eliminar este gerente?");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    ClienteDAO.deleteCliente(gerenteSeleccionado.getIdGerente());
+                    GerenteDAO.deleteGerente(gerenteSeleccionado.getIdGerente());
                     gerentesLst.getItems().remove(gerenteSeleccionado);
                     mostrarInformacionGerente(null);
                 }
@@ -195,7 +214,7 @@ public class MenuGerentesController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Estás seguro de que deseas eliminar esta habitación?");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    ReservaDAO.deleteReserva(habitacionSeleccionada.getIdReserva());
+                    HabitacionDAO.deleteHabitacion(habitacionSeleccionada.getIdGerente());
                     Gerente gerenteSeleccionado = gerentesLst.getSelectionModel().getSelectedItem();
                     if (gerenteSeleccionado != null) {
                         mostrarHabitacionesGerente(gerenteSeleccionado.getIdGerente());

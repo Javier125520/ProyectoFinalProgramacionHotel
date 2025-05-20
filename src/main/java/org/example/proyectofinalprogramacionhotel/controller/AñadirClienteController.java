@@ -77,6 +77,14 @@ public class AñadirClienteController {
             errores.add("El DNI no tiene un formato válido (8 dígitos seguidos de una letra mayúscula).");
         }
 
+        // Validar duplicados
+        if (ClienteDAO.existeGmailCliente(gmail)) {
+            errores.add("El Gmail ya está registrado.");
+        }
+        if (ClienteDAO.existeDNICliente(dni)) {
+            errores.add("El DNI ya está registrado.");
+        }
+
         // Mostrar errores si existen
         if (!errores.isEmpty()) {
             mostrarErrores(errores);

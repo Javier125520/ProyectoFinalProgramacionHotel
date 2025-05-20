@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectofinalprogramacionhotel.controller.ActualizarServicioController" style="-fx-background-color: #f4f4f4;">
+    <VBox spacing="20" alignment="CENTER" style="-fx-padding: 20;" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <!-- Encabezado -->
+        <Label text="Actualizar Servicio" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+        <!-- Formulario -->
+        <GridPane hgap="20" vgap="20" style="-fx-background-color: #ffffff; -fx-padding: 30; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10; -fx-max-width: 800;">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="200" />
+                <ColumnConstraints halignment="LEFT" minWidth="400" />
+            </columnConstraints>
+            <children>
+                <Label text="ID Servicio:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="idServicioField" promptText="Ingrese el ID" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Tipo de Servicio:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <TextField fx:id="tipoServicioField" promptText="Ingrese el tipo" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Precio por Hora:" style="-fx-font-size: 16px; -fx-text-fill: #555;" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <TextField fx:id="precioHoraField" promptText="Ingrese el precio" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            </children>
+        </GridPane>
+
+        <!-- Botones -->
+        <HBox spacing="20" alignment="CENTER">
+            <Button text="Guardar" onAction="#guardarServicioActualizado" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
+            <Button text="Cancelar" onAction="#cancelarActualizacionServicio" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 30;" />
+        </HBox>
+    </VBox>
+</AnchorPane>
