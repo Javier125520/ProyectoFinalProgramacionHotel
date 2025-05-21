@@ -71,7 +71,7 @@ public class ActualizarReservaServicioController {
             reservaServicioSeleccionada.setPrecio(precio);
 
             // Guardar cambios en la base de datos
-            ReservaServicioDAO.insertReservaServicio(reservaServicioSeleccionada);
+            ReservaServicioDAO.updateReservaServicio(reservaServicioSeleccionada);
             mostrarAlerta("Éxito", "Reserva actualizada correctamente.");
             cerrarVentana();
         } catch (NumberFormatException e) {

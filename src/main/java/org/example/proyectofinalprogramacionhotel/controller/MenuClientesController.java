@@ -38,7 +38,7 @@ public class MenuClientesController {
     private Label nombreCliente;
 
     @FXML
-    private Label gmailCliente;
+    private Label emailCliente;
 
     @FXML
     private Label contrasenaCliente;
@@ -178,7 +178,7 @@ public class MenuClientesController {
         });
 
         /**
-         * Cuando se selecciona un cliente, se muestran sus reservas
+         *
          */
         clientesLst.setCellFactory(_ -> new ListCell<>() {
             @Override
@@ -223,14 +223,14 @@ public class MenuClientesController {
         if (cliente != null) {
             idCliente.setText(String.valueOf(cliente.getIdCliente()));
             nombreCliente.setText(cliente.getNombre());
-            gmailCliente.setText(cliente.getGmail());
+            emailCliente.setText(cliente.getEmail());
             contrasenaCliente.setText(cliente.getContrasena());
             dniCliente.setText(cliente.getDni());
             telefonoCliente.setText(cliente.getTelefono());
         } else {
             idCliente.setText("");
             nombreCliente.setText("");
-            gmailCliente.setText("");
+            emailCliente.setText("");
             contrasenaCliente.setText("");
             dniCliente.setText("");
             telefonoCliente.setText("");
@@ -314,8 +314,7 @@ public class MenuClientesController {
     }
 
     public void actualizarReserva(ActionEvent actionEvent) {
-        // Implementar lógica para actualizar reserva
-        Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
+        Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
         if (reservaSeleccionada != null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("ActualizarReserva.fxml"));
@@ -343,7 +342,7 @@ public class MenuClientesController {
     }
 
     public void eliminarReserva(ActionEvent actionEvent) {
-        Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
+        Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
         if (reservaSeleccionada != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Estás seguro de que deseas eliminar esta reserva?");
             alert.showAndWait().ifPresent(response -> {
@@ -367,7 +366,7 @@ public class MenuClientesController {
     }
 
     private void mostrarHabitacionesReserva() {
-        Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
+        Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
         if (reservaSeleccionada != null) {
             // Mostrar habitaciones con estado "Libre"
             List<Habitacion> habitacionesLibres = HabitacionDAO.findHabitacionesDisponibles();
@@ -380,7 +379,7 @@ public class MenuClientesController {
 
     @FXML
     public void asignarHabitacion(ActionEvent actionEvent) {
-        Reserva reservaSeleccionada = (Reserva) reservasClienteTbl.getSelectionModel().getSelectedItem();
+        Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
         Habitacion habitacionSeleccionada = habitacionesTbl.getSelectionModel().getSelectedItem();
 
         if (reservaSeleccionada == null) {
@@ -450,7 +449,6 @@ public class MenuClientesController {
     @FXML
     private void reservarServicio() {
         try {
-            // Verificar que se haya seleccionado una reserva y un servicio
             Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
             Servicio servicioSeleccionado = serviciosTbl.getSelectionModel().getSelectedItem();
 
@@ -465,7 +463,7 @@ public class MenuClientesController {
             }
 
             // Cargar el archivo FXML del formulario para reservar un servicio
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/proyectofinalprogramacionhotel/AñadirReservaServicio.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AñadirReservaServicio.fxml"));
             Scene scene = new Scene(loader.load());
 
             // Obtener el controlador del formulario

@@ -14,6 +14,7 @@ import java.util.List;
 public class ReservaServicioDAO {
     private final static String SQL_INSERT = "INSERT INTO reserva_servicio (idReserva, idServicio, fechaReserva, numeroPersonas, precio, fechaInicio, fechaFin) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private final static String SQL_FIND_SERVICIOS_BY_ID_RESERVA = "SELECT * FROM reserva_servicio WHERE idReserva = ?";
+    private final static String SQL_UPDATE = "UPDATE reserva_servicio SET idServicio = ?, fechaReserva = ?, numeroPersonas = ?, precio = ?, fechaInicio = ?, fechaFin = ? WHERE idReserva = ?";
     private final static String SQL_DELETE = "DELETE FROM reserva_servicio WHERE idReserva = ?";
 
     /**
@@ -67,6 +68,26 @@ public class ReservaServicioDAO {
             throw new RuntimeException(e);
         }
         return reservasServicios;
+    }
+
+    /**
+     * Metodo que actualiza una reserva de servicio en la base de datos.
+     *
+     * @param reserva La reserva de servicio que vas a actualizar.
+     */
+    public static void updateReservaServicio(ReservaServicio reserva) {
+        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
+            pst.setInt(1, reserva.getServicio().getIdServicio());
+            pst.setDate(2, Date.valueOf(reserva.getFechaReserva()));
+            pst.setInt(3, reserva.getNumeroPersonas());
+            pst.setInt(4, reserva.getPrecio());
+            pst.setDate(5, Date.valueOf(reserva.getFechaInicio()));
+            pst.setDate(6, Date.valueOf(reserva.getFechaFin()));
+            pst.setInt(7, reserva.getIdReserva());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

@@ -34,8 +34,8 @@
                         <Label style="-fx-font-weight: bold;" text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                         <Label fx:id="nombreGerente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                        <Label style="-fx-font-weight: bold;" text="Gmail:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                        <Label fx:id="gmailGerente" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label style="-fx-font-weight: bold;" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label fx:id="emailGerente" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                         <Label style="-fx-font-weight: bold;" text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                         <Label fx:id="contrasenaGerente" GridPane.columnIndex="1" GridPane.rowIndex="3" />

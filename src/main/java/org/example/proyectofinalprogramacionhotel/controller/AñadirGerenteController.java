@@ -18,7 +18,7 @@ public class AñadirGerenteController {
     private TextField nombreGerenteTxt;
 
     @FXML
-    private TextField gmailGerenteTxt;
+    private TextField emailGerenteTxt;
 
     @FXML
     private TextField contrasenaGerenteTxt;
@@ -31,7 +31,7 @@ public class AñadirGerenteController {
         List<String> errores = new ArrayList<>();
 
         String nombre = nombreGerenteTxt.getText();
-        String gmail = gmailGerenteTxt.getText();
+        String gmail = emailGerenteTxt.getText();
         String contrasena = contrasenaGerenteTxt.getText();
         String codigo = codigoGerenteTxt.getText();
 
@@ -81,7 +81,7 @@ public class AñadirGerenteController {
         // Crear objeto Gerente
         Gerente nuevoGerente = new Gerente();
         nuevoGerente.setNombre(nombre);
-        nuevoGerente.setGmail(gmail);
+        nuevoGerente.setEmail(gmail);
         nuevoGerente.setContrasena(contrasena);
         nuevoGerente.setCodigo(codigo);
 
@@ -91,7 +91,7 @@ public class AñadirGerenteController {
 
             // Limpiar campos
             nombreGerenteTxt.clear();
-            gmailGerenteTxt.clear();
+            emailGerenteTxt.clear();
             contrasenaGerenteTxt.clear();
             codigoGerenteTxt.clear();
 

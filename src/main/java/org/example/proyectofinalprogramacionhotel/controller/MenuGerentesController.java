@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.proyectofinalprogramacionhotel.DAO.*;
 import org.example.proyectofinalprogramacionhotel.MainApplication;
-import org.example.proyectofinalprogramacionhotel.model.Cliente;
 import org.example.proyectofinalprogramacionhotel.model.Gerente;
 import org.example.proyectofinalprogramacionhotel.model.Habitacion;
 import org.example.proyectofinalprogramacionhotel.model.Servicio;
@@ -30,7 +29,7 @@ public class MenuGerentesController {
     private Label nombreGerente;
 
     @FXML
-    private Label gmailGerente;
+    private Label emailGerente;
 
     @FXML
     private Label contrasenaGerente;
@@ -77,7 +76,9 @@ public class MenuGerentesController {
         colTipoServicio.setCellValueFactory(new PropertyValueFactory<>("tipoServicio"));
         colPrecioHoraServicio.setCellValueFactory(new PropertyValueFactory<>("precioHora"));
 
-        // Configurar lista de gerentes
+        /**
+         * Configurar la lista de gerentes para mostrar el nombre del gerente
+         */
         gerentesLst.setCellFactory(_ -> new ListCell<>() {
             @Override
             protected void updateItem(Gerente gerente, boolean empty) {
@@ -119,14 +120,14 @@ public class MenuGerentesController {
         if (gerente != null) {
             idGerente.setText(String.valueOf(gerente.getIdGerente()));
             nombreGerente.setText(gerente.getNombre());
-            gmailGerente.setText(gerente.getGmail());
+            emailGerente.setText(gerente.getEmail());
             contrasenaGerente.setText(gerente.getContrasena());
             codigoGerente.setText(gerente.getCodigo());
             mostrarHabitacionesGerente(gerente.getIdGerente());
         } else {
             idGerente.setText("");
             nombreGerente.setText("");
-            gmailGerente.setText("");
+            emailGerente.setText("");
             contrasenaGerente.setText("");
             codigoGerente.setText("");
         }

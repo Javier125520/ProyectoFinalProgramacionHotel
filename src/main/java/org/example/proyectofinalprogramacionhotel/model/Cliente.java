@@ -10,8 +10,8 @@ public class Cliente extends Usuario {
     private List<Reserva> misReservas;
 
     // Constructor
-    public Cliente(String nombre, String gmail, String contrasena, int idCliente, String dni, String telefono, List<Reserva> misReservas) {
-        super(nombre, gmail, contrasena);
+    public Cliente(String nombre, String email, String contrasena, int idCliente, String dni, String telefono, List<Reserva> misReservas) {
+        super(nombre, email, contrasena);
         this.idCliente = idCliente;
         this.dni = dni;
         this.telefono = telefono;
@@ -66,7 +66,7 @@ public class Cliente extends Usuario {
         return "Cliente{" +
                 "idCliente=" + idCliente +
                 ", nombre='" + nombre + '\'' +
-                ", gmail='" + gmail + '\'' +
+                ", gmail='" + email + '\'' +
                 ", contrasena='" + contrasena + '\'' +
                 ", dni='" + dni + '\'' +
                 ", telefono='" + telefono + '\'' +

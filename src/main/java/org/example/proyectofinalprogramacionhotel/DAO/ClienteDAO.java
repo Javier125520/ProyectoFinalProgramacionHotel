@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO {
-    private final static String SQL_INSERT = "INSERT INTO cliente (nombre, gmail, contrasena, dni, telefono) VALUES (?, ?, ?, ?, ?)";
+    private final static String SQL_INSERT = "INSERT INTO cliente (nombre, email, contrasena, dni, telefono) VALUES (?, ?, ?, ?, ?)";
     private final static String SQL_DELETE= "DELETE FROM cliente WHERE idCliente = ?";
     private final static String SQL_UPDATE = "UPDATE cliente SET nombre = ?, gmail = ?, contrasena = ?, dni = ?, telefono = ? WHERE idCliente = ?";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM cliente WHERE idCliente = ?";
@@ -28,7 +28,7 @@ public class ClienteDAO {
         if (cliente != null && findById(cliente.getIdCliente()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
                 pst.setString(1, cliente.getNombre());
-                pst.setString(2, cliente.getGmail());
+                pst.setString(2, cliente.getEmail());
                 pst.setString(3, cliente.getContrasena());
                 pst.setString(4, cliente.getDni());
                 pst.setString(5, cliente.getTelefono());
@@ -75,7 +75,7 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente();
                 cliente.setIdCliente(rs.getInt("idCliente"));
                 cliente.setNombre(rs.getString("nombre"));
-                cliente.setGmail(rs.getString("gmail"));
+                cliente.setEmail(rs.getString("email"));
                 cliente.setContrasena(rs.getString("contrasena"));
                 cliente.setDni(rs.getString("dni"));
                 cliente.setTelefono(rs.getString("telefono"));
@@ -103,7 +103,7 @@ public class ClienteDAO {
                 int idCliente = rs.getInt("idCliente");
                 cliente.setIdCliente(idCliente);
                 cliente.setNombre(rs.getString("nombre"));
-                cliente.setGmail(rs.getString("gmail"));
+                cliente.setEmail(rs.getString("email"));
                 cliente.setContrasena(rs.getString("contrasena"));
                 cliente.setDni(rs.getString("dni"));
                 cliente.setTelefono(rs.getString("telefono"));
@@ -123,7 +123,7 @@ public class ClienteDAO {
         try (PreparedStatement stmt = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {;
             // Configurar los parámetros
             stmt.setString(1, cliente.getNombre());
-            stmt.setString(2, cliente.getGmail());
+            stmt.setString(2, cliente.getEmail());
             stmt.setString(3, cliente.getContrasena());
             stmt.setString(4, cliente.getDni());
             stmt.setString(5, cliente.getTelefono());

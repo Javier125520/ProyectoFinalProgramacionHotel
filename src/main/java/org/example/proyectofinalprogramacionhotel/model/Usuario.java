@@ -1,18 +1,15 @@
 package org.example.proyectofinalprogramacionhotel.model;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 public abstract class Usuario {
     // Atributos
     protected String nombre;
-    protected String gmail;
+    protected String email;
     protected String contrasena;
 
     // Constructor
-    public Usuario(String nombre, String gmail, String contrasena) {
+    public Usuario(String nombre, String email, String contrasena) {
         this.nombre = nombre;
-        this.gmail = gmail;
+        this.email = email;
         this.contrasena = contrasena;
     }
 
@@ -30,12 +27,12 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
 
-    public String getGmail() {
-        return gmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGmail(String gmail) {
-        this.gmail = gmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContrasena() {

@@ -21,7 +21,7 @@
                 <TextField fx:id="nombreGerenteField" promptText="Ingrese el nombre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <Label text="Gmail:" style="-fx-font-size: 14px; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField fx:id="gmailGerenteField" promptText="Ingrese el correo electrónico" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="emailGerenteField" promptText="Ingrese el correo electrónico" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                 <Label text="Contraseña:" style="-fx-font-size: 14px; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                 <PasswordField fx:id="contrasenaGerenteField" promptText="Ingrese la contraseña" GridPane.columnIndex="1" GridPane.rowIndex="2" />

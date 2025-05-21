@@ -13,7 +13,7 @@ public class ActualizarGerenteController {
     private TextField nombreGerenteField;
 
     @FXML
-    private TextField gmailGerenteField;
+    private TextField emailGerenteField;
 
     @FXML
     private TextField contrasenaGerenteField;
@@ -31,7 +31,7 @@ public class ActualizarGerenteController {
         this.gerenteSeleccionado = gerenteSeleccionado;
         if (gerenteSeleccionado != null) {
             nombreGerenteField.setText(gerenteSeleccionado.getNombre());
-            gmailGerenteField.setText(gerenteSeleccionado.getGmail());
+            emailGerenteField.setText(gerenteSeleccionado.getEmail());
             contrasenaGerenteField.setText(gerenteSeleccionado.getContrasena());
             codigoGerenteField.setText(gerenteSeleccionado.getCodigo());
         }
@@ -44,7 +44,7 @@ public class ActualizarGerenteController {
     @FXML
     public void guardarGerenteActualizado(ActionEvent event) {
         if (nombreGerenteField.getText() == null || nombreGerenteField.getText().isEmpty() ||
-                gmailGerenteField.getText() == null || gmailGerenteField.getText().isEmpty() ||
+                emailGerenteField.getText() == null || emailGerenteField.getText().isEmpty() ||
                 contrasenaGerenteField.getText() == null || contrasenaGerenteField.getText().isEmpty() ||
                 codigoGerenteField.getText() == null || codigoGerenteField.getText().isEmpty()) {
 
@@ -54,7 +54,7 @@ public class ActualizarGerenteController {
 
         if (gerenteSeleccionado != null) {
             gerenteSeleccionado.setNombre(nombreGerenteField.getText());
-            gerenteSeleccionado.setGmail(gmailGerenteField.getText());
+            gerenteSeleccionado.setEmail(emailGerenteField.getText());
             gerenteSeleccionado.setContrasena(contrasenaGerenteField.getText());
             gerenteSeleccionado.setCodigo(codigoGerenteField.getText());
 

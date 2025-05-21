@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GerenteDAO {
-    private final static String SQL_INSERT = "INSERT INTO gerente (nombre, gmail, contrasena, codigo) VALUES (?, ?, ?, ?)";
+    private final static String SQL_INSERT = "INSERT INTO gerente (nombre, email, contrasena, codigo) VALUES (?, ?, ?, ?)";
     private final static String SQL_ALL = "SELECT * FROM gerente";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM gerente WHERE idGerente = ?";
     private final static String SQL_UPDATE = "UPDATE gerente SET nombre = ?, gmail = ?, contrasena = ?, codigo = ? WHERE idGerente = ?";
     private final static String SQL_DELETE = "DELETE FROM gerente WHERE idGerente = ?";
     private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM gerente WHERE gmail = ?";
-    private final static String SQL_FIND_BY_DNI_EQUALS = "SELECT COUNT(*) FROM gerente WHERE dni = ?";
     private final static String SQL_FIND_BY_CODIGO_EQUALS = "SELECT COUNT(*) FROM gerente WHERE codigo = ?";
 
 
@@ -30,7 +29,7 @@ public class GerenteDAO {
         if (gerente != null && findById(gerente.getIdGerente()) == null) {
             try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
                 pst.setString(1, gerente.getNombre());
-                pst.setString(2, gerente.getGmail());
+                pst.setString(2, gerente.getEmail());
                 pst.setString(3, gerente.getContrasena());
                 pst.setString(4, gerente.getCodigo());
                 pst.executeUpdate();
@@ -56,7 +55,7 @@ public class GerenteDAO {
                 Gerente gerente = new Gerente();
                 gerente.setIdGerente(rs.getInt("idGerente"));
                 gerente.setNombre(rs.getString("nombre"));
-                gerente.setGmail(rs.getString("gmail"));
+                gerente.setEmail(rs.getString("email"));
                 gerente.setContrasena(rs.getString("contrasena"));
                 gerente.setCodigo(rs.getString("codigo"));
                 gerente.setMisHabitaciones(new ArrayList<>());
@@ -82,7 +81,7 @@ public class GerenteDAO {
                 int idGerente = rs.getInt("idGerente");
                 gerente.setIdGerente(idGerente);
                 gerente.setNombre(rs.getString("nombre"));
-                gerente.setGmail(rs.getString("gmail"));
+                gerente.setEmail(rs.getString("email"));
                 gerente.setContrasena(rs.getString("contrasena"));
                 gerente.setCodigo(rs.getString("codigo"));
                 gerente.setMisHabitaciones(HabitacionDAO.findByIdGerente(idGerente));
@@ -121,7 +120,7 @@ public class GerenteDAO {
     public static void updateGerente(Gerente gerente) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setString(1, gerente.getNombre());
-            pst.setString(2, gerente.getGmail());
+            pst.setString(2, gerente.getEmail());
             pst.setString(3, gerente.getContrasena());
             pst.setString(4, gerente.getCodigo());
             pst.setInt(5, gerente.getIdGerente());

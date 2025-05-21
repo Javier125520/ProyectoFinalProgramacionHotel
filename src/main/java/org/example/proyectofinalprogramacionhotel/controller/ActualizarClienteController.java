@@ -18,7 +18,7 @@ public class ActualizarClienteController {
     private TextField nombreClienteField;
 
     @FXML
-    private TextField gmailClienteField;
+    private TextField emailClienteField;
 
     @FXML
     private TextField contrasenaClienteField;
@@ -39,7 +39,7 @@ public class ActualizarClienteController {
         this.clienteSeleccionado = cliente;
         if (cliente != null) {
             nombreClienteField.setText(cliente.getNombre());
-            gmailClienteField.setText(cliente.getGmail());
+            emailClienteField.setText(cliente.getEmail());
             contrasenaClienteField.setText(cliente.getContrasena());
             dniClienteField.setText(cliente.getDni());
             telefonoClienteField.setText(cliente.getTelefono());
@@ -53,7 +53,7 @@ public class ActualizarClienteController {
     @FXML
     public void guardarClienteActualizado() {
         if (nombreClienteField.getText() == null || nombreClienteField.getText().isEmpty() ||
-                gmailClienteField.getText() == null || gmailClienteField.getText().isEmpty() ||
+                emailClienteField.getText() == null || emailClienteField.getText().isEmpty() ||
                 contrasenaClienteField.getText() == null || contrasenaClienteField.getText().isEmpty() ||
                 dniClienteField.getText() == null || dniClienteField.getText().isEmpty() ||
                 telefonoClienteField.getText() == null || telefonoClienteField.getText().isEmpty()) {
@@ -64,7 +64,7 @@ public class ActualizarClienteController {
 
         if (clienteSeleccionado != null) {
             clienteSeleccionado.setNombre(nombreClienteField.getText());
-            clienteSeleccionado.setGmail(gmailClienteField.getText());
+            clienteSeleccionado.setEmail(emailClienteField.getText());
             clienteSeleccionado.setContrasena(contrasenaClienteField.getText());
             clienteSeleccionado.setDni(dniClienteField.getText());
             clienteSeleccionado.setTelefono(telefonoClienteField.getText());

@@ -24,7 +24,7 @@ public class AñadirClienteController {
     private TextField nombreClienteField;
 
     @FXML
-    private TextField gmailClienteField;
+    private TextField emailClienteField;
 
     @FXML
     private TextField contrasenaClienteField;
@@ -40,7 +40,7 @@ public class AñadirClienteController {
         List<String> errores = new ArrayList<>();
 
         String nombre = nombreClienteField.getText();
-        String gmail = gmailClienteField.getText();
+        String gmail = emailClienteField.getText();
         String contrasena = contrasenaClienteField.getText();
         String dni = dniClienteField.getText();
         String telefono = telefonoClienteField.getText();
@@ -94,7 +94,7 @@ public class AñadirClienteController {
         // Crear objeto Cliente
         Cliente nuevoCliente = new Cliente();
         nuevoCliente.setNombre(nombre);
-        nuevoCliente.setGmail(gmail);
+        nuevoCliente.setEmail(gmail);
         nuevoCliente.setContrasena(contrasena);
         nuevoCliente.setDni(dni);
         nuevoCliente.setTelefono(telefono);
@@ -105,7 +105,7 @@ public class AñadirClienteController {
 
             // Limpiar campos
             nombreClienteField.clear();
-            gmailClienteField.clear();
+            emailClienteField.clear();
             contrasenaClienteField.clear();
             dniClienteField.clear();
             telefonoClienteField.clear();

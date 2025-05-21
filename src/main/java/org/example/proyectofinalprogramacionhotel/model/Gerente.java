@@ -9,8 +9,8 @@ public class Gerente extends Usuario {
     private List<Habitacion> misHabitaciones;
 
     // Constructor
-    public Gerente(String nombre, String gmail, String contrasena, int idGerente, String codigo, List<Habitacion> misHabitaciones) {
-        super(nombre, gmail, contrasena);
+    public Gerente(String nombre, String email, String contrasena, int idGerente, String codigo, List<Habitacion> misHabitaciones) {
+        super(nombre, email, contrasena);
         this.idGerente = idGerente;
         this.codigo = codigo;
         this.misHabitaciones = misHabitaciones;
@@ -56,7 +56,7 @@ public class Gerente extends Usuario {
         return "Gerente{" +
                 "idGerente=" + idGerente +
                 ", nombre='" + nombre + '\'' +
-                ", gmail='" + gmail + '\'' +
+                ", gmail='" + email + '\'' +
                 ", contrasena='" + contrasena + '\'' +
                 ", código=" + codigo + '\'' +
                 ", misHabitaciones=" + misHabitaciones +
