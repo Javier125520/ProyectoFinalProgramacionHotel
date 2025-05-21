@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @XmlRootElement(name = "connection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ConnectionProterties implements Serializable {
+public class ConnectionProperties implements Serializable {
     private static final long serialVersionUID = 1L;
     private String server;
     private String port;
@@ -15,9 +15,9 @@ public class ConnectionProterties implements Serializable {
     private String user;
     private String password;
 
-    public ConnectionProterties() {}
+    public ConnectionProperties() {}
 
-    public ConnectionProterties(String server, String port, String dataBase, String user, String password) {
+    public ConnectionProperties(String server, String port, String dataBase, String user, String password) {
         this.server = server;
         this.port = port;
         this.dataBase = dataBase;

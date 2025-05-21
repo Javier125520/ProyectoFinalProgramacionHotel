@@ -124,6 +124,7 @@ public class GerenteDAO {
             pst.setString(2, gerente.getGmail());
             pst.setString(3, gerente.getContrasena());
             pst.setString(4, gerente.getCodigo());
+            pst.setInt(5, gerente.getIdGerente());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -157,24 +158,6 @@ public class GerenteDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al verificar el gmail: " + e.getMessage(), e);
-        }
-        return false;
-    }
-
-    /**
-     * Metodo que busca un gerente por su dni.
-     * @param dni El dni del gerente que quieres buscar.
-     * @return El gerente encontrado.
-     */
-    public static boolean existeDNIGerente(String dni) {
-        try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_BY_DNI_EQUALS)) {
-            pst.setString(1, dni);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al verificar el DNI: " + e.getMessage(), e);
         }
         return false;
     }

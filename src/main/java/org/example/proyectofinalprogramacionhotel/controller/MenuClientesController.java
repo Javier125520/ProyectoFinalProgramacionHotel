@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -160,18 +159,27 @@ public class MenuClientesController {
         colFechaFinServicio.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
         colPrecioServicio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 
+        /**
+         * Cuando se selecciona un cliente, se muestran sus reservas
+         */
         reservasClienteTbl.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             mostrarHabitacionesReserva();
             mostrarServiciosDisponibles();
         });
 
+        /**
+         * Cuando se selecciona una reserva, se muestran las habitaciones y servicios
+         */
         reservasClienteTbl.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                mostrarHabitacionesReserva((Reserva) newValue);
-                mostrarServiciosReserva((Reserva) newValue);
+                mostrarHabitacionesReserva(newValue);
+                mostrarServiciosReserva(newValue);
             }
         });
 
+        /**
+         * Cuando se selecciona un cliente, se muestran sus reservas
+         */
         clientesLst.setCellFactory(_ -> new ListCell<>() {
             @Override
             protected void updateItem(Cliente cliente, boolean empty) {
@@ -418,10 +426,14 @@ public class MenuClientesController {
         try {
             habitacionSeleccionada.setIdReserva(null); // Desvincular la reserva
             habitacionSeleccionada.setEstadoHabitacion(estadoHabitacion.Libre); // Cambiar estado a Libre
-            HabitacionDAO.updateHabitacion(habitacionSeleccionada);
+            HabitacionDAO.updateHabitacion(habitacionesReservaTbl.getSelectionModel().getSelectedItem());
 
             mostrarAlerta("Éxito", "Habitación desvinculada correctamente.");
-            mostrarHabitacionesReserva();
+
+            Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
+            if (reservaSeleccionada != null) {
+                mostrarHabitacionesReserva(reservaSeleccionada);
+            }
         } catch (Exception e) {
             mostrarAlerta("Error", "No se pudo desvincular la habitación: " + e.getMessage());
         }

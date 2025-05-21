@@ -215,7 +215,7 @@ public class MenuGerentesController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "¿Estás seguro de que deseas eliminar esta habitación?");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    HabitacionDAO.deleteHabitacion(habitacionSeleccionada.getIdGerente());
+                    HabitacionDAO.deleteHabitacion(habitacionSeleccionada.getIdHabitacion()); // Corregido
                     Gerente gerenteSeleccionado = gerentesLst.getSelectionModel().getSelectedItem();
                     if (gerenteSeleccionado != null) {
                         mostrarHabitacionesGerente(gerenteSeleccionado.getIdGerente());
@@ -223,7 +223,7 @@ public class MenuGerentesController {
                 }
             });
         } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona una reserva para eliminar.");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona una habitación para eliminar.");
             alert.showAndWait();
         }
     }

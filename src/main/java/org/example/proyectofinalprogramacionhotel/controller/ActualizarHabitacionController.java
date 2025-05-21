@@ -67,9 +67,9 @@ public class ActualizarHabitacionController {
 
         try {
             habitacionSeleccionada.setNumeroHabitacion(Integer.parseInt(numeroHabitacionField.getText()));
-            habitacionSeleccionada.setTipoHabitacion((tipoHabitacionCombo.getValue()));
-            habitacionSeleccionada.setPrecioNoche(Double.parseDouble(precioNocheField.getText()));
             habitacionSeleccionada.setTipoHabitacion(tipoHabitacionCombo.getValue());
+            habitacionSeleccionada.setPrecioNoche(Double.parseDouble(precioNocheField.getText()));
+            habitacionSeleccionada.setEstadoHabitacion(estadoHabitacionCombo.getValue()); // Asegurar que no sea null
 
             HabitacionDAO.updateHabitacion(habitacionSeleccionada);
             mostrarAlerta("Éxito", "Habitación actualizada correctamente.");

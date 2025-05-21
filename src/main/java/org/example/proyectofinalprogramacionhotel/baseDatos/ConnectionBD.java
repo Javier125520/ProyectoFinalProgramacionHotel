@@ -10,7 +10,7 @@ public class ConnectionBD {
 
     private ConnectionBD() {
         // Constructor privado para evitar instanciación externa
-        ConnectionProterties proterties = XMLManager.readXML(new ConnectionProterties(), File);
+        ConnectionProperties proterties = XMLManager.readXML(new ConnectionProperties(), File);
         try {
             connection = DriverManager.getConnection(proterties.getUrl(), proterties.getUser(), proterties.getPassword());
         } catch (Exception e) {

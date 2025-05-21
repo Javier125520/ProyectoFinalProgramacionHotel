@@ -15,7 +15,7 @@ public class HabitacionDAO {
     private final static String SQL_INSERT = "INSERT INTO habitacion (numeroHabitacion, tipoHabitacion, precioNoche, estadoHabitacion, idGerente, idReserva) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String SQL_FIND_ALL = "SELECT * FROM habitacion";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM habitacion WHERE idHabitacion = ?";
-    private final static String SQL_UPDATE = "UPDATE habitacion SET estadoHabitacion = ?, precioNoche = ?, idReserva = ? WHERE idHabitacion = ?";
+    private final static String SQL_UPDATE = "UPDATE habitacion SET numeroHabitacion = ?, tipoHabitacion = ?, precioNoche = ?, estadoHabitacion = ?, idReserva = ? WHERE idHabitacion = ?";
     private final static String SQL_DELETE = "DELETE FROM habitacion WHERE idHabitacion = ?";
     private final static String SQL_FIND_BY_ID_GERENTE = "SELECT * FROM habitacion WHERE idGerente = ?";
     private final static String SQL_FIND_BY_ID_RESERVA = "SELECT * FROM habitacion WHERE idReserva = ?";
@@ -122,14 +122,16 @@ public class HabitacionDAO {
      */
     public static void updateHabitacion(Habitacion habitacion) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
-            pst.setString(1, habitacion.getEstadoHabitacion().name());
-            pst.setDouble(2, habitacion.getPrecioNoche());
+            pst.setInt(1, habitacion.getNumeroHabitacion());
+            pst.setString(2, habitacion.getTipoHabitacion().name());
+            pst.setDouble(3, habitacion.getPrecioNoche());
+            pst.setString(4, habitacion.getEstadoHabitacion().name());
             if (habitacion.getIdReserva() == null) {
-                pst.setNull(3, java.sql.Types.INTEGER); // Manejar valores nulos
+                pst.setNull(5, java.sql.Types.INTEGER); // Manejar valores nulos
             } else {
-                pst.setInt(3, habitacion.getIdReserva());
+                pst.setInt(5, habitacion.getIdReserva());
             }
-            pst.setInt(4, habitacion.getIdHabitacion());
+            pst.setInt(6, habitacion.getIdHabitacion());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error al actualizar la habitación: " + e.getMessage(), e);

@@ -67,11 +67,6 @@ public class AñadirGerenteController {
             errores.add("El Gmail ya está registrado.");
         }
 
-        // Validar que el DNI no esté ya registrado
-        if (GerenteDAO.existeDNIGerente(codigo)) {
-            errores.add("El DNI ya está registrado.");
-        }
-
         // Validar que el código no esté ya registrado
         if (GerenteDAO.existeCodigoGerente(codigo)) {
             errores.add("El código ya está registrado.");
