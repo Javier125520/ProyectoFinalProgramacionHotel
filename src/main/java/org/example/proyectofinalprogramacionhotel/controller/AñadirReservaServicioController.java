@@ -38,7 +38,6 @@ public class AñadirReservaServicioController {
     @FXML
     private void guardarReservaServicio(ActionEvent event) {
         try {
-            // Validar los datos ingresados
             LocalDate fechaInicio = fechaInicioPicker.getValue();
             LocalDate fechaFin = fechaFinPicker.getValue();
             int numeroPersonas = Integer.parseInt(numPersonasTxt.getText());
