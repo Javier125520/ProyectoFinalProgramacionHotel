@@ -151,7 +151,7 @@ public class MenuClientesController {
         colTipoHabitacionReserva.setCellValueFactory(new PropertyValueFactory<>("tipoHabitacion"));
         colPrecioNocheReserva.setCellValueFactory(new PropertyValueFactory<>("precioNoche"));
 
-        // Configurar columnas de servicios
+        // Configurar columnas de las reservas de los servicios
         colTipoServicioReserva.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getServicio().getTipoServicio()));
         colNumPersonasReserva.setCellValueFactory(new PropertyValueFactory<>("numeroPersonas"));
         colFechaReserva.setCellValueFactory(new PropertyValueFactory<>("fechaReserva"));
@@ -178,7 +178,7 @@ public class MenuClientesController {
         });
 
         /**
-         *
+         * Cuando se selecciona un cliente, se muestran sus reservas
          */
         clientesLst.setCellFactory(_ -> new ListCell<>() {
             @Override
