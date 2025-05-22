@@ -12,7 +12,7 @@ import java.util.List;
 public class ClienteDAO {
     private final static String SQL_INSERT = "INSERT INTO cliente (nombre, email, contrasena, dni, telefono) VALUES (?, ?, ?, ?, ?)";
     private final static String SQL_DELETE= "DELETE FROM cliente WHERE idCliente = ?";
-    private final static String SQL_UPDATE = "UPDATE cliente SET nombre = ?, gmail = ?, contrasena = ?, dni = ?, telefono = ? WHERE idCliente = ?";
+    private final static String SQL_UPDATE = "UPDATE cliente SET nombre = ?, email = ?, contrasena = ?, dni = ?, telefono = ? WHERE idCliente = ?";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM cliente WHERE idCliente = ?";
     private final static String SQL_ALL = "SELECT * FROM cliente";
     private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM cliente WHERE gmail = ?";

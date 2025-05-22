@@ -13,7 +13,7 @@ public class GerenteDAO {
     private final static String SQL_INSERT = "INSERT INTO gerente (nombre, email, contrasena, codigo) VALUES (?, ?, ?, ?)";
     private final static String SQL_ALL = "SELECT * FROM gerente";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM gerente WHERE idGerente = ?";
-    private final static String SQL_UPDATE = "UPDATE gerente SET nombre = ?, gmail = ?, contrasena = ?, codigo = ? WHERE idGerente = ?";
+    private final static String SQL_UPDATE = "UPDATE gerente SET nombre = ?, email = ?, contrasena = ?, codigo = ? WHERE idGerente = ?";
     private final static String SQL_DELETE = "DELETE FROM gerente WHERE idGerente = ?";
     private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM gerente WHERE gmail = ?";
     private final static String SQL_FIND_BY_CODIGO_EQUALS = "SELECT COUNT(*) FROM gerente WHERE codigo = ?";
