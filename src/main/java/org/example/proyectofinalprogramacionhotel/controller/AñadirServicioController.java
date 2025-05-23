@@ -25,6 +25,11 @@ public class AñadirServicioController {
             return;
         }
 
+        if (ServicioDAO.existeTipoServicio(tipoServicio)) {
+            mostrarAlerta("Error", "El tipo de servicio ya existe.");
+            return;
+        }
+
         Servicio nuevoServicio = new Servicio();
         nuevoServicio.setTipoServicio(tipoServicio);
         nuevoServicio.setPrecioHora(Double.parseDouble(precioHoraStr));
