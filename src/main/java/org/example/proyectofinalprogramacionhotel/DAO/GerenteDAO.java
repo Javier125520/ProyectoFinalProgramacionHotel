@@ -15,7 +15,7 @@ public class GerenteDAO {
     private final static String SQL_FIND_BY_ID = "SELECT * FROM gerente WHERE idGerente = ?";
     private final static String SQL_UPDATE = "UPDATE gerente SET nombre = ?, email = ?, contrasena = ?, codigo = ? WHERE idGerente = ?";
     private final static String SQL_DELETE = "DELETE FROM gerente WHERE idGerente = ?";
-    private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM gerente WHERE gmail = ?";
+    private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM gerente WHERE email = ?";
     private final static String SQL_FIND_BY_CODIGO_EQUALS = "SELECT COUNT(*) FROM gerente WHERE codigo = ?";
 
 
@@ -106,6 +106,10 @@ public class GerenteDAO {
             if (rs.next()) {
                 gerente = new Gerente();
                 gerente.setIdGerente(rs.getInt("idGerente"));
+                gerente.setNombre(rs.getString("nombre"));
+                gerente.setEmail(rs.getString("email"));
+                gerente.setContrasena(rs.getString("contrasena"));
+                gerente.setCodigo(rs.getString("codigo"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

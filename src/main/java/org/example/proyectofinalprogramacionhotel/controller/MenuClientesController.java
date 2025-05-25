@@ -163,7 +163,7 @@ public class MenuClientesController {
          * Cuando se selecciona un cliente, se muestran sus reservas
          */
         reservasClienteTbl.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            mostrarHabitacionesReserva();
+            mostrarHabitacionesDisponibles();
             mostrarServiciosDisponibles();
         });
 
@@ -172,7 +172,7 @@ public class MenuClientesController {
          */
         reservasClienteTbl.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                mostrarHabitacionesReserva(newValue);
+                mostrarHabitacionesReservadas(newValue);
                 mostrarServiciosReserva(newValue);
             }
         });
@@ -196,7 +196,7 @@ public class MenuClientesController {
         clientesLst.getItems().setAll(clientes);
     }
 
-    private void mostrarHabitacionesReserva(Reserva reserva) {
+    private void mostrarHabitacionesReservadas(Reserva reserva) {
         List<Habitacion> habitaciones = HabitacionDAO.findByIdReserva(reserva.getIdReserva());
         habitacionesReservaTbl.getItems().setAll(habitaciones);
     }
@@ -365,7 +365,7 @@ public class MenuClientesController {
         serviciosTbl.getItems().setAll(servicios);
     }
 
-    private void mostrarHabitacionesReserva() {
+    private void mostrarHabitacionesDisponibles() {
         Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
         if (reservaSeleccionada != null) {
             // Mostrar habitaciones con estado "Libre"
@@ -400,14 +400,16 @@ public class MenuClientesController {
             }
 
             // Asignar la habitación a la reserva
-            habitacionSeleccionada.setIdReserva(reservaSeleccionada.getIdReserva());
+            Reserva reserva = new Reserva();
+            reserva.setIdReserva(reservaSeleccionada.getIdReserva());
+            habitacionSeleccionada.setReserva(reserva);
             habitacionSeleccionada.setEstadoHabitacion(estadoHabitacion.Ocupada);
             HabitacionDAO.updateHabitacion(habitacionSeleccionada);
 
             // Actualizar tablas
             mostrarAlerta("Éxito", "Habitación asignada correctamente.");
-            mostrarHabitacionesReserva();
-            mostrarHabitacionesReserva(reservaSeleccionada);
+            mostrarHabitacionesDisponibles();
+            mostrarHabitacionesReservadas(reservaSeleccionada);
         } catch (Exception e) {
             mostrarAlerta("Error", "No se pudo asignar la habitación: " + e.getMessage());
         }
@@ -423,7 +425,7 @@ public class MenuClientesController {
         }
 
         try {
-            habitacionSeleccionada.setIdReserva(null); // Desvincular la reserva
+            habitacionSeleccionada.setReserva(null); // Desvincular la reserva
             habitacionSeleccionada.setEstadoHabitacion(estadoHabitacion.Libre); // Cambiar estado a Libre
             HabitacionDAO.updateHabitacion(habitacionesReservaTbl.getSelectionModel().getSelectedItem());
 
@@ -431,7 +433,7 @@ public class MenuClientesController {
 
             Reserva reservaSeleccionada = reservasClienteTbl.getSelectionModel().getSelectedItem();
             if (reservaSeleccionada != null) {
-                mostrarHabitacionesReserva(reservaSeleccionada);
+                mostrarHabitacionesReservadas(reservaSeleccionada);
             }
         } catch (Exception e) {
             mostrarAlerta("Error", "No se pudo desvincular la habitación: " + e.getMessage());
@@ -463,7 +465,7 @@ public class MenuClientesController {
             }
 
             // Cargar el archivo FXML del formulario para reservar un servicio
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AñadirReservaServicio.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/proyectofinalprogramacionhotel/AñadirReservaServicio.fxml"));
             Scene scene = new Scene(loader.load());
 
             // Obtener el controlador del formulario
@@ -493,7 +495,7 @@ public class MenuClientesController {
         }
 
         try {
-            ReservaServicioDAO.deleteReservaServicio(reservaServicioSeleccionada.getIdReserva());
+            ReservaServicioDAO.deleteReservaServicio(reservaServicioSeleccionada.getReserva().getIdReserva());
 
             mostrarAlerta("Éxito", "Reserva de servicio eliminada correctamente.");
             mostrarServiciosReserva(reservasClienteTbl.getSelectionModel().getSelectedItem());

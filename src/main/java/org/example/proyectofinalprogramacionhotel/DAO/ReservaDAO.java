@@ -54,6 +54,9 @@ public class ReservaDAO {
             if (rs.next()) {
                 reserva = new Reserva();
                 reserva.setIdReserva(rs.getInt("idReserva"));
+                reserva.setFechaEntrada(rs.getDate("fechaEntrada").toLocalDate());
+                reserva.setFechaSalida(rs.getDate("fechaSalida").toLocalDate());
+                reserva.setEstadoReserva(estadoReserva.valueOf(rs.getString("estadoReserva")));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

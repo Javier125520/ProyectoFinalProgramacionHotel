@@ -73,8 +73,8 @@ public class AñadirHabitacionController {
         nuevaHabitacion.setPrecioNoche(Double.parseDouble(precioNocheStr));
         nuevaHabitacion.setTipoHabitacion(tipo);
         nuevaHabitacion.setEstadoHabitacion(estado);
-        nuevaHabitacion.setIdGerente(gerenteSeleccionado.getIdGerente());
-        nuevaHabitacion.setIdReserva(null);
+        nuevaHabitacion.setGerente(gerenteSeleccionado);
+        nuevaHabitacion.setReserva(null);
 
         // Guardar en la base de datos
         try {

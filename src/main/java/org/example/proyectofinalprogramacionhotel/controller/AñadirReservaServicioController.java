@@ -50,7 +50,7 @@ public class AñadirReservaServicioController {
 
             // Crear y guardar la reserva del servicio
             ReservaServicio reservaServicio = new ReservaServicio();
-            reservaServicio.setIdReserva(reservaSeleccionada.getIdReserva());
+            reservaServicio.setReserva(reservaSeleccionada);
             reservaServicio.setServicio(servicioSeleccionado);
             reservaServicio.setFechaReserva(LocalDate.now());
             reservaServicio.setFechaInicio(fechaInicio);

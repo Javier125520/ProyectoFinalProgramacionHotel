@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class ReservaServicio {
     // Atributos
-    private int idReserva;
+    private Reserva reserva;
     private Servicio servicio;
     private LocalDate fechaReserva;
     private int numeroPersonas;
@@ -13,8 +13,8 @@ public class ReservaServicio {
     private LocalDate fechaFin;
 
     // Constructor
-    public ReservaServicio(int idReserva, Servicio servicio, LocalDate fechaReserva, int numeroPersonas, int precio, LocalDate fechaInicio, LocalDate fechaFin) {
-        this.idReserva = idReserva;
+    public ReservaServicio(Reserva reserva, Servicio servicio, LocalDate fechaReserva, int numeroPersonas, int precio, LocalDate fechaInicio, LocalDate fechaFin) {
+        this.reserva = reserva;
         this.servicio = servicio;
         this.fechaReserva = fechaReserva;
         this.numeroPersonas = numeroPersonas;
@@ -29,12 +29,13 @@ public class ReservaServicio {
     }
 
     // Getters y Setters
-    public int getIdReserva() {
-        return idReserva;
+
+    public Reserva getReserva() {
+        return reserva;
     }
 
-    public void setIdReserva(int idReserva) {
-        this.idReserva = idReserva;
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 
     public Servicio getServicio() {
@@ -88,7 +89,7 @@ public class ReservaServicio {
     @Override
     public String toString() {
         return "ReservaServicio{" +
-                "idReserva=" + idReserva +
+                "reserva=" + reserva +
                 ", servicio=" + servicio +
                 ", fechaReserva=" + fechaReserva +
                 ", numeroPersonas=" + numeroPersonas +

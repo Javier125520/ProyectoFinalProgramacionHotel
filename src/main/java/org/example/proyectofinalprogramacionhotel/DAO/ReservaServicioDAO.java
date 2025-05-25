@@ -1,6 +1,7 @@
 package org.example.proyectofinalprogramacionhotel.DAO;
 
 import org.example.proyectofinalprogramacionhotel.baseDatos.ConnectionBD;
+import org.example.proyectofinalprogramacionhotel.model.Reserva;
 import org.example.proyectofinalprogramacionhotel.model.ReservaServicio;
 import org.example.proyectofinalprogramacionhotel.model.Servicio;
 
@@ -17,14 +18,9 @@ public class ReservaServicioDAO {
     private final static String SQL_UPDATE = "UPDATE reserva_servicio SET idServicio = ?, fechaReserva = ?, numeroPersonas = ?, precio = ?, fechaInicio = ?, fechaFin = ? WHERE idReserva = ?";
     private final static String SQL_DELETE = "DELETE FROM reserva_servicio WHERE idReserva = ?";
 
-    /**
-     * Metodo que inserta una reserva de servicio en la base de datos.
-     *
-     * @param reserva La reserva de servicio que vas a insertar.
-     */
     public static void insertReservaServicio(ReservaServicio reserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_INSERT)) {
-            pst.setInt(1, reserva.getIdReserva());
+            pst.setInt(1, reserva.getReserva().getIdReserva());
             pst.setInt(2, reserva.getServicio().getIdServicio());
             pst.setDate(3, Date.valueOf(reserva.getFechaReserva()));
             pst.setInt(4, reserva.getNumeroPersonas());
@@ -37,12 +33,6 @@ public class ReservaServicioDAO {
         }
     }
 
-    /**
-     * Metodo que busca una reserva de servicio por su idReserva.
-     *
-     * @param idReserva El id de la reserva de servicio que quieres buscar.
-     * @return La reserva de servicio encontrada.
-     */
     public static List<ReservaServicio> findByIdReserva(int idReserva) {
         List<ReservaServicio> reservasServicios = new ArrayList<>();
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_FIND_SERVICIOS_BY_ID_RESERVA)) {
@@ -50,17 +40,18 @@ public class ReservaServicioDAO {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 ReservaServicio reservaServicio = new ReservaServicio();
-                reservaServicio.setIdReserva(rs.getInt("idReserva"));
+
+                Reserva reserva = ReservaDAO.findById(rs.getInt("idReserva"));
+                reservaServicio.setReserva(reserva);
+
+                Servicio servicio = ServicioDAO.findById(rs.getInt("idServicio"));
+                reservaServicio.setServicio(servicio);
+
                 reservaServicio.setFechaReserva(rs.getDate("fechaReserva").toLocalDate());
                 reservaServicio.setNumeroPersonas(rs.getInt("numeroPersonas"));
                 reservaServicio.setPrecio(rs.getInt("precio"));
                 reservaServicio.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
                 reservaServicio.setFechaFin(rs.getDate("fechaFin").toLocalDate());
-
-                // Buscar el servicio por idServicio
-                int idServicio = rs.getInt("idServicio");
-                Servicio servicio = ServicioDAO.findById(idServicio);
-                reservaServicio.setServicio(servicio);
 
                 reservasServicios.add(reservaServicio);
             }
@@ -70,11 +61,6 @@ public class ReservaServicioDAO {
         return reservasServicios;
     }
 
-    /**
-     * Metodo que actualiza una reserva de servicio en la base de datos.
-     *
-     * @param reserva La reserva de servicio que vas a actualizar.
-     */
     public static void updateReservaServicio(ReservaServicio reserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_UPDATE)) {
             pst.setInt(1, reserva.getServicio().getIdServicio());
@@ -83,18 +69,13 @@ public class ReservaServicioDAO {
             pst.setInt(4, reserva.getPrecio());
             pst.setDate(5, Date.valueOf(reserva.getFechaInicio()));
             pst.setDate(6, Date.valueOf(reserva.getFechaFin()));
-            pst.setInt(7, reserva.getIdReserva());
+            pst.setInt(7, reserva.getReserva().getIdReserva());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    /**
-     * Metodo que elimina una reserva de servicio por su idReserva.
-     *
-     * @param idReserva El ID de la reserva de servicio que quieres eliminar.
-     */
     public static void deleteReservaServicio(int idReserva) {
         try (PreparedStatement pst = ConnectionBD.getConnection().prepareStatement(SQL_DELETE)) {
             pst.setInt(1, idReserva);

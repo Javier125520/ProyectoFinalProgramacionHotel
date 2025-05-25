@@ -1,9 +1,7 @@
 package org.example.proyectofinalprogramacionhotel.DAO;
 
 import org.example.proyectofinalprogramacionhotel.baseDatos.ConnectionBD;
-import org.example.proyectofinalprogramacionhotel.model.Habitacion;
-import org.example.proyectofinalprogramacionhotel.model.estadoHabitacion;
-import org.example.proyectofinalprogramacionhotel.model.tipoHabitacion;
+import org.example.proyectofinalprogramacionhotel.model.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,8 +31,16 @@ public class HabitacionDAO {
                 pst.setString(2, habitacion.getTipoHabitacion().name());
                 pst.setDouble(3, habitacion.getPrecioNoche());
                 pst.setString(4, habitacion.getEstadoHabitacion().name());
-                pst.setInt(5, habitacion.getIdGerente());
-                pst.setObject(6, habitacion.getIdReserva());
+                if (habitacion.getGerente() == null) {
+                    pst.setNull(5, java.sql.Types.INTEGER); // Manejar valores nulos
+                } else {
+                    pst.setInt(5, habitacion.getGerente().getIdGerente());
+                }
+                if (habitacion.getReserva() == null) {
+                    pst.setNull(6, java.sql.Types.INTEGER); // Manejar valores nulos
+                } else {
+                    pst.setInt(6, habitacion.getReserva().getIdReserva());
+                }
                 pst.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -60,6 +66,26 @@ public class HabitacionDAO {
                 habitacion.setTipoHabitacion(tipoHabitacion.valueOf(rs.getString("tipoHabitacion")));
                 habitacion.setPrecioNoche(rs.getDouble("precioNoche"));
                 habitacion.setEstadoHabitacion(estadoHabitacion.valueOf(rs.getString("estadoHabitacion")));
+
+
+                // Cargar el objeto Gerente
+                int idGerente = rs.getInt("idGerente");
+                if (idGerente != 0) { // Verificar si el idGerente no es nulo
+                    Gerente gerente = GerenteDAO.findById(idGerente);
+                    habitacion.setGerente(gerente);
+                } else {
+                    habitacion.setGerente(null); // Si no hay gerente, establecer como null
+                }
+
+                // Cargar el objeto Reserva
+                int idReserva = rs.getInt("idReserva");
+                if (idReserva != 0) { // Verificar si el idReserva no es nulo
+                    Reserva reserva = ReservaDAO.findById(idReserva);
+                    habitacion.setReserva(reserva);
+                } else {
+                    habitacion.setReserva(null); // Si no hay reserva, establecer como null
+                }
+
                 habitaciones.add(habitacion);
             }
         } catch (SQLException e) {
@@ -126,10 +152,10 @@ public class HabitacionDAO {
             pst.setString(2, habitacion.getTipoHabitacion().name());
             pst.setDouble(3, habitacion.getPrecioNoche());
             pst.setString(4, habitacion.getEstadoHabitacion().name());
-            if (habitacion.getIdReserva() == null) {
+            if (habitacion.getReserva() == null) {
                 pst.setNull(5, java.sql.Types.INTEGER); // Manejar valores nulos
             } else {
-                pst.setInt(5, habitacion.getIdReserva());
+                pst.setInt(5, habitacion.getReserva().getIdReserva());
             }
             pst.setInt(6, habitacion.getIdHabitacion());
             pst.executeUpdate();
@@ -192,6 +218,15 @@ public class HabitacionDAO {
                 habitacion.setTipoHabitacion(tipoHabitacion.valueOf(rs.getString("tipoHabitacion")));
                 habitacion.setPrecioNoche(rs.getDouble("precioNoche"));
                 habitacion.setEstadoHabitacion(estadoHabitacion.valueOf(rs.getString("estadoHabitacion")));
+
+                // Cargar el objeto Gerente
+                int idGerente = rs.getInt("idGerente");
+                if (idGerente != 0) { // Verificar si el idGerente no es nulo
+                    Gerente gerente = GerenteDAO.findById(idGerente);
+                    habitacion.setGerente(gerente);
+                } else {
+                    habitacion.setGerente(null); // Si no hay gerente, establecer como null
+                }
                 habitacionesDisponibles.add(habitacion);
             }
         } catch (SQLException e) {

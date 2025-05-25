@@ -7,18 +7,17 @@ public class Habitacion {
     private tipoHabitacion tipoHabitacion;
     private double precioNoche;
     private estadoHabitacion estadoHabitacion;
-    private int idGerente;
-    private Integer idReserva;
+    private Gerente gerente;
+    private Reserva reserva;
 
-    // Constructor
-    public Habitacion(int idHabitacion, int numeroHabitacion, org.example.proyectofinalprogramacionhotel.model.tipoHabitacion tipoHabitacion, double precioNoche, estadoHabitacion estadoHabitacion, int idGerente, Integer idReserva) {
+    public Habitacion(int idHabitacion, int numeroHabitacion, tipoHabitacion tipoHabitacion, double precioNoche, estadoHabitacion estadoHabitacion, Gerente gerente, Reserva reserva) {
         this.idHabitacion = idHabitacion;
         this.numeroHabitacion = numeroHabitacion;
         this.tipoHabitacion = tipoHabitacion;
         this.precioNoche = precioNoche;
         this.estadoHabitacion = estadoHabitacion;
-        this.idGerente = idGerente;
-        this.idReserva = idReserva;
+        this.gerente = gerente;
+        this.reserva = reserva;
     }
 
     // Constructor sin parámetros
@@ -67,21 +66,22 @@ public class Habitacion {
         this.estadoHabitacion = estadoHabitacion;
     }
 
-    public int getIdGerente() {
-        return idGerente;
+    public Gerente getGerente() {
+        return gerente;
     }
 
-    public void setIdGerente(int idGerente) {
-        this.idGerente = idGerente;
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
     }
 
-    public Integer getIdReserva() {
-        return idReserva;
+    public Reserva getReserva() {
+        return reserva;
     }
 
-    public void setIdReserva(Integer idReserva) {
-        this.idReserva = idReserva;
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
+
 
     @Override
     public String toString() {
@@ -91,7 +91,8 @@ public class Habitacion {
                 ", tipoHabitacion=" + tipoHabitacion +
                 ", precioNoche=" + precioNoche +
                 ", estadoHabitacion=" + estadoHabitacion +
-                ", idGerente=" + idGerente +
+                ", gerente=" + gerente +
+                ", reserva=" + reserva +
                 '}';
     }
 }

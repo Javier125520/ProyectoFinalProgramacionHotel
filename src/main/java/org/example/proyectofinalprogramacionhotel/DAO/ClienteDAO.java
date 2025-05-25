@@ -15,7 +15,7 @@ public class ClienteDAO {
     private final static String SQL_UPDATE = "UPDATE cliente SET nombre = ?, email = ?, contrasena = ?, dni = ?, telefono = ? WHERE idCliente = ?";
     private final static String SQL_FIND_BY_ID = "SELECT * FROM cliente WHERE idCliente = ?";
     private final static String SQL_ALL = "SELECT * FROM cliente";
-    private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM cliente WHERE gmail = ?";
+    private final static String SQL_FIND_BY_GMAIL_EQUALS = "SELECT COUNT(*) FROM cliente WHERE email = ?";
     private final static String SQL_FIND_BY_DNI_EQUALS = "SELECT COUNT(*) FROM cliente WHERE dni = ?";
 
 
