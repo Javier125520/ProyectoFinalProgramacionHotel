@@ -82,6 +82,9 @@ public class Habitacion {
         this.reserva = reserva;
     }
 
+    public int getIdGerente() {
+        return (gerente != null) ? gerente.getIdGerente() : 0; // Devuelve 0 si gerente es null
+    }
 
     @Override
     public String toString() {
